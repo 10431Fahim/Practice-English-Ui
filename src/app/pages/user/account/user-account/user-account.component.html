@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="main-content1">
+    <div class="user-account-main">
+      <div class="user-account">
+        <div class="photo-select-main">
+          <div class="photo-select">
+            <img [src]="imgPlaceHolder" [alt]="'Picked Image'" (click)="profileImagePicker.click()">
+            <input [hidden]="true" #profileImagePicker type="file" (change)="fileChangeEvent($event)" accept="image/*"/>
+            <a class="photo-select-child" (click)="profileImagePicker.click()">
+              <fa-icon [icon]="faPen"></fa-icon>
+            </a>
+          </div>
+          <input type="text" hidden #photo_select/>
+        </div>
+
+        <div class="user-form">
+          <form (ngSubmit)="onSubmit()" [formGroup]="dataForm">
+            <!--            <div class="input-area">-->
+            <!--              <input type="text" placeholder="Enter your name" [class]="dataForm.get('name').touched && dataForm.get('name').invalid ? 'invalid' :''" formControlName="name" value="Name" />-->
+            <!--              <small *ngIf="dataForm.get('name').touched && dataForm.get('name').invalid">-->
+            <!--                This Field is Required</small>-->
+            <!--            </div>-->
+
+
+            <mat-form-field appearance="outline" style="width: 100%" class="m-100">
+              <input matInput placeholder="Enter your name" formControlName="name" required>
+              <mat-error>This field is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%" class="m-100">
+              <input matInput placeholder="Enter number" formControlName="phone" required>
+              <mat-error>This field is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 100%" class="m-100">
+              <input matInput placeholder="Enter your email" formControlName="email" required>
+              <mat-error>This field is required.</mat-error>
+            </mat-form-field>
+
+            <!--            <div class="input-area">-->
+            <!--              <input type="text" placeholder="Enter number" formControlName="phone"  />-->
+            <!--              <p>Mobile number cannot be changed</p>-->
+            <!--            </div>-->
+
+            <!--            <div class="input-area">-->
+            <!--              <input type="text" placeholder="Enter your email" formControlName="email" />-->
+            <!--            </div>-->
+
+            <mat-form-field style="width: 100%" appearance="outline" class="m-100">
+              <mat-label>Gender</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option *ngFor="let data of genders" [value]="data.value" required>
+                  {{data.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-error>This field is required.</mat-error>
+            </mat-form-field>
+
+            <div class="submit-btn">
+              <button type="submit">{{isLoading ? "Please wait..." : " Update Profile"}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+

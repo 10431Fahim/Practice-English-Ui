@@ -1,0 +1,117 @@
+<!--<div class="section">-->
+<!--  <div class="container">-->
+<!--    <div class="section-main">-->
+<!--      <div class="reset-password">-->
+<!--        <div class="reset-password-top">-->
+<!--          <h3>ঘরে বসে পড়াশোনার সহজ সমাধান</h3>-->
+<!--&lt;!&ndash;          <span routerLink="/login"><i class="fa fa-arrow-left"></i></span>&ndash;&gt;-->
+<!--        </div>-->
+<!--        <div class="reset-form">-->
+<!--&lt;!&ndash;          <div *ngIf="hasUser === false" class="not-found-account">&ndash;&gt;-->
+<!--&lt;!&ndash;            <span><i class="fa fa-xmark"></i>Account not found</span>&ndash;&gt;-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+<!--          <form [formGroup]="dataForm" >-->
+<!--            <div class="form-input">-->
+<!--              <input type="text" placeholder="মোবাইল নাম্বার/ইমেইল"-->
+<!--                     [class]="dataForm.get('username').touched && dataForm.get('username').invalid ? 'invalid' :''"-->
+<!--                     formControlName="username">-->
+<!--              <small *ngIf="dataForm.get('username').touched && dataForm.get('username').invalid">This-->
+<!--                Field is-->
+<!--                Required</small>-->
+<!--            </div>-->
+
+<!--            <div class="form-input" *ngIf="isOtpSent">-->
+<!--              <input type="text" placeholder="Otp code"-->
+<!--                     [class]="dataForm.get('otp').touched && dataForm.get('otp').invalid ? 'invalid' :''"-->
+<!--                     formControlName="otp" [required]="isOtpSent">-->
+<!--              <small *ngIf="dataForm.get('otp').touched && dataForm.get('otp').invalid">This-->
+<!--                Field is-->
+<!--                Required</small>-->
+<!--            </div>-->
+<!--            <div class="form-input password" *ngIf="isPass">-->
+<!--              <div class="password-area">-->
+<!--                <p class="label">পাসওয়ার্ড <sup>*</sup></p>-->
+<!--                <input-->
+<!--                  [class]="dataForm.get('password').touched && dataForm.get('password').invalid ? 'invalid' :''"-->
+<!--                  [attr.type]="isPasswordShow ? 'text' : 'password'" placeholder="পাসওয়ার্ড"-->
+<!--                  formControlName="password">-->
+<!--                <span (click)="onShowPassword()"><i-->
+<!--                  [class]="isPasswordShow ? 'fa fa-eye-slash' : 'fa fa-eye'"></i></span>-->
+<!--              </div>-->
+<!--              <a class="reset-password" routerLink="/reset-password">পাসওয়ার্ড ভুলে গেছেন?</a>-->
+<!--              <small *ngIf="dataForm.get('password').touched && dataForm.get('password').invalid">This-->
+<!--                Field is-->
+<!--                Required</small>-->
+
+<!--            </div>-->
+
+<!--            <div class="view-all-btn">-->
+<!--              <button  class="login-button" *ngIf="!showBtn" (click)="onSubmit()">এগিয়ে যান-->
+<!--                <mat-icon>arrow_right_alt</mat-icon>-->
+<!--              </button>-->
+<!--              <button *ngIf="showBtn"  class="login-button" (click)="onSubmitData()" >-->
+<!--                এগিয়ে যান-->
+<!--                <mat-icon>arrow_right_alt</mat-icon>-->
+<!--              </button>-->
+<!--            </div>-->
+
+<!--&lt;!&ndash;            <div class="form-sub">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              <button *ngIf="!isLoading" type="submit">Submit</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              <button *ngIf="isLoading" type="button">Please wait...</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <button *ngIf="!isLoading" class="login-button" (click)="onSubmitData()">এগিয়ে যান&ndash;&gt;-->
+<!--&lt;!&ndash;                <mat-icon>arrow_right_alt</mat-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;              </button>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              <button *ngIf="!showBtn" (click)="onSubmit()" type="button">Submit</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;              <button *ngIf="showBtn"  (click)="onSubmitData()" type="button">Signup</button>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              <button *ngIf="!isLoading" (click)="onSubmit()" type="submit">Submit</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              <button *ngIf="!isLoading" (click)="onSubmit()" type="submit">Submit</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;              <button *ngIf="!isLoading" (click)="onSubmit()" type="submit">Submit</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<div class="container">
+  <div class="section">
+    <h1>ঘরে বসে পড়াশোনার সহজ সমাধান</h1>
+    <div class="section-detail">
+      <form [formGroup]="dataForm" style="width: 100%">
+      <mat-label>মোবাইল নাম্বার/ইমেইল </mat-label>
+      <mat-form-field appearance="outline" style=" margin-bottom: -1.25em">
+        <input  [disabled]="sentOtp" matInput placeholder="মোবাইল নাম্বার/ইমেইল" formControlName="username">
+      </mat-form-field>
+
+        <div *ngIf="isOtpSent" style="margin-top: 10px">
+          <mat-form-field appearance="outline" style=" margin-bottom: -1.25em">
+            <input   matInput placeholder="কোডটি লিখুন" formControlName="otp">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="isPass" style="margin-top: 6px">
+          <mat-label>পাসওয়ার্ড </mat-label>
+          <mat-form-field class="pass" appearance="outline" style=" margin-bottom: -1.25em">
+            <input   matInput placeholder="পাসওয়ার্ড" [attr.type]="isPasswordShow ? 'text' : 'password'" formControlName="password">
+            <span (click)="onShowPassword()"><i
+              [class]="isPasswordShow ? 'fa fa-eye-slash' : 'fa fa-eye'"></i></span>
+          </mat-form-field>
+           <a *ngIf="!isOtpSent && isPass" class="reset-password" routerLink="/reset-password">পাসওয়ার্ড ভুলে গেছেন?</a>
+        </div>
+
+
+      <div class="view-all-btn">
+        <button *ngIf="!showBtn" class="login-button" (click)="onSubmit()">এগিয়ে যান
+          <mat-icon>arrow_right_alt</mat-icon>
+        </button>
+        <button *ngIf="showBtn" class="login-button" (click)="onSubmitData()" >
+          এগিয়ে যান
+          <mat-icon>arrow_right_alt</mat-icon>
+        </button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
