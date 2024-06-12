@@ -64,7 +64,7 @@
 .header-area {
   display: block;
   background-color: $color-white;
-  padding: 0.75rem 1.75rem;
+  padding: 0 1.75rem;
   border-bottom: 1px solid $color-border;
 
   &.fixed {
@@ -86,7 +86,7 @@
       justify-content: space-between;
 
       .logo {
-        max-width: 178px;
+        max-width: 90px;
         width: 100%;
         display: flex;
         align-items: center;
