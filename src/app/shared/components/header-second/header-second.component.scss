@@ -1,0 +1,111 @@
+@import "../../../../theme/variables";
+
+/* --- header-second --- */
+header.header-second {
+    background-color: #1E1E1E;
+}
+
+/* --- header-second-child --- */
+.header-second-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* --- header-second-left --- */
+.header-second-left {
+    img {
+        max-width: 76px;
+        height: 78px;
+        width: 100%;
+    }
+}
+
+@media (max-width:556px) {
+    .header-second-left {
+        img {
+            max-width: 62px;
+            height: 64px;
+        }
+    }
+}
+
+/* --- header-second-middle --- */
+.header-second-middle {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+
+    h4 {
+        font-family: $font-en-roboto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: $color-white;
+        font-size: 25px;
+        font-weight: 400;
+        line-height: 30px;
+        margin: 0;
+
+        small {
+            font-size: 12px;
+            line-height: 14.4px;
+            text-align: center;
+        }
+    }
+
+    p {
+        font-size: 25px;
+        font-weight: 400;
+        line-height: 30px;
+        color: $color-white;
+        margin: 0;
+    }
+}
+
+@media (max-width:556px) {
+    .header-second-middle {
+        h4 {
+            font-size: 20px;
+            line-height: 26px;
+
+            small {
+                font-size: 10px;
+                line-height: 11.4px;
+            }
+        }
+
+        p {
+            font-size: 22px;
+            line-height: 28px;
+        }
+    }
+}
+
+/* --- header-second-right --- */
+.header-second-right {
+    button {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        font-family: $font-en-roboto;
+        color: $color-white;
+        background-color: #005BC5;
+        padding: 13px 47px;
+        border-radius: 10px;
+        border: 0;
+        outline: 0;
+    }
+}
+
+@media (max-width:556px) {
+    .header-second-right {
+        button {
+            font-size: 14px;
+            padding: 8px 28px;
+            border-radius: 6px;
+            line-height: 21px;
+        }
+    }
+}

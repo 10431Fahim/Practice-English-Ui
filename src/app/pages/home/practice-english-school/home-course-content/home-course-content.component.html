@@ -1,0 +1,60 @@
+<section class="home-course-content">
+  <div class="container">
+    <div class="home-course-content-title">
+      <h1>Course Content</h1>
+    </div>
+    <!-- END! home-course-content-title -->
+
+    <div class="home-course-content-child">
+      <div
+        class="home-course-content-dorp-down"
+        [class.active]="isToggleActive === 1"
+      >
+        <div class="home-course-content-dorp-down-top">
+          <button
+            type="button"
+            (click)="
+              isToggleActive === 1 ? onToggleActive(0) : onToggleActive(1)
+            "
+          >
+            <span>FREE DEMO CLASS + FREE PDF</span>
+
+            <small>
+              <i class="fa-solid fa-angle-down"></i>
+            </small>
+          </button>
+        </div>
+
+        <div class="home-course-content-dorp-down-bottom">
+          <div class="home-course-content-dorp-down-bottom-child">
+            <div class="course-content-dorp-down-lists">
+              <div
+                class="course-content-dorp-down-list-item"
+                *ngFor="let data of [0, 0, 0]"
+              >
+                <h3>
+                  <small>
+                    <i class="fa-brands fa-youtube"></i>
+                  </small>
+
+                  <span> Full Demo Class + Free PDF </span>
+                </h3>
+                <p>
+                  <span>01:16:00</span>
+                  <small>
+                    <i class="fa-regular fa-eye"></i>
+                  </small>
+                </p>
+              </div>
+              <!-- END! course-content-dorp-down-list-item -->
+            </div>
+          </div>
+          <!-- END! home-course-content-dorp-down-bottom-child -->
+        </div>
+      </div>
+      <!-- END! home-course-content-dorp-down -->
+    </div>
+    <!-- END! home-course-content-child -->
+  </div>
+</section>
+<!-- END! home-course-content -->

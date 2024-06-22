@@ -1,0 +1,126 @@
+@import "src/theme/_variables.scss";
+
+/* --- home-membership --- */
+section.home-membership {
+    padding-block: 70px;
+}
+
+@media (max-width:500px) {
+    section.home-membership {
+        padding-block: 44px 50px;
+    }
+}
+
+/* --- home-membership-title --- */
+.home-membership-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+
+    h1 {
+        font-family: $font-en-roboto;
+        font-size: 35px;
+        font-weight: 500;
+        line-height: 34.5px;
+        text-align: left;
+        color: #0700CA;
+        border-bottom: 1px solid #0700CA;
+        display: inline-block;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+}
+
+@media (max-width:1200px) {
+    .home-membership-title {
+        h1 {
+            font-size: 28px;
+            line-height: 33.5px;
+        }
+
+
+    }
+}
+
+@media (max-width:500px) {
+    .home-membership-title {
+        h1 {
+            font-size: 24px;
+            line-height: 30.5px;
+        }
+    }
+}
+
+/* --- home-membership-cards --- */
+.home-membership-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 40px;
+}
+
+@media (max-width:700px) {
+    .home-membership-cards {
+        grid-template-columns: 100%;
+        grid-gap: 20px;
+    }
+}
+
+/* --- .home-membership-card --- */
+.home-membership-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+.home-membership-card-left {
+    img {
+        max-width: 30px;
+        min-width: 30px;
+        height: 30px;
+    }
+}
+
+.home-membership-card-right {
+    p {
+        font-family: $font-en-roboto;
+        font-size: 18.2px;
+        font-weight: 500;
+        line-height: 28.8px;
+        text-align: left;
+        color: #000000;
+        max-width: 280px;
+        margin: 0;
+    }
+}
+
+@media (max-width:700px) {
+    .home-membership-card-right {
+        p {
+            max-width: 100%;
+        }
+    }
+}
+
+@media (max-width:500px) {
+    .home-membership-card {
+        gap: 10px;
+    }
+
+    .home-membership-card-left {
+        img {
+            max-width: 26px;
+            min-width: 26px;
+            height: 26px;
+        }
+    }
+
+    .home-membership-card-right {
+        p {
+            font-size: 16.2px;
+            font-weight: 500;
+            line-height: 23.8px;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+<header class="header-second">
+  <div class="container">
+    <div class="header-second-child">
+      <div class="header-second-left">
+        <a class="logo" routerLink="/">
+          <img
+            *ngIf="shopInformation?.siteLogo"
+            [ngSrc]="shopInformation?.siteLogo | imgCtrl : 'filename'"
+            [ngSrcset]="rawSrcset"
+            [width]="shopInformation?.siteLogo | imgCtrl : 'width'"
+            [height]="shopInformation?.siteLogo | imgCtrl : 'height'"
+            sizes="(max-width: 78px) 50vw, 25vw"
+            alt=""
+          />
+        </a>
+      </div>
+
+      <div class="header-second-middle">
+        <h4>
+          <span>03</span>
+          <small>DAYS</small>
+        </h4>
+        <p>:</p>
+        <h4>
+          <span>11</span>
+          <small>HRS</small>
+        </h4>
+        <p>:</p>
+        <h4>
+          <span>38</span>
+          <small>SECS</small>
+        </h4>
+      </div>
+
+      <div class="header-second-right">
+        <button type="button">Login</button>
+      </div>
+    </div>
+  </div>
+</header>

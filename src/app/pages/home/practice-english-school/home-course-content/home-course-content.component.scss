@@ -1,0 +1,240 @@
+@import "src/theme/_variables.scss";
+
+/* --- home-course-content --- */
+section.home-course-content {
+    padding-block: 70px;
+}
+
+@media (max-width:700px) {
+    section.home-course-content {
+        padding-block: 42px 50px;
+    }
+}
+
+/* --- home-course-content-title --- */
+.home-course-content-title {
+    h1 {
+        font-family: $font-en-roboto;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 40px;
+        text-align: left;
+        color: #212327;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width:700px) {
+    .home-course-content-title {
+        h1 {
+            font-size: 23px;
+            line-height: 32px;
+            margin-bottom: 18px;
+        }
+    }
+}
+
+/* --- home-course-content-child --- */
+.home-course-content-child {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 20px;
+}
+
+/* --- home-course-content-dorp-down --- */
+.home-course-content-dorp-down {
+    background-color: #fff;
+    border: 1px solid #e0e2ea;
+    border-radius: 6px;
+    overflow: hidden;
+
+    &.active {
+        .home-course-content-dorp-down-top {
+            button {
+                background-color: #eff1f6;
+
+                span {
+                    color: #3e64de;
+                }
+
+                small {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+
+
+        .home-course-content-dorp-down-bottom {
+            grid-template-rows: 1fr;
+        }
+    }
+}
+
+.home-course-content-dorp-down-top {
+    button {
+        border: 0;
+        outline: 0;
+        background-color: #fcfcfd;
+        padding: 16px 20px;
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+
+        span {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+            font-family: $font-en-roboto;
+            color: #41454f;
+        }
+
+        small {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-90deg);
+            transition: all 0.16s linear;
+
+            i {
+                font-size: 20px;
+                color: #3e64de;
+            }
+        }
+    }
+}
+
+.home-course-content-dorp-down-bottom {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: all 0.16s linear;
+
+    .home-course-content-dorp-down-bottom-child {
+        overflow: hidden;
+    }
+
+    .course-content-dorp-down-lists {
+        border-top: 1px solid #e0e2ea;
+
+        .course-content-dorp-down-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            background-color: #fff;
+            transition: background-color 300ms ease-in;
+
+            h3 {
+                font-family: $font-en-roboto;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 1.6;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 12px;
+                margin: 0;
+
+                small {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+
+                    i {
+                        color: #21232759;
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0;
+                gap: 16px;
+
+                span {
+                    font-family: $font-en-roboto;
+                    color: #757c8e;
+                    line-height: 1.4;
+                    font-size: 14px;
+                }
+
+
+                small {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    i {
+                        font-size: 14px;
+                        color: #757c8e;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:700px) {
+    .home-course-content-dorp-down-top {
+        button {
+            padding: 14px 14px;
+
+            span {
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1.2;
+            }
+
+            small {
+                i {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+
+    .home-course-content-dorp-down-bottom {
+        .course-content-dorp-down-lists {
+            .course-content-dorp-down-list-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 7px;
+                padding: 14px 14px;
+
+                h3 {
+                    gap: 9px;
+
+                    span {
+                        font-size: 14px;
+                    }
+
+                    small {
+                        i {
+                            font-size: 17px;
+                        }
+                    }
+                }
+
+                p {
+                    gap: 10px;
+
+                    span {
+                        font-size: 12px;
+                    }
+
+                    small {
+                        i {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
