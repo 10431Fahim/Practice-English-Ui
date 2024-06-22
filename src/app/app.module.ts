@@ -3,6 +3,7 @@ import { BrowserModule, Meta, Title } from '@angular/platform-browser';
 
 import { IMAGE_CONFIG, provideImgixLoader } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DigitOnlyModule } from '@uiowa/digit-only';
 import { SwiperModule } from 'swiper/angular';
@@ -10,11 +11,11 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthUserInterceptor } from './auth-interceptor/auth-user.interceptor';
-import { HeaderModule } from './shared/components/header/header.module';
 import { PagesComponent } from './pages/pages.component';
-import { FooterModule } from './shared/components/footer/footer.module';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { GroupLinkComponent } from './pages/user/group-link/group-link.component';
+import { FooterModule } from './shared/components/footer/footer.module';
+import { HeaderSecondModule } from './shared/components/header-second/header-second.module';
+import { HeaderModule } from './shared/components/header/header.module';
 
 @NgModule({
   declarations: [AppComponent, PagesComponent, GroupLinkComponent],
@@ -22,6 +23,7 @@ import { GroupLinkComponent } from './pages/user/group-link/group-link.component
     BrowserModule,
     AppRoutingModule,
     HeaderModule,
+    HeaderSecondModule,
     FooterModule,
     BrowserAnimationsModule,
     HttpClientModule,

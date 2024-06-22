@@ -1,0 +1,285 @@
+@import "src/theme/_variables.scss";
+
+/* --- home-steps --- */
+section.home-steps {
+    padding-block: 70px;
+    background-image: url("../../../../../assets/images/brand/png/bg-shape.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+@media (max-width:500px) {
+    section.home-steps {
+        padding-block: 44px 50px;
+    }
+}
+
+/* --- home-steps-child --- */
+.home-steps-child {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    grid-gap: 26px;
+    align-items: center;
+}
+
+@media (max-width:1200px) {
+    .home-steps-child {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width:996px) {
+    .home-steps-child {
+        grid-template-columns: 100%;
+        grid-gap: 40px;
+    }
+}
+
+@media (max-width:500px) {
+    .home-steps-child {
+        grid-gap: 28px;
+    }
+}
+
+
+/* --- home-steps-title --- */
+.home-steps-title {
+    h1 {
+        font-family: $font-en-roboto;
+        font-size: 35px;
+        font-weight: 500;
+        line-height: 34.5px;
+        text-align: left;
+        color: #FED802;
+        border-bottom: 1px solid #FED802;
+        display: inline-block;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width:1200px) {
+    .home-steps-title {
+        h1 {
+            font-size: 28px;
+            line-height: 33.5px;
+        }
+
+
+    }
+}
+
+@media (max-width:500px) {
+    .home-steps-title {
+        h1 {
+            font-size: 24px;
+            line-height: 30.5px;
+        }
+    }
+}
+
+
+/* --- home-steps-cards --- */
+.home-steps-cards {
+    .home-steps-card {
+        &:last-child {
+            padding-bottom: 0;
+
+            &::after {
+                content: "";
+                display: none;
+            }
+        }
+    }
+}
+
+.home-steps-card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding-bottom: 28px;
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 15.6px;
+        top: 53%;
+        width: 2px;
+        height: 100%;
+        background-color: #0711F8;
+    }
+
+
+    .home-steps-card-left {
+        min-width: 33px;
+        max-width: 33px;
+        height: 33px;
+        border-radius: 4px;
+        background-color: #0711F8;
+        transform: rotate(45deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            color: $color-white;
+            font-size: 17px;
+            transform: rotate(-45deg);
+        }
+    }
+
+    .home-steps-card-right {
+        p {
+            font-family: $font-en-roboto;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 28px;
+            text-align: left;
+            color: $color-white;
+            max-width: 660px;
+            margin: 0;
+        }
+    }
+}
+
+@media (max-width:1200px) {
+    .home-steps-card {
+        &::after {
+            content: "";
+            left: 13.6px;
+        }
+
+        .home-steps-card-left {
+            min-width: 30px;
+            max-width: 30px;
+            height: 30px;
+
+            i {
+                font-size: 14px;
+            }
+        }
+
+        .home-steps-card-right {
+            p {
+                font-size: 18px;
+                line-height: 29.8px;
+                max-width: 507px;
+            }
+        }
+    }
+}
+
+@media (max-width:500px) {
+    .home-steps-card {
+        padding-bottom: 18px;
+
+        &::after {
+            content: "";
+            left: 10.6px;
+        }
+
+        .home-steps-card-left {
+            min-width: 24px;
+            max-width: 24px;
+            height: 24px;
+
+            i {
+                font-size: 11px;
+            }
+        }
+
+        .home-steps-card-right {
+            p {
+                font-size: 15px;
+                line-height: 22.8px;
+            }
+        }
+    }
+}
+
+/* --- home-steps-join-btn --- */
+.home-steps-join-btn {
+    margin-top: 50px;
+
+    button {
+        background-color: #FED802;
+        font-family: $font-en-roboto;
+        color: #000;
+        font-size: 20px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        padding: 14px 30px;
+        border: 0;
+        outline: 0;
+        border-radius: 8px;
+
+        small {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+                color: #000;
+                font-size: 22px;
+            }
+        }
+    }
+}
+
+@media (max-width:996px) {
+    .home-steps-join-btn {
+        margin-top: 36px;
+
+        button {
+            font-size: 17px;
+            gap: 15px;
+            padding: 11px 18px;
+
+            small {
+                i {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:500px) {
+    .home-steps-join-btn {
+        margin-top: 24px;
+
+        button {
+            font-size: 14px;
+            gap: 9px;
+            padding: 8px 15px;
+            border-radius: 4px;
+
+            small {
+                i {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+/* --- home-steps-right --- */
+.home-steps-right {
+    img {
+        border-radius: 8px;
+    }
+}
+
+@media (max-width:996px) {
+    .home-steps-right {
+        img {
+            max-height: 400px;
+            object-fit: cover;
+        }
+    }
+}

@@ -26,6 +26,11 @@ import {MatMenuModule} from '@angular/material/menu';
 import {LiveCourseComponent} from './live-course/live-course.component';
 import {FeaturedCategoryComponent} from './featured-category/featured-category.component';
 import { UpcomingDialogModule } from 'src/app/shared/dialog-view/upcoming-dialog/upcoming-dialog.module';
+import { HomeBannerComponent } from './practice-english-school/home-banner/home-banner.component';
+import { HomeStepOneComponent } from './practice-english-school/home-step-one/home-step-one.component';
+import { HomeCourseContentComponent } from './practice-english-school/home-course-content/home-course-content.component';
+import { HomeCourseStepComponent } from './practice-english-school/home-course-step/home-course-step.component';
+import { HomeMembershipComponent } from './practice-english-school/home-membership/home-membership.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,11 @@ import { UpcomingDialogModule } from 'src/app/shared/dialog-view/upcoming-dialog
     CommunityAreaComponent,
     ContactUsComponent,
     BatchComponent,
+    HomeBannerComponent,
+    HomeStepOneComponent,
+    HomeCourseContentComponent,
+    HomeCourseStepComponent,
+    HomeMembershipComponent,
   ],
   imports: [
     CommonModule,
