@@ -1,0 +1,213 @@
+@import "src/theme/_variables.scss";
+
+/* --- granted-book --- */
+section.granted-book {
+    background-color: #0912B1;
+    padding-block: 50px;
+}
+
+@media (max-width:556px) {
+    section.granted-book {
+        padding-block: 42px 28px;
+    }
+}
+
+/* --- granted-book-child --- */
+.granted-book-child {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 22px;
+    align-items: center;
+}
+
+@media (max-width:767px) {
+    .granted-book-child {
+        grid-template-columns: 100%;
+    }
+}
+
+/* --- granted-book-left --- */
+.granted-book-left {
+    h1 {
+        color: #FFFFFF;
+        font-family: $font-en-roboto;
+        font-size: 35px;
+        font-weight: 600;
+        line-height: 1.3em;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+            margin-top: 7.5px;
+            padding-bottom: calc(15px / 2);
+            border-bottom: 1px solid #CCC6C6;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            small {
+                display: flex;
+
+                svg {
+                    fill: #FFFFFF;
+                    transition: fill 0.3s;
+                    min-width: 24px;
+                    max-width: 24px;
+                    height: 24px;
+                }
+            }
+
+            span {
+                font-family: $font-en-roboto;
+                font-size: 25px;
+                font-weight: 600;
+                line-height: 1.3em;
+                color: #FFFFFF;
+                transition: color 0.3s;
+            }
+
+            &:hover {
+                small {
+                    svg {
+                        fill: #F0E628;
+                    }
+                }
+
+                span {
+                    color: #F0E628;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:988px) {
+    .granted-book-left {
+        h1 {
+            font-size: 28px;
+        }
+
+        ul {
+            li {
+                small {
+                    svg {
+                        min-width: 20px;
+                        max-width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                span {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:767px) {
+    .granted-book-left {
+        order: 2;
+
+        ul {
+            li {
+                margin-top: 10.5px;
+                padding-bottom: 7.5px;
+            }
+        }
+    }
+}
+
+@media (max-width:500px) {
+    .granted-book-left {
+        order: 2;
+
+        ul {
+            li {
+                gap: 10px;
+
+                span {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+/* ---- granted-book-right --- */
+.granted-book-right {
+    img {
+        width: 100%;
+        border: 2px solid #fff;
+        border-radius: 9px 9px 9px 9px;
+        box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.5);
+    }
+}
+
+@media (max-width:767px) {
+    .granted-book-right {
+        order: 1;
+    }
+}
+
+/* --- books-banner-order-now --- */
+.books-banner-order-now {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 34px;
+
+    button {
+        font-family: $font-en-roboto;
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 1.3em;
+        color: #FFFFFF;
+        background-color: #F71138;
+        border-radius: 10px 10px 10px 10px;
+        padding: 12px 24px;
+        transition: all .3s;
+        text-align: center;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+
+        &:hover {
+            animation: animation-pulse-grow .7s linear infinite alternate;
+            color: #000000;
+            background-color: #F8E710;
+        }
+    }
+}
+
+@keyframes animation-pulse-grow {
+    to {
+        transform: scale(1.1)
+    }
+}
+
+@media (max-width:700px) {
+    .books-banner-order-now {
+        margin-top: 26px;
+
+        button {
+            font-size: 16px;
+            line-height: 1.3em;
+            padding: 14px 24px 10px;
+        }
+    }
+}

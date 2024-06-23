@@ -1,0 +1,113 @@
+@import "src/theme/_variables.scss";
+@import "src/theme/_swipper.scss";
+
+/* --- user-review-slider --- */
+section.user-review-slider {
+    padding-block: 50px;
+}
+
+@media (max-width:556px) {
+    section.user-review-slider {
+        padding-block: 42px 28px;
+    }
+}
+
+/* --- user-review-slider-title --- */
+.user-review-slider-title {
+    h1 {
+        color: #FFFFFF;
+        font-family: $font-en-roboto;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.3em;
+        margin-bottom: 34px;
+        padding: 26px 13px 20px 13px;
+        background-color: #0511D9;
+        border-radius: 10px 10px 10px 10px;
+        text-align: center;
+
+        span {
+            color: yellow;
+        }
+    }
+}
+
+@media (max-width:988px) {
+    .user-review-slider-title {
+        h1 {
+            font-size: 25px;
+            margin-bottom: 24px;
+        }
+    }
+}
+
+
+/* --- user-review-slider-title-second --- */
+.user-review-slider-title-second {
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+
+    h1 {
+        color: #FFFFFF;
+        font-family: $font-en-roboto;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.3em;
+        margin-bottom: 0;
+        padding: 40px 13px 78px 13px;
+        background-color: #0511D9;
+        border-radius: 10px 10px 10px 10px;
+        text-align: center;
+
+        span {
+            color: yellow;
+        }
+    }
+
+    svg {
+        position: absolute;
+        top: 37%;
+        left: 50%;
+        max-width: 908px;
+        height: calc(100% + 19px);
+        transform: translate(-50%, -50%);
+        overflow: visible;
+        fill: none;
+
+        path {
+            stroke: #F8F301;
+            stroke-width: 4px;
+            fill: none;
+        }
+    }
+}
+
+@media (max-width:988px) {
+    .user-review-slider-title-second {
+        h1 {
+            font-size: 25px;
+            margin-bottom: 24px;
+            padding: 40px 13px 45px 13px;
+        }
+
+        svg {
+            top: 32%;
+            height: calc(100% + -4px);
+        }
+    }
+}
+
+
+@media (max-width:600px) {
+    .user-review-slider-title-second {
+        h1 {
+            font-size: 23px;
+        }
+
+        svg {
+            top: 54%;
+            height: 116px;
+        }
+    }
+}

@@ -1,0 +1,81 @@
+@import "src/theme/variables";
+
+/* --- success-video-card --- */
+.success-video-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+        max-height: 250px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    span {
+        min-width: 76px;
+        max-width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid #fff;
+
+        i {
+            color: #fff;
+            font-size: 28px;
+            padding-left: 4px;
+        }
+    }
+}
+
+@media (max-width:1030px) {
+    .success-video-card {
+        border-radius: 6px;
+
+        span {
+            min-width: 60px;
+            max-width: 60px;
+            height: 60px;
+
+            i {
+                font-size: 21px;
+            }
+        }
+    }
+}
+
+@media (max-width:556px) {
+    .success-video-card {
+        span {
+            min-width: 40px;
+            max-width: 40px;
+            height: 40px;
+
+            i {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (max-width:400px) {
+    .success-video-card {
+        span {
+            min-width: 32px;
+            max-width: 32px;
+            height: 32px;
+
+            i {
+                font-size: 10px;
+                padding-left: 3px;
+            }
+        }
+    }
+}
