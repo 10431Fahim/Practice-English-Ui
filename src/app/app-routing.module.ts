@@ -15,6 +15,11 @@ const routes: Routes = [
           import('./pages/home/home.module').then((m) => m.HomeModule),
       },
       {
+        path: 'books',
+        loadChildren: () =>
+          import('./pages/books/books.module').then((m) => m.BooksModule),
+      },
+      {
         path: 'course-details',
         loadChildren: () =>
           import('./pages/course-details/course-details.module').then(
@@ -26,7 +31,9 @@ const routes: Routes = [
         path: 'login',
         canActivate: [UserAuthStateGuard],
         loadChildren: () =>
-          import('./pages/user/user-login/user-login.module').then((m) => m.UserLoginModule),
+          import('./pages/user/user-login/user-login.module').then(
+            (m) => m.UserLoginModule
+          ),
       },
       {
         path: 'reset-password',
@@ -95,7 +102,9 @@ const routes: Routes = [
       {
         path: 'payment',
         loadChildren: () =>
-          import('./pages/payment-status/payment-status.module').then((m) => m.PaymentStatusModule),
+          import('./pages/payment-status/payment-status.module').then(
+            (m) => m.PaymentStatusModule
+          ),
       },
       {
         path: 'pages',
@@ -114,9 +123,9 @@ const routes: Routes = [
       {
         path: 'offline-course',
         loadChildren: () =>
-          import('./pages/offline-course-details/offline-course-details.module').then(
-            (m) => m.OfflineCourseDetailsModule
-          ),
+          import(
+            './pages/offline-course-details/offline-course-details.module'
+          ).then((m) => m.OfflineCourseDetailsModule),
       },
       {
         path: 'notice',
@@ -139,33 +148,52 @@ const routes: Routes = [
       },
       {
         path: 'shop',
-        loadChildren: () => import('./pages/product-list/product-list.module').then(m => m.ProductListModule),
+        loadChildren: () =>
+          import('./pages/product-list/product-list.module').then(
+            (m) => m.ProductListModule
+          ),
       },
       {
         path: 'product-details',
-        loadChildren: () => import('./pages/product-details/product-details.module').then(m => m.ProductDetailsModule)
+        loadChildren: () =>
+          import('./pages/product-details/product-details.module').then(
+            (m) => m.ProductDetailsModule
+          ),
       },
       {
-        path: "checkout",
-        loadChildren: () => import('./pages/user/checkout/checkout.module').then(m => m.CheckoutModule),
+        path: 'checkout',
+        loadChildren: () =>
+          import('./pages/user/checkout/checkout.module').then(
+            (m) => m.CheckoutModule
+          ),
         canActivate: [UserAuthGuard],
       },
       {
-        path: "cart",
-        loadChildren: () => import('./pages/user/cart/cart.module').then(m => m.CartModule),
+        path: 'cart',
+        loadChildren: () =>
+          import('./pages/user/cart/cart.module').then((m) => m.CartModule),
         canActivate: [UserAuthGuard],
       },
       {
-        path: "order-details",
-        loadChildren: () => import('./pages/user/order-details/order-details.module').then(m => m.OrderDetailsModule)
+        path: 'order-details',
+        loadChildren: () =>
+          import('./pages/user/order-details/order-details.module').then(
+            (m) => m.OrderDetailsModule
+          ),
       },
       {
-        path: "order-track",
-        loadChildren: () => import('./pages/user/order-track/order-track.module').then(m => m.OrderTrackModule)
+        path: 'order-track',
+        loadChildren: () =>
+          import('./pages/user/order-track/order-track.module').then(
+            (m) => m.OrderTrackModule
+          ),
       },
       {
-        path: "product-review",
-        loadChildren: () => import('./pages/user/my-product-review/my-product-review.module').then(m => m.MyProductReviewModule)
+        path: 'product-review',
+        loadChildren: () =>
+          import(
+            './pages/user/my-product-review/my-product-review.module'
+          ).then((m) => m.MyProductReviewModule),
       },
       {
         path: 'not-found',
@@ -177,7 +205,9 @@ const routes: Routes = [
       {
         path: ':slug',
         loadChildren: () =>
-          import('./pages/url-redirect/url-redirect.module').then((m) => m.UrlRedirectModule),
+          import('./pages/url-redirect/url-redirect.module').then(
+            (m) => m.UrlRedirectModule
+          ),
       },
       {
         path: '**',

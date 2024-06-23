@@ -1,0 +1,142 @@
+<section class="home-right-decision">
+  <div class="container">
+    <div class="home-right-decision-child">
+      <div class="home-right-decision-title">
+        <h1>মেম্বারশীপ প্রোগ্রামে জয়েন করার পর আরও যে ভ্যালু পাবেন</h1>
+      </div>
+      <!-- END! home-right-decision-title -->
+
+      <div class="home-right-decision-top">
+        <img src="./assets/images/brand/png/membership.png" alt="membership" />
+      </div>
+      <!-- END! home-right-decision-top -->
+
+      <div class="home-right-decision-lists">
+        <div class="home-right-decision-list" *ngFor="let data of dummyData">
+          <div class="home-right-decision-list-left">
+            <h2>{{ data?.name }}</h2>
+          </div>
+          <!-- END! home-right-decision-list-left -->
+
+          <div class="home-right-decision-list-middle"></div>
+          <!-- END! home-right-decision-list-middle -->
+
+          <div class="home-right-decision-list-right">
+            <h2>{{ data?.price }} TK</h2>
+          </div>
+          <!-- END! home-right-decision-list-right -->
+        </div>
+      </div>
+      <!-- END! home-right-decision-lists -->
+
+      <div class="home-right-decision-price">
+        <h1>
+          <span>Total</span>
+          <small></small>
+          <span><del>61000TK</del></span>
+        </h1>
+
+        <h2>
+          <span>Program Price</span>
+          <small></small>
+          <span>1000TK</span>
+        </h2>
+      </div>
+      <!-- END! home-right-decision-price -->
+
+      <div class="home-right-decision-payment">
+        <div class="home-right-decision-payment-left">
+          <div class="home-right-decision-payment-title">
+            <h1>Payment</h1>
+          </div>
+          <!-- END! home-right-decision-payment-title -->
+
+          <div class="payment-top">
+            <div class="payment-top-up">
+              <h3>Pay Online(Credit/Debit Card/MobileBanking)</h3>
+
+              <img
+                src="./assets/images/brand/png/ssl-commerce-logo.png"
+                alt="ssl-commerce-logo"
+              />
+            </div>
+            <div class="payment-top-down">
+              <p>Pay securely through SSLCommerz.</p>
+            </div>
+          </div>
+          <!-- END! payment-top -->
+
+          <div class="payment-bottom">
+            <p>
+              Your personal data will be used to process your order, support
+              your experience throughout this website, and for other purposes
+              described in our <a>privacy policy</a>.
+            </p>
+
+            <button type="button">
+              <small><i class="fa-solid fa-lock"></i></small>
+              <span>Place Order  ৳ 7,990</span>
+            </button>
+          </div>
+          <!-- END! payment-bottom -->
+        </div>
+
+        <div class="home-right-decision-payment-right">
+          <div class="home-right-decision-payment-title">
+            <h1>Your Order</h1>
+          </div>
+          <!-- END! home-right-decision-payment-title -->
+
+          <div class="home-right-decision-orders">
+            <div class="home-right-decision-orders-top">
+              <h2>Product</h2>
+              <h2>Subtotal</h2>
+            </div>
+
+            <div class="home-right-decision-orders-confirm">
+              <div class="home-right-decision-orders-confirm-card">
+                <div class="home-right-decision-orders-confirm-left">
+                  <img
+                    src="./assets/images/brand/png/demo-product.png"
+                    alt="demo-product"
+                  />
+
+                  <p>
+                    <span>Silver Membership</span>
+                    <span>× 1</span>
+                  </p>
+                </div>
+
+                <div class="home-right-decision-orders-confirm-right">
+                  <p>৳7,990</p>
+                </div>
+              </div>
+              <!-- END! home-right-decision-orders-confirm-card -->
+            </div>
+
+            <div class="home-right-decision-orders-sub-total">
+              <h2>Subtotal</h2>
+              <h3>৳7,990</h3>
+            </div>
+
+            <div class="home-right-decision-orders-total">
+              <h2>Total</h2>
+              <h1>৳7,990</h1>
+            </div>
+          </div>
+          <!-- END! home-right-decision-orders -->
+
+          <div class="home-right-decision-coupon">
+            <form>
+              <input type="text" placeholder="Coupon Code" />
+              <button type="button">Apply</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- END! home-right-decision-payment -->
+    </div>
+    <!-- END! home-right-decision-child -->
+  </div>
+</section>
+<!-- END! home-right-decision -->
