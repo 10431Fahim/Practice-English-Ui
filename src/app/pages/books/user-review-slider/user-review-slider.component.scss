@@ -4,6 +4,7 @@
 /* --- user-review-slider --- */
 section.user-review-slider {
     padding-block: 50px;
+    overflow-x: hidden;
 }
 
 @media (max-width:556px) {

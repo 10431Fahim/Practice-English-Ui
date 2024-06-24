@@ -1,22 +1,37 @@
 @import "variables";
-.softlab{
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  span{
-    font-size: 15px;
-  }
-  a{
-    font-size: 14px;
-    padding-left: 5px;
-    color: #0077ff;
-    font-family: "Poppins", sans-serif;
-    font-weight: bold;
-  }
+
+/* --- footer-area-main --- */
+.footer-area-main {
+    background-image: url("../../../../assets/images/brand/jpg/footer-bg.jpg");
+    background-size: cover;
+    background-position: top left;
+    overflow-y: hidden;
+    
 }
-.softlab a:hover{
-  text-decoration: underline;
+
+
+.softlab {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    span {
+        font-size: 15px;
+    }
+
+    a {
+        font-size: 14px;
+        padding-left: 5px;
+        color: #0077ff;
+        font-family: "Poppins", sans-serif;
+        font-weight: bold;
+    }
 }
+
+.softlab a:hover {
+    text-decoration: underline;
+}
+
 .social-media {
 
     ul {
@@ -59,14 +74,14 @@
                 align-items: center;
                 justify-content: center;
 
-              fa-icon {
+                fa-icon {
                     font-size: 18px;
                     color: $icon-default-color;
                     transition: all 0.3s linear;
                 }
 
                 &:hover {
-                  fa-icon {
+                    fa-icon {
                         transform: rotate(360deg);
                     }
                 }
@@ -77,19 +92,17 @@
 
 .footer-area {
     display: block;
-    background-color: #DBDBDB;
     box-sizing: border-box;
     padding-inline: 10px;
 }
 
 .footer-main {
     display: grid;
-    grid-template-columns: 400px 1fr 1fr 400px;
+    grid-template-columns: 500px 1fr 1fr 1fr;
     width: 100%;
     grid-template-rows: auto;
     grid-gap: 30px;
-    padding: 50px 0;
-    max-width: 1250px;
+    padding: 100px 0 16px;
     width: 100%;
     margin: auto;
 }
@@ -105,14 +118,30 @@
 .footer-logo {
     display: flex;
     margin-bottom: 30px;
-    justify-content: center;
+    flex-direction: column;
+
+    p {
+        font-family: $font-en-primary;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 23px;
+        text-align: left;
+        color: #fff;
+        margin: 0;
+        margin-top: 20px;
+    }
 }
 
 .footer-logo img {
-    max-width: 120px;
+    max-width: 200px;
     width: 100%;
-    margin: 0 78px;
     height: auto;
+}
+
+@media (max-width:500px) {
+    .footer-logo {
+        margin-bottom: 20px;
+    }
 }
 
 .app {
@@ -159,12 +188,14 @@
 }
 
 .footer-title h3 {
-    color: $heading-color;
-    font-family: $font-en-poppins, $font-en-exo;
+    color: #fff;
+    font-family: $font-en-primary;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     font-size: $font-title-md-size;
     line-height: 24px;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 8px;
 }
 
 .footer-link {
@@ -183,9 +214,9 @@
 }
 
 .footer-link ul li a {
-    color: $heading-color;
-    font-family: $font-en-poppins, $font-en-exo;
-    font-weight: 500;
+    color: #fff;
+    font-family: $font-en-primary;
+    font-weight: 400;
     font-size: 16px;
     transition: all 0.3s linear;
 }
@@ -258,8 +289,6 @@
     text-align: center;
     padding: 15px 10px 20px 10px;
     box-sizing: border-box;
-    background-color: #DBDBDB;
-
 }
 
 .ntt p {
@@ -284,17 +313,29 @@
     }
 
     .footer-area {
-        padding: 60px 20px;
+        padding: 37px 0 4px;
     }
 }
 
 @media(max-width:500px) {
     .footer-area {
-        padding: 60px 20px 20px 20px;
+        padding: 37px 0 4px;
         border-radius: 100px 0 0 0;
 
         .footer-main {
-            padding: 10px 0;
+            padding: 36px 0 16px;
         }
+    }
+}
+
+/* --- footer-bottom --- */
+.footer-bottom {
+    padding-bottom: 74px;
+}
+
+/* --- footer-bottom-child --- */
+.footer-bottom-child {
+    img {
+        width: 100%;
     }
 }
