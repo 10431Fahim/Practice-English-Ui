@@ -9,6 +9,7 @@ import { BooksComponent } from './books.component';
 import { GrantedBookComponent } from './granted-book/granted-book.component';
 import { LearnBookComponent } from './learn-book/learn-book.component';
 import { UserReviewSliderComponent } from './user-review-slider/user-review-slider.component';
+import { BookConfirmOrderComponent } from './book-confirm-order/book-confirm-order.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UserReviewSliderComponent } from './user-review-slider/user-review-slid
     GrantedBookComponent,
     LearnBookComponent,
     UserReviewSliderComponent,
+    BookConfirmOrderComponent,
   ],
   imports: [CommonModule, BooksRoutingModule, SwiperModule, SuccessVideoModule],
 })
