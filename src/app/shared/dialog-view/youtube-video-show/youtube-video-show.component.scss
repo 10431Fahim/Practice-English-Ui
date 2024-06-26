@@ -2,27 +2,30 @@
 
 .dialog-container {
   position: relative;
+  padding: 15px;
 }
 
 .close {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 0;
+  top: 0px;
   color: #ffffff;
   z-index: 11;
 
   button {
-    background-color: #fff;
+    //background-color: #fff;
+    background: none;
     color: $color-danger;
     border: 0;
     outline: 0;
-    padding: 6px 6px 6px 7px;
+    padding: 1px 3px 2px 7px;
     border-radius: 4px;
     cursor: pointer;
 
     span {
+      font-size: 17px;
       fa-icon {
-        font-size: 16px;
+        font-size: 18px;
       }
     }
   }

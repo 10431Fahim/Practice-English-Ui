@@ -1,63 +1,61 @@
 <section class="home-steps">
   <div class="container">
-    <div class="home-steps-child">
+    <div class="home-steps-child" *ngFor="let d of transformedData">
       <div class="home-steps-left">
         <div class="home-steps-title">
-          <h1>STEP - 1</h1>
+          <h1>{{d?.step}}</h1>
 
           <p>
-            এই STEP সবচেয়ে গুরুত্বপূর্ণ। এই ধাপের ভিডিওগুলো মনোযোগ সহকাজে দেখলে,
-            PDF গুলো পড়লে এবং নিজে Practice এর মাধ্যমে এসাইনমেন্টগুলো কমপ্লিট
-            করতে পারলে-
+            {{d?.description}}
           </p>
         </div>
         <!-- END! home-steps-title -->
 
         <div class="home-steps-cards">
-          <div class="home-steps-card">
+          <div class="home-steps-card" *ngFor="let benefit of d.benefit">
             <div class="home-steps-card-left">
               <i class="fa-solid fa-rocket"></i>
             </div>
             <div class="home-steps-card-right">
-              <p>ইংরেজি শুনে বুঝতে পারবেন</p>
+              <p>{{benefit}}</p>
             </div>
           </div>
           <!-- END! home-steps-card -->
 
-          <div class="home-steps-card">
-            <div class="home-steps-card-left">
-              <i class="fa-solid fa-rocket"></i>
-            </div>
-            <div class="home-steps-card-right">
-              <p>কথা বলতে পারবেন</p>
-            </div>
-          </div>
-          <!-- END! home-steps-card -->
+<!--          <div class="home-steps-card">-->
+<!--            <div class="home-steps-card-left">-->
+<!--              <i class="fa-solid fa-rocket"></i>-->
+<!--            </div>-->
+<!--            <div class="home-steps-card-right">-->
+<!--              <p>কথা বলতে পারবেন</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; END! home-steps-card &ndash;&gt;-->
 
-          <div class="home-steps-card">
-            <div class="home-steps-card-left">
-              <i class="fa-solid fa-rocket"></i>
-            </div>
-            <div class="home-steps-card-right">
-              <p>যেকোনো ইংরেজি রিডিং পড়া পারবেন</p>
-            </div>
-          </div>
-          <!-- END! home-steps-card -->
+<!--          <div class="home-steps-card">-->
+<!--            <div class="home-steps-card-left">-->
+<!--              <i class="fa-solid fa-rocket"></i>-->
+<!--            </div>-->
+<!--            <div class="home-steps-card-right">-->
+<!--              <p>যেকোনো ইংরেজি রিডিং পড়া পারবেন</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash; END! home-steps-card &ndash;&gt;-->
 
-          <div class="home-steps-card">
-            <div class="home-steps-card-left">
-              <i class="fa-solid fa-rocket"></i>
-            </div>
-            <div class="home-steps-card-right">
-              <p>ইংরেজিতে বানিয়ে লিখতে পারবেন, ইন শা আল্লাহ!</p>
-            </div>
-          </div>
+<!--          <div class="home-steps-card">-->
+<!--            <div class="home-steps-card-left">-->
+<!--              <i class="fa-solid fa-rocket"></i>-->
+<!--            </div>-->
+<!--            <div class="home-steps-card-right">-->
+<!--              <p>ইংরেজিতে বানিয়ে লিখতে পারবেন, ইন শা আল্লাহ!</p>-->
+<!--            </div>-->
+<!--          </div>-->
           <!-- END! home-steps-card -->
         </div>
         <!-- END! home-steps-cards -->
 
         <div class="home-steps-join-btn">
-          <button type="button">
+          <button type="button" (click)="onScrollWithNavigate('feature')">
             <span>Join With Us</span>
             <small>
               <i class="fa-regular fa-hand-point-down"></i>
@@ -67,7 +65,7 @@
       </div>
 
       <div class="home-steps-right">
-        <img src="./assets/images/brand/png/success.png" alt="" />
+        <img [src]="d?.bannerImage ? d?.bannerImage : './assets/images/brand/png/success.png'" alt="" />
       </div>
     </div>
     <!-- END! home-steps-child -->

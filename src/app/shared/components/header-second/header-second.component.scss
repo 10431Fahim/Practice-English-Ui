@@ -82,10 +82,23 @@ header.header-second {
         }
     }
 }
+.timer {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
 
+.timer h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.timer p {
+  font-size: 1.5em;
+}
 /* --- header-second-right --- */
 .header-second-right {
     button {
+        cursor: pointer;
         font-size: 16px;
         font-weight: 400;
         line-height: 24px;

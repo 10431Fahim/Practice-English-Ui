@@ -17,6 +17,7 @@ export class CoursePlaylistViewComponent implements OnInit {
 
   // Store Data
   course: Course;
+  transformedData: any[] = [];
   selectedType: string;
   selectedVideo: string;
   selectedAttachment: string;
@@ -55,9 +56,19 @@ export class CoursePlaylistViewComponent implements OnInit {
         next: (res) => {
           if (res.success) {
             this.course = res.data;
+            this.transformedData = this.course?.courseModules.map(item => ({
+              ...item,
+              benefit: item.benefit.split(',').map(benefit => benefit.trim()),
+              videoDuration: item.videoDuration.split(','),
+              videoTitle: item.videoTitle.split(','),
+              videoUrl: item.videoUrl.split(',')
+            }));
+            console.log('transformedData',this.transformedData)
+            console.log('transformedData',this.course)
             if (this.course?.orderType === 'video-course') {
               this.selectedType = 'video-course';
-              this.selectedVideo = this.course.courseModules[0].video;
+              this.selectedVideo = this.transformedData[0].videoUrl[0];
+
             } else if (this.course?.orderType === 'lecture-sheet') {
               this.selectedType = 'lecture-sheet';
               this.selectedAttachment = this.course.courseModules[0].attachment;
@@ -72,6 +83,17 @@ export class CoursePlaylistViewComponent implements OnInit {
       });
   }
 
+  transformBenefitToArray() {
+    this.transformedData = this.course?.courseModules.map(item => ({
+      ...item,
+      benefit: item.benefit.split(',').map(benefit => benefit.trim()),
+      videoDurationArray: item.videoDuration.split(','),
+      videoTitleArray: item.videoTitle.split(','),
+      videoUrlArray: item.videoUrl.split(',')
+    }));
+    console.log('transformedData222',this.transformedData)
+  }
+
   /**
    * ON CHANGE VIDEO
    * onChangeVideo()
@@ -80,6 +102,7 @@ export class CoursePlaylistViewComponent implements OnInit {
    */
   onChangeVideo(url: string) {
     this.selectedType = 'video-course';
+    console.log('url',url)
     this.selectedVideo = url;
   }
 

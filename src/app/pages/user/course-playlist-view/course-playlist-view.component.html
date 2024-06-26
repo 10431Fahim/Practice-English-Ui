@@ -58,12 +58,12 @@
     <div class="course-content">
       <div class="title-top">
         <p>কোর্স সিলেবাস</p>
-        <p>১৮% সম্পন্ন</p>
+<!--        <p>১৮% সম্পন্ন</p>-->
       </div>
       <div class="main">
         <mat-accordion
           [multi]="true"
-          *ngFor="let c of course?.courseModules; let i = index"
+          *ngFor="let c of transformedData; let i = index"
         >
           <mat-expansion-panel
             [expanded]="i === expendedIndex"
@@ -77,12 +77,12 @@
 
             <div class="content-view">
               <a
-                *ngIf="course?.orderType === 'video-course'"
+                *ngFor="let d of c?.videoUrl;let j = index"
                 class="icon-link"
-                (click)="onChangeVideo(c?.video)"
+                (click)="onChangeVideo(d)"
               >
                 <mat-icon>play_circle_filled</mat-icon>
-                Video: {{ c.name }}
+                Video: {{ c.videoTitle[j] }}
               </a>
               <a
                 *ngIf="c?.attachment"

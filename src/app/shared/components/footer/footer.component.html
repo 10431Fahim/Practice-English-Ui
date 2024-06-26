@@ -5,19 +5,12 @@
         <div class="footer-logo-area wow animate__fadeInUp animate__delay-1s">
           <div class="footer-logo">
             <img
-              src="./assets/images/brand/logo/footer-logo.png"
+              [src]="shopInformation?.footerLogo ? shopInformation?.footerLogo : './assets/images/brand/logo/footer-logo.png'"
               alt="footer-logo"
             />
 
             <p>
-              Instructory is all about connecting & discovering talents,
-              inspiring people and impact lives with the best teaching and
-              earning opportunities. “Instructory” is an online teaching
-              marketplace, where instructors can create and upload their
-              knowledge & make money online. It is also an E-Learning Platform
-              to learn anything from anywhere from the best & Top rated
-              Professionals and Freelancers! It has created earning
-              opportunities for millions of instructors!
+             {{shopInformation?.shortDescription}}
             </p>
           </div>
         </div>
@@ -45,9 +38,9 @@
             <h3>About Instructory</h3>
           </div>
           <ul>
-            <li><a routerLink="/">Terms & Conditions</a></li>
-            <li><a routerLink="/">Refund Policy</a></li>
-            <li><a routerLink="/">Privacy Policy</a></li>
+            <li><a routerLink="/pages/terms-and-conditions">Terms & Conditions</a></li>
+            <li><a routerLink="/pages/return-&-refund-policy">Refund Policy</a></li>
+            <li><a routerLink="/pages/privacy-policy">Privacy Policy</a></li>
           </ul>
         </div>
       </div>
@@ -57,7 +50,7 @@
   <div class="footer-bottom wow animate__fadeInUp animate__delay-1s">
     <div class="container">
       <div class="footer-bottom-child">
-        <img src="./assets/images/brand/logo/ssl-logo.png" alt="ssl-logo" />
+        <img [src]="shopInformation?.othersLogo ? shopInformation?.othersLogo : './assets/images/brand/logo/ssl-logo.png'" alt="ssl-logo" />
       </div>
     </div>
   </div>

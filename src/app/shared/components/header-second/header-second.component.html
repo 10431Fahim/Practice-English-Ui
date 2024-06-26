@@ -17,23 +17,28 @@
 
       <div class="header-second-middle">
         <h4>
-          <span>03</span>
+          <span>{{ days }}</span>
           <small>DAYS</small>
         </h4>
         <p>:</p>
         <h4>
-          <span>11</span>
+          <span>{{ hours }}</span>
           <small>HRS</small>
         </h4>
         <p>:</p>
         <h4>
-          <span>38</span>
+          <span>{{ seconds }}</span>
           <small>SECS</small>
         </h4>
       </div>
 
+<!--      <div class="timer">-->
+<!--        <h1>Countdown Timer</h1>-->
+<!--        <p>{{ days }} days, {{ hours }} hours, {{ minutes }} minutes, {{ seconds }} seconds</p>-->
+<!--      </div>-->
+
       <div class="header-second-right">
-        <button type="button">Login</button>
+        <button type="button" routerLink="/login">{{ userService.getUserStatus() ? "My Account" : "Login" }}</button>
       </div>
     </div>
   </div>

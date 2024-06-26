@@ -76,7 +76,7 @@ export class MyEnrollComponent implements OnInit {
     this.orderService.getAllOrdersByUser(filterData).subscribe({
       next: (res) => {
         this.orders = res.data;
-        console.log('this.orders', this.orders)
+
         this.loader = false;
       },
       error: (err) => {

@@ -222,8 +222,9 @@ section.home-steps {
 /* --- home-steps-join-btn --- */
 .home-steps-join-btn {
     margin-top: 50px;
-
+    margin-bottom: 20px;
     button {
+        cursor: pointer;
         background-color: #FED802;
         font-family: $font-en-roboto;
         color: #000;

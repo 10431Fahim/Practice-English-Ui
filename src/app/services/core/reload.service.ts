@@ -7,6 +7,7 @@ import {BehaviorSubject, Subject} from 'rxjs';
 export class ReloadService {
   private refreshUser = new Subject<void>();
   private refreshData = new Subject<void>();
+  private refreshFeature = new Subject();
   private refresPlay = new Subject<boolean>();
   private refreshCompareList = new Subject<void>();
   private refreshWishList = new BehaviorSubject<boolean>(false);
@@ -45,6 +46,17 @@ export class ReloadService {
     this.refreshData.next();
   }
 
+  /**
+   * REFRESH FEATURE
+   */
+
+  get refreshFeature$() {
+    return this.refreshFeature;
+  }
+
+  needRefreshFeature$(data: boolean) {
+    this.refreshFeature.next(data);
+  }
 
   /**
    * REFRESH GLOBAL DATA

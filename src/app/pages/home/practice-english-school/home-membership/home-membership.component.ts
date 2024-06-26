@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-home-membership',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-membership.component.scss']
 })
 export class HomeMembershipComponent {
-
+@Input() data:any;
 }

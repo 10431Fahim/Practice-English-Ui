@@ -5,8 +5,8 @@
         <h1>মেম্বারশীপ প্রোগ্রামে জয়েন করার পর আরও যে ভ্যালু পাবেন</h1>
       </div>
 
-      <div class="home-membership-cards">
-        <div class="home-membership-card">
+      <div class="home-membership-cards" >
+        <div class="home-membership-card"  *ngFor="let d of data?.membershipBenefits">
           <div class="home-membership-card-left">
             <img
               src="./assets/images/brand/png/box-pointer.png"
@@ -15,87 +15,87 @@
           </div>
 
           <div class="home-membership-card-right">
-            <p>অনলাইন বিজনেসের এ টু জেড ক্লিয়ার ধারণা</p>
+            <p>{{d}}</p>
           </div>
         </div>
 
-        <div class="home-membership-card">
-          <div class="home-membership-card-left">
-            <img
-              src="./assets/images/brand/png/box-pointer.png"
-              alt="box-pointer"
-            />
-          </div>
+<!--        <div class="home-membership-card">-->
+<!--          <div class="home-membership-card-left">-->
+<!--            <img-->
+<!--              src="./assets/images/brand/png/box-pointer.png"-->
+<!--              alt="box-pointer"-->
+<!--            />-->
+<!--          </div>-->
 
-          <div class="home-membership-card-right">
-            <p>লাইফ টাইম মেম্বারশীপ এক্সেস</p>
-          </div>
-        </div>
+<!--          <div class="home-membership-card-right">-->
+<!--            <p>লাইফ টাইম মেম্বারশীপ এক্সেস</p>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <div class="home-membership-card">
-          <div class="home-membership-card-left">
-            <img
-              src="./assets/images/brand/png/box-pointer.png"
-              alt="box-pointer"
-            />
-          </div>
+<!--        <div class="home-membership-card">-->
+<!--          <div class="home-membership-card-left">-->
+<!--            <img-->
+<!--              src="./assets/images/brand/png/box-pointer.png"-->
+<!--              alt="box-pointer"-->
+<!--            />-->
+<!--          </div>-->
 
-          <div class="home-membership-card-right">
-            <p>প্রোডাক্ট সিলেকশনের কমপ্লিট গাইডলাইন</p>
-          </div>
-        </div>
+<!--          <div class="home-membership-card-right">-->
+<!--            <p>প্রোডাক্ট সিলেকশনের কমপ্লিট গাইডলাইন</p>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <div class="home-membership-card">
-          <div class="home-membership-card-left">
-            <img
-              src="./assets/images/brand/png/box-pointer.png"
-              alt="box-pointer"
-            />
-          </div>
+<!--        <div class="home-membership-card">-->
+<!--          <div class="home-membership-card-left">-->
+<!--            <img-->
+<!--              src="./assets/images/brand/png/box-pointer.png"-->
+<!--              alt="box-pointer"-->
+<!--            />-->
+<!--          </div>-->
 
-          <div class="home-membership-card-right">
-            <p>সফল বিজনেসের রিয়েল কেইস স্টাডি</p>
-          </div>
-        </div>
+<!--          <div class="home-membership-card-right">-->
+<!--            <p>সফল বিজনেসের রিয়েল কেইস স্টাডি</p>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <div class="home-membership-card">
-          <div class="home-membership-card-left">
-            <img
-              src="./assets/images/brand/png/box-pointer.png"
-              alt="box-pointer"
-            />
-          </div>
+<!--        <div class="home-membership-card">-->
+<!--          <div class="home-membership-card-left">-->
+<!--            <img-->
+<!--              src="./assets/images/brand/png/box-pointer.png"-->
+<!--              alt="box-pointer"-->
+<!--            />-->
+<!--          </div>-->
 
-          <div class="home-membership-card-right">
-            <p>৪ ধরনের রিসার্চ এর পূর্ণাঙ্গ নির্দেশনা</p>
-          </div>
-        </div>
+<!--          <div class="home-membership-card-right">-->
+<!--            <p>৪ ধরনের রিসার্চ এর পূর্ণাঙ্গ নির্দেশনা</p>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <div class="home-membership-card">
-          <div class="home-membership-card-left">
-            <img
-              src="./assets/images/brand/png/box-pointer.png"
-              alt="box-pointer"
-            />
-          </div>
+<!--        <div class="home-membership-card">-->
+<!--          <div class="home-membership-card-left">-->
+<!--            <img-->
+<!--              src="./assets/images/brand/png/box-pointer.png"-->
+<!--              alt="box-pointer"-->
+<!--            />-->
+<!--          </div>-->
 
-          <div class="home-membership-card-right">
-            <p>১০০০০+ মেম্বারদের পজেটিভ কমিউনিটি</p>
-          </div>
-        </div>
+<!--          <div class="home-membership-card-right">-->
+<!--            <p>১০০০০+ মেম্বারদের পজেটিভ কমিউনিটি</p>-->
+<!--          </div>-->
+<!--        </div>-->
 
-        <div class="home-membership-card">
-          <div class="home-membership-card-left">
-            <img
-              src="./assets/images/brand/png/box-pointer.png"
-              alt="box-pointer"
-            />
-          </div>
+<!--        <div class="home-membership-card">-->
+<!--          <div class="home-membership-card-left">-->
+<!--            <img-->
+<!--              src="./assets/images/brand/png/box-pointer.png"-->
+<!--              alt="box-pointer"-->
+<!--            />-->
+<!--          </div>-->
 
-          <div class="home-membership-card-right">
-            <p>পারফেক্ট নিশ সিলেকশন ফর্মূলা</p>
-          </div>
-        </div>
+<!--          <div class="home-membership-card-right">-->
+<!--            <p>পারফেক্ট নিশ সিলেকশন ফর্মূলা</p>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
     <!-- END! home-membership-child -->

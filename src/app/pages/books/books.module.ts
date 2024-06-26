@@ -10,6 +10,8 @@ import { GrantedBookComponent } from './granted-book/granted-book.component';
 import { LearnBookComponent } from './learn-book/learn-book.component';
 import { UserReviewSliderComponent } from './user-review-slider/user-review-slider.component';
 import { BookConfirmOrderComponent } from './book-confirm-order/book-confirm-order.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ConfirmOrderComponent} from "./book-confirm-order/confirm-order/confirm-order.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { BookConfirmOrderComponent } from './book-confirm-order/book-confirm-ord
     LearnBookComponent,
     UserReviewSliderComponent,
     BookConfirmOrderComponent,
+    ConfirmOrderComponent
   ],
-  imports: [CommonModule, BooksRoutingModule, SwiperModule, SuccessVideoModule],
+  imports: [CommonModule, BooksRoutingModule, SwiperModule, SuccessVideoModule,ReactiveFormsModule, FormsModule],
 })
 export class BooksModule {}

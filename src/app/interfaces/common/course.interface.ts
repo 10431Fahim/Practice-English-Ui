@@ -59,10 +59,19 @@ export interface CourseModule {
   name?: string;
   description?: string;
   video?: string;
+  benefit?: string;
+  videoUrl?: string;
+  videoTitle?: string;
+  videoDuration?: string;
+  step?: string;
+  bannerImage?: string;
   attachment?: string;
   quiz?: Quiz;
   type?: string;
   isFree?: boolean;
+  videoDurationArray?: string[];
+  videoTitleArray?: string[];
+  videoUrlArray?: string[];
 }
 
 export interface Price {
