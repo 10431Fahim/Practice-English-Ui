@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {ReloadService} from "../../../../services/core/reload.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-banner',
@@ -6,5 +8,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-banner.component.scss']
 })
 export class HomeBannerComponent {
+  selectedMenu = 0;
+  // Store Data
+  videoStart: boolean = false;
 
+@Input() data:any;
+  constructor(
+    private reloadService: ReloadService,
+  ) {
+
+  }
+  /**
+   * onVideoStart()
+   */
+  onVideoStart() {
+    this.videoStart = true;
+  }
+
+
+  public onScrollWithNavigate(type: string) {
+    switch (true) {
+      case type === "feature":
+        this.selectedMenu = 1;
+        this.reloadService.needRefreshFeature$(true);
+        break;
+      default:
+        this.selectedMenu = 0;
+    }
+  }
 }

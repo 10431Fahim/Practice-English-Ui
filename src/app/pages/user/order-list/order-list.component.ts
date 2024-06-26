@@ -69,7 +69,7 @@ export class OrderListComponent implements OnInit, OnDestroy {
       (res) => {
         if (res.success) {
           this.allOrders = res.data;
-          // console.log("this.allOrders33",this.allOrders);
+
           //
           // const uniqueIds = [...new Set(this.allOrders.orderedItems.map(obj => obj.category._id))];
           // console.log('uniqueIds', uniqueIds)

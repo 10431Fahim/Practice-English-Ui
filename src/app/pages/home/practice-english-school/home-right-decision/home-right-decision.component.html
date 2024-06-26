@@ -1,4 +1,4 @@
-<section class="home-right-decision">
+<section class="home-right-decision" #feature>
   <div class="container">
     <div class="home-right-decision-child">
       <div class="home-right-decision-title">
@@ -7,14 +7,14 @@
       <!-- END! home-right-decision-title -->
 
       <div class="home-right-decision-top">
-        <img src="./assets/images/brand/png/membership.png" alt="membership" />
+        <img [src]="data?.bannerImage" alt="membership" />
       </div>
       <!-- END! home-right-decision-top -->
 
       <div class="home-right-decision-lists">
-        <div class="home-right-decision-list" *ngFor="let data of dummyData">
+        <div class="home-right-decision-list" *ngFor="let d of data?.courseSpecifications">
           <div class="home-right-decision-list-left">
-            <h2>{{ data?.name }}</h2>
+            <h2>{{ d?.name }}</h2>
           </div>
           <!-- END! home-right-decision-list-left -->
 
@@ -22,7 +22,7 @@
           <!-- END! home-right-decision-list-middle -->
 
           <div class="home-right-decision-list-right">
-            <h2>{{ data?.price }} TK</h2>
+            <h2>{{ d?.value }} TK</h2>
           </div>
           <!-- END! home-right-decision-list-right -->
         </div>
@@ -30,16 +30,18 @@
       <!-- END! home-right-decision-lists -->
 
       <div class="home-right-decision-price">
-        <h1>
+        <h1 *ngIf="data?.discountAmount && data?.discountAmount > 0">
           <span>Total</span>
           <small></small>
-          <span><del>61000TK</del></span>
+          <span><del>{{data
+            | price : "regularPrice"}}TK</del></span>
         </h1>
 
         <h2>
           <span>Program Price</span>
           <small></small>
-          <span>1000TK</span>
+          <span>{{data
+            | price : "salePrice"}}TK</span>
         </h2>
       </div>
       <!-- END! home-right-decision-price -->
@@ -73,9 +75,16 @@
               described in our <a>privacy policy</a>.
             </p>
 
-            <button type="button">
+            <button type="button" *ngIf="!isEnrolled" [disabled]="isLoading" (click)="onBuyCourse()">
               <small><i class="fa-solid fa-lock"></i></small>
-              <span>Place Order  ৳ 7,990</span>
+              <span>Place Order  ৳ {{coupon? (data
+                | price : "regularPrice") - couponDiscount : data
+                | price : "salePrice"}}</span>
+            </button>
+
+            <button type="button" *ngIf="isEnrolled"  [routerLink]="['/', 'course-play-list', data?._id]">
+              <small><i class="fa-solid fa-lock"></i></small>
+              <span>Continue</span>
             </button>
           </div>
           <!-- END! payment-bottom -->
@@ -93,44 +102,69 @@
               <h2>Subtotal</h2>
             </div>
 
-            <div class="home-right-decision-orders-confirm">
-              <div class="home-right-decision-orders-confirm-card">
-                <div class="home-right-decision-orders-confirm-left">
-                  <img
-                    src="./assets/images/brand/png/demo-product.png"
-                    alt="demo-product"
-                  />
+<!--            <div class="home-right-decision-orders-confirm">-->
+<!--              <div class="home-right-decision-orders-confirm-card">-->
+<!--                <div class="home-right-decision-orders-confirm-left">-->
+<!--                  <img-->
+<!--                    src="./assets/images/brand/png/demo-product.png"-->
+<!--                    alt="demo-product"-->
+<!--                  />-->
 
-                  <p>
-                    <span>Silver Membership</span>
-                    <span>× 1</span>
-                  </p>
-                </div>
+<!--                  <p>-->
+<!--                    <span>Silver Membership</span>-->
+<!--                    <span>× 1</span>-->
+<!--                  </p>-->
+<!--                </div>-->
 
-                <div class="home-right-decision-orders-confirm-right">
-                  <p>৳7,990</p>
-                </div>
-              </div>
+<!--                <div class="home-right-decision-orders-confirm-right">-->
+<!--                  <p>৳{{data-->
+<!--                    | price : "regularPrice"}}</p>-->
+<!--                </div>-->
+<!--              </div>-->
               <!-- END! home-right-decision-orders-confirm-card -->
-            </div>
+<!--            </div>-->
 
             <div class="home-right-decision-orders-sub-total">
               <h2>Subtotal</h2>
-              <h3>৳7,990</h3>
+              <h3>৳{{data
+                | price : "regularPrice"}}</h3>
+            </div>
+
+            <div class="home-right-decision-orders-sub-total">
+              <h2>Discount Amount</h2>
+              <h3>৳{{data
+                | price : "discountAmount"}}</h3>
             </div>
 
             <div class="home-right-decision-orders-total">
               <h2>Total</h2>
-              <h1>৳7,990</h1>
+              <h1>৳{{coupon? (data
+                | price : "regularPrice") - couponDiscount : data
+                | price : "salePrice"}}</h1>
             </div>
           </div>
           <!-- END! home-right-decision-orders -->
 
-          <div class="home-right-decision-coupon">
-            <form>
-              <input type="text" placeholder="Coupon Code" />
-              <button type="button">Apply</button>
-            </form>
+<!--          <div class="home-right-decision-coupon">-->
+<!--            <form>-->
+<!--              <input type="text" placeholder="Coupon Code" />-->
+<!--              <button type="button">Apply</button>-->
+<!--            </form>-->
+<!--          </div>-->
+
+          <div class="cuppon-area" >
+            <div class="cupon-input">
+              <input [readOnly]="coupon" [(ngModel)]="couponCode" type="text"
+                     placeholder="Coupon Code">
+            </div>
+
+            <div *ngIf="!coupon" class="apply-btn" (click)="checkCouponAvailability()">
+              <button>Apply</button>
+            </div>
+
+            <div *ngIf="coupon" class="apply-btn" (click)="onRemoveCoupon()">
+              <button class="danger">Remove</button>
+            </div>
           </div>
         </div>
       </div>

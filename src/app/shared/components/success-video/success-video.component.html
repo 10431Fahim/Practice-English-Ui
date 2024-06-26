@@ -1,6 +1,6 @@
-<div class="success-video-card">
+<div class="success-video-card" (click)="openYoutubeVideoDialog($event, data?.url)">
   <img
-    src="https://img.freepik.com/free-photo/young-man-choosing-car-car-showroom_1303-21751.jpg"
+    [src]="data?.image ? data?.image : 'https://img.freepik.com/free-photo/young-man-choosing-car-car-showroom_1303-21751.jpg'"
     alt="success-image"
   />
 

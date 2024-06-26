@@ -276,7 +276,7 @@ export class QuizResultComponent implements OnInit {
       course: this.course._id,
     }
 
-    console.log("hello data", data);
+
 
     this.addQuizResult(data);
 
@@ -284,7 +284,7 @@ export class QuizResultComponent implements OnInit {
 
 
   private addQuizResult(data: any) {
-    console.log('addQuizResult', data);
+
 
     this.subAddData1 = this.quizService.addQuizResult(data).subscribe({
       next: (res) => {

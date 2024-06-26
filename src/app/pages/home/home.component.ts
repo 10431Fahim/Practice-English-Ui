@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
+import {Component, inject, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,6 +8,9 @@ import { FilterData } from 'src/app/interfaces/core/filter-data.interface';
 import { PopupService } from 'src/app/services/common/popup.service';
 import { StorageService } from 'src/app/services/core/storage.service';
 import { UpcomingDialogComponent } from 'src/app/shared/dialog-view/upcoming-dialog/upcoming-dialog.component';
+import {Course} from "../../interfaces/common/course.interface";
+import {Pagination} from "../../interfaces/core/pagination.interface";
+import {CourseService} from "../../services/common/course.service";
 
 @Component({
   selector: 'app-home',
@@ -19,8 +22,20 @@ export class HomeComponent implements OnInit,OnDestroy {
   //Store Variables
   isBrowser:boolean;
   popups: Popup[] = [];
+  courses: Course;
+
+  // Pagination
+  private currentPage: number = 0;
+  private productsPerPage = 1;
+  totalProducts = 0;
+  isLoadMore = false;
+  // Loader
+  isLoading: boolean = true;
   // Subscriptions
   private subDataOne: Subscription;
+  private subGetData1: Subscription;
+
+  private readonly courseService = inject(CourseService);
 
   constructor(
     private dialog: MatDialog,
@@ -33,7 +48,8 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
   ngOnInit(): void {
     // Base Data
-    this.getAllPopup()
+    this.getAllPopup();
+    this.getAllCourses();
   }
 
 
@@ -99,7 +115,71 @@ export class HomeComponent implements OnInit,OnDestroy {
   }
 
 
+  private getAllCourses(loadMore?: boolean) {
+    this.isLoading = true;
 
+    const mSelect = {
+      name: 1,
+      slug: 1,
+      bannerImage: 1,
+      shortDescription: 1,
+      salePrice: 1,
+      discountAmount: 1,
+      introYoutubeVideo: 1,
+      thumbnailImage: 1,
+      discountType: 1,
+      totalUsers: 1,
+      benefits: 1,
+      courseModules: 1,
+      userStarted: 1,
+      type: 1,
+      isMultiplePrice: 1,
+      membershipBenefits: 1,
+      courseSpecifications: 1,
+      prices: 1,
+      canSaleAttachment: 1,
+      attachmentSalePrice: 1,
+      attachmentDiscountAmount: 1,
+      attachmentDiscountType: 1,
+      category: 1,
+      subCategory: 1,
+      childCategory: 1,
+    };
+
+    const pagination: Pagination = {
+      pageSize: this.productsPerPage,
+      currentPage: this.currentPage,
+    };
+
+    const filterData: FilterData = {
+      select: mSelect,
+      pagination: pagination,
+      filter: {...{ status: 'publish' }},
+      sort: { createdAt: -1 },
+    };
+
+    this.subGetData1 = this.courseService
+      .getAllCourses(filterData, null)
+      .subscribe({
+        next: (res) => {
+          this.isLoading = false;
+          this.isLoadMore = false;
+          // if (loadMore) {
+          //   this.courses = [...this.courses, ...res.data];
+          // } else {
+            this.courses = res.data[0];
+
+          // }
+          // this.totalProducts = res.count;
+
+
+        },
+        error: (err) => {
+          console.log(err);
+          this.isLoading = false;
+        },
+      });
+  }
 
 
   /**

@@ -1,5 +1,19 @@
 @import "src/theme/_variables.scss";
+.youtube-container {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
 
+  iframe {
+    width: 350%;
+    height: 100%;
+    margin-left: -125%;
+    border: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
 /* --- home-banner --- */
 section.home-banner {
     padding-block: 29px;
@@ -130,6 +144,7 @@ section.home-banner {
 
         .join-and-total-student-left {
             button {
+                cursor: pointer;
                 border: 0;
                 outline: 0;
                 border-radius: 100px;

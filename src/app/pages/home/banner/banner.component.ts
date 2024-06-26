@@ -169,7 +169,6 @@ export class BannerComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe({
         next: (res) => {
           this.banners = res.data;
-          console.log('this.banners',this.banners)
         },
         error: (err) => {
           console.log(err);

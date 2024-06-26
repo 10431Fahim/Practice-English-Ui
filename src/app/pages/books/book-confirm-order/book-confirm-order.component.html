@@ -29,9 +29,9 @@
 
               <div class="add-to-cart-price">
                 <div class="add-to-cart">
-                  <button type="button">-</button>
-                  <input type="text" value="1" />
-                  <button type="button">+</button>
+                  <button type="button" (click)="onDecrementQtySimple($event)">-</button>
+                  <input type="text" value="1" [ngModel]="selectedQty" />
+                  <button type="button" (click)="onIncrementQtySimple($event)">+</button>
                 </div>
 
                 <div class="price">
@@ -53,12 +53,12 @@
           </div>
 
           <div class="book-confirm-order-main-left-form">
-            <form>
+            <form [formGroup]="formData" >
               <div class="input-box">
                 <p>
                   <label>আপনার নাম লিখুন <span>*</span></label>
                 </p>
-                <input type="text" placeholder="" />
+                <input formControlName="name" type="text" placeholder="" />
               </div>
 
               <div class="input-box">
@@ -68,7 +68,7 @@
                     <span>*</span></label
                   >
                 </p>
-                <input type="text" placeholder="" />
+                <input formControlName="address" type="text" placeholder="" />
               </div>
 
               <div class="input-box">
@@ -79,10 +79,10 @@
                 <div class="input-box-phone">
                   <div class="input-box-phone-country">
                     <img src="./assets/images/brand/png/bd.webp" alt="bd" />
-                    <h4>+880</h4>
+                    <h4>+88</h4>
                   </div>
 
-                  <input type="text" placeholder="" />
+                  <input type="text" formControlName="phoneNo" placeholder="" />
                 </div>
               </div>
             </form>
@@ -113,7 +113,7 @@
 
                 <p>
                   <span>Practice English</span>
-                  <span>x 1</span>
+                  <span>x {{selectedQty}}</span>
                 </p>
               </div>
 
@@ -140,7 +140,7 @@
                 class="book-confirm-order-main-right-bottom-order-product-right"
               >
                 <p>
-                  <span>৳ 500.00</span>
+                  <span>৳ {{(500 * selectedQty)}}</span>
                 </p>
               </div>
             </div>
@@ -167,7 +167,7 @@
 
             <div class="book-confirm-order-main-right-bottom-bottom">
               <h3>Total</h3>
-              <h3>৳ 590.00</h3>
+              <h3>৳ {{(500 * selectedQty) + 90}}</h3>
             </div>
             <!-- END! book-confirm-order-main-right-bottom-top -->
 
@@ -178,9 +178,9 @@
             </div>
 
             <div class="order-now">
-              <button type="button">
+              <button type="button" (click)="onConfirmOrder()">
                 <small><i class="fa-solid fa-lock"></i></small>
-                <span>অর্ডার করুন ৳ 590.00</span>
+                <span>অর্ডার করুন ৳ {{(500 * selectedQty) + 90}}</span>
               </button>
             </div>
           </div>
@@ -192,3 +192,4 @@
   </div>
 </section>
 <!-- END! book-confirm-order -->
+<app-confirm-order #confirm></app-confirm-order>

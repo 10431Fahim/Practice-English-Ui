@@ -7,17 +7,18 @@
 
     <div class="home-course-content-child">
       <div
+        *ngFor="let d of transformedData; let i = index"
         class="home-course-content-dorp-down"
-        [class.active]="isToggleActive === 1"
+        [class.active]="isToggleActive === i"
       >
         <div class="home-course-content-dorp-down-top">
           <button
             type="button"
             (click)="
-              isToggleActive === 1 ? onToggleActive(0) : onToggleActive(1)
+              isToggleActive === i ? onToggleActive(0) : onToggleActive(i)
             "
           >
-            <span>FREE DEMO CLASS + FREE PDF</span>
+            <span>{{d?.name}}</span>
 
             <small>
               <i class="fa-solid fa-angle-down"></i>
@@ -30,17 +31,17 @@
             <div class="course-content-dorp-down-lists">
               <div
                 class="course-content-dorp-down-list-item"
-                *ngFor="let data of [0, 0, 0]"
+                *ngFor="let video of d.videoTitleArray; let i = index"
               >
                 <h3>
                   <small>
                     <i class="fa-brands fa-youtube"></i>
                   </small>
 
-                  <span> Full Demo Class + Free PDF </span>
+                  <span> {{video}} </span>
                 </h3>
                 <p>
-                  <span>01:16:00</span>
+                  <span>{{d.videoDurationArray[i]}}</span>
                   <small>
                     <i class="fa-regular fa-eye"></i>
                   </small>

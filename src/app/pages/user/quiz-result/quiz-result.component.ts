@@ -44,7 +44,7 @@ export class QuizResultComponent {
       (res) => {
         if (res.success) {
           this.results = res.data;
-          console.log("this.results",this.results);
+
           //
           // const uniqueIds = [...new Set(this.allOrders.orderedItems.map(obj => obj.category._id))];
           // console.log('uniqueIds', uniqueIds)

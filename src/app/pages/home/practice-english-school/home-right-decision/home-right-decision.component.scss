@@ -1,5 +1,56 @@
 @import "src/theme/_variables.scss";
 
+.cuppon-area {
+  padding: 6px 0px 30px 0px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cupon-input {
+  display: block;
+  width: 100%;
+
+  input {
+    width: 100%;
+    padding: 11px 15px;
+    outline: none;
+    display: block;
+    font-size: 16px;
+    color: #2d2d2d;
+    font-family: $font-en-primary;
+    font-weight: 400;
+    border: 1px solid #efefef;
+    border-radius: 5px 0px 0px 5px;
+  }
+}
+
+.apply-btn {
+  max-width: 107px;
+  width: 100%;
+
+  button {
+    background-color: #6A65FF;
+    color: #fff;
+    font-family: $font-en-primary;
+    font-weight: 500;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    padding: 10px 2px;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid $color-primary;
+    border-radius: 0px 5px 5px 0px;
+
+    &.danger {
+      background-color: #d83333;
+      border: 1px solid #d83333;
+    }
+  }
+}
+
 /* --- home-right-decision --- */
 section.home-right-decision {
     padding-block: 70px;
@@ -338,6 +389,7 @@ section.home-right-decision {
 
         button {
             width: 100%;
+            cursor: pointer;
             background-color: #6A65FF;
             border: 0;
             outline: 0;
