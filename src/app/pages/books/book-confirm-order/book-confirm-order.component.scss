@@ -1,5 +1,49 @@
 @import "src/theme/_variables.scss";
 
+.payment{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-gap: 15px;
+}
+
+.method-info {
+  cursor: pointer;
+  border: 2px solid #e2e5ec;
+  padding: 10px 6px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  text-align: center;
+  &.active {
+    border: 3px solid $color-primary;
+  }
+}
+
+.method-info img {
+  width: 100%;
+  margin: auto !important;
+  margin-bottom: 10px !important;
+  text-align: center;
+  display: block;
+  object-fit: cover;
+}
+
+.method-info span {
+  color: #2d2d2d;
+  font-family: $font-en-primary;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  display: block;
+  cursor: pointer;
+}
+
+.online-payment {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+  grid-template-rows: auto;
+}
+
 /* --- book-confirm-order --- */
 section.book-confirm-order {
     padding-block: 50px;
@@ -212,6 +256,7 @@ section.book-confirm-order {
 
     input {
         width: 100%;
+        padding-left: 5px;
         border: 1px solid #ccc;
         background-color: #fff;
         height: 44px;
