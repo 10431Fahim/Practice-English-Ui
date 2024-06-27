@@ -10,9 +10,10 @@ import {UserService} from "../../../services/common/user.service";
   styleUrls: ['./header-second.component.scss'],
 })
 export class HeaderSecondComponent implements OnInit {
-  private countdownStart: number = 3 * 24 * 60 * 60; // 3 days in seconds
+  private countdownStart: number = 3 * 24 * 60 * 60 * 1000; // 3 days in milliseconds
   public countdown: number;
   private timerSubscription: Subscription;
+  private startDate: number = new Date('2024-06-27T00:00:00').getTime(); // Set the specific start date
 
   // store data
   shopInformation: ShopInformation;
@@ -29,7 +30,8 @@ export class HeaderSecondComponent implements OnInit {
 
   ngOnInit(): void {
     this.getShopInformation();
-    this.startTimer();
+    this.updateCountdown();
+    this.subscribeToTimer();
   }
 
   private getShopInformation() {
@@ -44,16 +46,32 @@ export class HeaderSecondComponent implements OnInit {
       },
     });
   }
+  updateCountdown(): void {
+    const now = Date.now();
+    const elapsedTime = now - this.startDate;
+    const cyclesPassed = Math.floor(elapsedTime / this.countdownStart);
+    const cycleStartTime = this.startDate + cyclesPassed * this.countdownStart;
+    const remainingTime = this.countdownStart - (now - cycleStartTime);
 
+    if (remainingTime > 0) {
+      this.countdown = remainingTime;
+    } else {
+      this.resetTimer();
+    }
+  }
 
-  startTimer(): void {
+  subscribeToTimer(): void {
     this.timerSubscription = interval(1000).subscribe(() => {
-      if (this.countdown > 0) {
-        this.countdown--;
-      } else {
-        this.resetTimer();
-      }
+      this.updateCountdown();
     });
+  }
+
+  formatDays(days: number): string {
+    return days < 10 ? `0${days}` : `${days}`;
+  }
+
+  formatHours(hours: number): string {
+    return hours < 10 ? `0${hours}` : `${hours}`;
   }
 
   resetTimer(): void {
@@ -61,19 +79,19 @@ export class HeaderSecondComponent implements OnInit {
   }
 
   get days(): number {
-    return Math.floor(this.countdown / (24 * 60 * 60));
+    return Math.floor(this.countdown / (24 * 60 * 60 * 1000));
   }
 
   get hours(): number {
-    return Math.floor((this.countdown % (24 * 60 * 60)) / (60 * 60));
+    return Math.floor((this.countdown % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
   }
 
   get minutes(): number {
-    return Math.floor((this.countdown % (60 * 60)) / 60);
+    return Math.floor((this.countdown % (60 * 60 * 1000)) / (60 * 1000));
   }
 
   get seconds(): number {
-    return this.countdown % 60;
+    return Math.floor((this.countdown % (60 * 1000)) / 1000);
   }
 
   ngOnDestroy(): void {

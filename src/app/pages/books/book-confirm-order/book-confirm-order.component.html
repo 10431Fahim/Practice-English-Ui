@@ -1,4 +1,4 @@
-<section class="book-confirm-order">
+<section class="book-confirm-order" #order>
   <div class="container">
     <div class="book-confirm-order-child">
       <div
@@ -30,7 +30,7 @@
               <div class="add-to-cart-price">
                 <div class="add-to-cart">
                   <button type="button" (click)="onDecrementQtySimple($event)">-</button>
-                  <input type="text" value="1" [ngModel]="selectedQty" />
+                  <input type="text" value="1" [ngModel]="selectedQty" readonly />
                   <button type="button" (click)="onIncrementQtySimple($event)">+</button>
                 </div>
 
@@ -171,11 +171,27 @@
             </div>
             <!-- END! book-confirm-order-main-right-bottom-top -->
 
-            <div class="cash-on-delivery">
-              <h3>Cash on delivery</h3>
+           <div class="payment">
+             <div class="cash-on-delivery">
+               <h3>Cash on delivery</h3>
 
-              <p>Pay with cash upon delivery.</p>
-            </div>
+               <p>Pay with cash upon delivery.</p>
+             </div>
+
+             <div class="cash-on-delivery">
+               <h3>Online Payment</h3>
+
+               <p>Pay with online.</p>
+             </div>
+           </div>
+
+<!--            <div class="online-payment">-->
+<!--              <div class="method-info active" *ngFor="let data of paymentMethods"-->
+<!--                   [class.active]="data?.paymentType === selectedPaymentMethod" (click)="onSelectPaymentMethod(data)">-->
+<!--                <img [src]="data?.image" alt="">-->
+<!--                <span>{{ data?.paymentMethodName }}</span>-->
+<!--              </div>-->
+<!--            </div>-->
 
             <div class="order-now">
               <button type="button" (click)="onConfirmOrder()">

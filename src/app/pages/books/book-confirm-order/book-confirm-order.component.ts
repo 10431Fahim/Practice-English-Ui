@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {ShippingChargeService} from "../../../services/common/shipping-charge.service";
 import {UiService} from "../../../services/core/ui.service";
 import {ActivatedRoute} from "@angular/router";
@@ -10,6 +10,7 @@ import {UtilsService} from "../../../services/core/utils.service";
 import {Subscription} from "rxjs";
 import {ProductOrderService} from "../../../services/common/product-order.service";
 import {ConfirmOrderComponent} from "./confirm-order/confirm-order.component";
+import {PAYMENTMETHOD} from "../../../core/utils/app-data";
 
 @Component({
   selector: 'app-book-confirm-order',
@@ -22,8 +23,9 @@ export class BookConfirmOrderComponent {
   //Form Group
   formData!: FormGroup;
   selectedPaymentMethod: string = 'cash_on_delivery';
+  paymentMethods: any[] = PAYMENTMETHOD;
   private subDataFour: Subscription;
-
+  @ViewChild('order') mainEl!: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +39,11 @@ export class BookConfirmOrderComponent {
   ) { }
 
   ngOnInit() {
+    this.reloadService.refreshFeature$.subscribe((res) => {
+      if (res) {
+        this.onScrollSection();
+      }
+    });
     //Base Data
     this.initForm()
   }
@@ -185,13 +192,13 @@ export class BookConfirmOrderComponent {
         },
       },
     }
-    console.log('orderData', orderData)
 
     if (this.selectedQty > 0) {
       this.addOrder(orderData);
     } else {
       this.uiService.warn('Please product add to cart then order ');
     }
+
   }
 
   private addOrder(data: any) {
@@ -229,6 +236,11 @@ export class BookConfirmOrderComponent {
       this.confirm.onShowPop(orderId);
     }
   }
+
+  onSelectPaymentMethod(data: any) {
+    this.selectedPaymentMethod = data.paymentType;
+  }
+
   /**
    * PAYMENT API
    * sslInitWithOrder()
@@ -289,7 +301,18 @@ export class BookConfirmOrderComponent {
     //     }
     //   });
   }
+  /**
+   * SCROLL WITH NAVIGATE
+   */
 
+  onScrollSection() {
+    const el = this.mainEl.nativeElement as HTMLDivElement;
+    el.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'nearest',
+      block: 'end',
+    });
+  }
 
   private updateOrderSessionKey(_id: string, data: object, url: string) {
     // this.subDataSix = this.orderService.updateOrderSessionKey(_id, data)
