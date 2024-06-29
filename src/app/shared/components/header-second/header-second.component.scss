@@ -3,10 +3,12 @@
 /* --- header-second --- */
 header.header-second {
     background-color: #1E1E1E;
+    height: 78px;
 }
 
 /* --- header-second-child --- */
 .header-second-child {
+    height: 78px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,6 +16,7 @@ header.header-second {
 
 /* --- header-second-left --- */
 .header-second-left {
+    height: 78px;
     img {
         max-width: 76px;
         height: 78px;
@@ -22,7 +25,11 @@ header.header-second {
 }
 
 @media (max-width:556px) {
+  .header-second-child {
+    height: 64px;
+  }
     .header-second-left {
+        height: 64px;
         img {
             max-width: 62px;
             height: 64px;

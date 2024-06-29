@@ -8,7 +8,7 @@ import {ReloadService} from "../../../../services/core/reload.service";
 })
 export class HomeCourseStepComponent {
   selectedMenu = 0;
-
+  @Input() data:any;
   constructor(
     private reloadService: ReloadService,
   ) {

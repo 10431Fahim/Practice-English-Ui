@@ -17,22 +17,22 @@ export class HomeCourseContentComponent implements OnChanges{
 
 
   ngOnChanges() {
-    this.transformBenefitToArray();
+    // this.transformBenefitToArray();
     // // const str: any = this.data?.courseModules;
     // // let arrayData = str?.split(",");
     // // this.moduleBenefitArray = arrayData;
     // console.log('this.moduleBenefitArray',this.data)
   }
-  transformBenefitToArray() {
-    this.transformedData = this.data?.courseModules.map(item => ({
-      ...item,
-      benefit: item.benefit.split(',').map(benefit => benefit.trim()),
-      videoDurationArray: item.videoDuration.split(','),
-      videoTitleArray: item.videoTitle.split(','),
-      videoUrlArray: item.videoUrl.split(',')
-    }));
-
-  }
+  // transformBenefitToArray() {
+  //   this.transformedData = this.data?.courseModules.map(item => ({
+  //     ...item,
+  //     benefit: item.benefit.split(',').map(benefit => benefit.trim()),
+  //     videoDurationArray: item.videoDuration.split(','),
+  //     videoTitleArray: item.videoTitle.split(','),
+  //     videoUrlArray: item.videoUrl.split(',')
+  //   }));
+  //
+  // }
 
 
 }

@@ -19,7 +19,7 @@
           <div class="book-confirm-products-card">
             <div class="book-confirm-products-card-image">
               <img
-                src="https://practiceenglishschool.com/wp-content/uploads/2024/03/1EimwxeckucGnFuusTs7r791bTGmy41fG6r6oXKbM7L5HJWktt97tbDFP785s3m0-300x300.webp"
+                src="/assets/images/temp/png/book.webp"
                 alt="products-card-image"
               />
             </div>
@@ -58,17 +58,20 @@
                 <p>
                   <label>আপনার নাম লিখুন <span>*</span></label>
                 </p>
-                <input formControlName="name" type="text" placeholder="" />
+                <input  [readonly]="sentOtp" formControlName="name" type="text" placeholder="" [ngClass]="{'error': name.invalid && (name.dirty || name.touched)}"/>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-message">
+                  Name is required.
+                </div>
               </div>
 
               <div class="input-box">
                 <p>
-                  <label
-                    >আপনার গ্রাম, থানা এবং জেলার নাম লিখুন।
-                    <span>*</span></label
-                  >
+                  <label>আপনার গ্রাম, থানা এবং জেলার নাম লিখুন। <span>*</span></label>
                 </p>
-                <input formControlName="address" type="text" placeholder="" />
+                <input  [readonly]="sentOtp" formControlName="address" type="text" placeholder="" [ngClass]="{'error': address.invalid && (address.dirty || address.touched)}"/>
+                <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-message">
+                  Address is required.
+                </div>
               </div>
 
               <div class="input-box">
@@ -82,7 +85,10 @@
                     <h4>+88</h4>
                   </div>
 
-                  <input type="text" formControlName="phoneNo" placeholder="" />
+                  <input  [readonly]="sentOtp" type="text" formControlName="phoneNo" digitOnly placeholder="" maxlength="11" [ngClass]="{'error': phoneNo.invalid && (phoneNo.dirty || phoneNo.touched)}"/>
+                </div>
+                <div *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched)" class="error-message">
+                  Phone number is required.
                 </div>
               </div>
             </form>
@@ -172,31 +178,47 @@
             <!-- END! book-confirm-order-main-right-bottom-top -->
 
            <div class="payment">
-             <div class="cash-on-delivery">
-               <h3>Cash on delivery</h3>
+             <div class="cash-on-delivery active"  *ngFor="let data of paymentMethods" [class.active]="data?.paymentType === selectedPaymentMethod" (click)="onSelectPaymentMethod(data)">
+               <h3>{{data?.name}}</h3>
 
-               <p>Pay with cash upon delivery.</p>
-             </div>
-
-             <div class="cash-on-delivery">
-               <h3>Online Payment</h3>
-
-               <p>Pay with online.</p>
+               <p>{{data?.title}}</p>
              </div>
            </div>
 
-<!--            <div class="online-payment">-->
-<!--              <div class="method-info active" *ngFor="let data of paymentMethods"-->
-<!--                   [class.active]="data?.paymentType === selectedPaymentMethod" (click)="onSelectPaymentMethod(data)">-->
-<!--                <img [src]="data?.image" alt="">-->
-<!--                <span>{{ data?.paymentMethodName }}</span>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--            <div class="online-payment">-->
+            <!--              <div class="method-info active" *ngFor="let data of paymentMethods"-->
+            <!--                   [class.active]="data?.paymentType === selectedPaymentMethod" (click)="onSelectPaymentMethod(data)">-->
+            <!--                <img [src]="data?.image" alt="">-->
+            <!--                <span>{{ data?.paymentMethodName }}</span>-->
+            <!--              </div>-->
+            <!--            </div>-->
 
-            <div class="order-now">
-              <button type="button" (click)="onConfirmOrder()">
+            <div class="input-box" *ngIf="isOtpSent" style="margin-top: 10px">
+              <p>
+                <label>আপনার মোবাইল এ পাঠানো কোড টি লিখুন। {{'0:' + countDown}}<span>*</span></label>
+              </p>
+              <input matInput placeholder="কোডটি লিখুন" [(ngModel)]="otp" />
+              <button style="background: none; color: #0c3e9d;border: none;" *ngIf="countDown == 0 && isCountDownEnd" type="button" (click)="onConfirm()">আবার পাঠান</button>
+            </div>
+
+
+            <div class="order-now" *ngIf="!sentOtp">
+              <button type="button" (click)="onConfirm()">
                 <small><i class="fa-solid fa-lock"></i></small>
                 <span>অর্ডার করুন ৳ {{(500 * selectedQty) + 90}}</span>
+              </button>
+            </div>
+
+            <div class="order-now" *ngIf="sentOtp && !isLoading">
+              <button type="button" (click)="onSubmit()">
+                <small><i class="fa-solid fa-lock"></i></small>
+                <span>অর্ডার করুন ৳ {{(500 * selectedQty) + 90}}</span>
+              </button>
+            </div>
+            <div class="order-now" *ngIf="isLoading">
+              <button type="button">
+                <span class="loader"></span>
+                <span>অপেক্ষা করুন</span>
               </button>
             </div>
           </div>

@@ -1,7 +1,7 @@
 @import "src/theme/_variables.scss";
 
 /* --- home-steps --- */
-section.home-steps {
+.home-steps {
     padding-block: 70px;
     background-image: url("../../../../../assets/images/brand/png/bg-shape.png");
     background-size: cover;
@@ -10,7 +10,7 @@ section.home-steps {
 }
 
 @media (max-width:500px) {
-    section.home-steps {
+    .home-steps {
         padding-block: 44px 50px;
     }
 }

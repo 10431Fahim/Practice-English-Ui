@@ -3,7 +3,7 @@ import { Quiz } from '../../../../interfaces/common/quiz.interface';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { Course } from '../../../../interfaces/common/course.interface';
 import { UiService } from '../../../../services/core/ui.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { User } from '../../../../interfaces/common/user.interface';
 import { PricePipe } from '../../../../shared/pipes/price.pipe';
 import { UserService } from '../../../../services/common/user.service';
@@ -35,7 +35,7 @@ export class QuizResultComponent implements OnInit {
   // quiz result show variable
   quizRes: boolean = false;
   @Input() user: User;
-
+  courseId:string;
   // Loader
   isLoading: boolean = false;
 
@@ -47,15 +47,19 @@ export class QuizResultComponent implements OnInit {
   private readonly orderService = inject(OrderService);
   private readonly paymentService = inject(PaymentService);
   private readonly quizService = inject(QuizService);
+  private readonly activatedRoute = inject(ActivatedRoute);
   private readonly document = inject(DOCUMENT);
 
 
   // Subscriptions
   private subAddData1!: Subscription;
   private subAddData2!: Subscription;
+  private subRouteTwo!: Subscription;
 
   ngOnInit() {
-
+    this.subRouteTwo = this.activatedRoute.queryParamMap.subscribe(qParam => {
+      this.courseId = qParam.get('course');
+    })
   }
 
   /**

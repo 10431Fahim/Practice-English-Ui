@@ -30,7 +30,8 @@
 <!--      </div>-->
 
       <div class="header-second-right">
-        <button type="button" routerLink="/login">{{ userService.getUserStatus() ? "My Account" : "Login" }}</button>
+        <button *ngIf="!userService.getUserStatus()" type="button" routerLink="/login">Login</button>
+        <button *ngIf="userService.getUserStatus()" type="button" routerLink="/account">My Account</button>
       </div>
     </div>
   </div>

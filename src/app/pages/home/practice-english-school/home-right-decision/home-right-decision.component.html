@@ -58,12 +58,12 @@
               <h3>Pay Online(Credit/Debit Card/MobileBanking)</h3>
 
               <img
-                src="./assets/images/brand/png/ssl-commerce-logo.png"
+                src="/assets/images/svg/Aamarpay_whitebg.svg"
                 alt="ssl-commerce-logo"
               />
             </div>
             <div class="payment-top-down">
-              <p>Pay securely through SSLCommerz.</p>
+              <p>Pay securely through Aamarpay.</p>
             </div>
           </div>
           <!-- END! payment-top -->
@@ -72,19 +72,25 @@
             <p>
               Your personal data will be used to process your order, support
               your experience throughout this website, and for other purposes
-              described in our <a>privacy policy</a>.
+              described in our <a routerLink="/pages/privacy-policy">privacy policy</a>.
             </p>
 
-            <button type="button" *ngIf="!isEnrolled" [disabled]="isLoading" (click)="onBuyCourse()">
+            <button type="button" *ngIf="!isEnrolled && !isLoading" [disabled]="isLoading" (click)="onBuyCourse()">
               <small><i class="fa-solid fa-lock"></i></small>
               <span>Place Order  ৳ {{coupon? (data
                 | price : "regularPrice") - couponDiscount : data
                 | price : "salePrice"}}</span>
             </button>
 
-            <button type="button" *ngIf="isEnrolled"  [routerLink]="['/', 'course-play-list', data?._id]">
-              <small><i class="fa-solid fa-lock"></i></small>
-              <span>Continue</span>
+            <button type="button" *ngIf="!isEnrolled && isLoading">
+<!--              <small><i class="fa-solid fa-lock"></i></small>-->
+              <span class="loader"></span>
+              <span>Please Wait</span>
+            </button>
+
+            <button type="button" style="background: #0f8f3e" *ngIf="isEnrolled"  [routerLink]="['/', 'course-play-list', data?._id]">
+<!--              <small><i class="fa-solid fa-lock"></i></small>-->
+              <span>Already Enrolled. View My Course</span>
             </button>
           </div>
           <!-- END! payment-bottom -->
@@ -102,27 +108,27 @@
               <h2>Subtotal</h2>
             </div>
 
-<!--            <div class="home-right-decision-orders-confirm">-->
-<!--              <div class="home-right-decision-orders-confirm-card">-->
-<!--                <div class="home-right-decision-orders-confirm-left">-->
+            <div class="home-right-decision-orders-confirm">
+              <div class="home-right-decision-orders-confirm-card">
+                <div class="home-right-decision-orders-confirm-left">
 <!--                  <img-->
 <!--                    src="./assets/images/brand/png/demo-product.png"-->
 <!--                    alt="demo-product"-->
 <!--                  />-->
 
-<!--                  <p>-->
-<!--                    <span>Silver Membership</span>-->
-<!--                    <span>× 1</span>-->
-<!--                  </p>-->
-<!--                </div>-->
+                  <p>
+                    <span>Silver Membership</span>
+                    <span>× 1</span>
+                  </p>
+                </div>
 
-<!--                <div class="home-right-decision-orders-confirm-right">-->
-<!--                  <p>৳{{data-->
-<!--                    | price : "regularPrice"}}</p>-->
-<!--                </div>-->
-<!--              </div>-->
-              <!-- END! home-right-decision-orders-confirm-card -->
-<!--            </div>-->
+                <div class="home-right-decision-orders-confirm-right">
+                  <p>৳{{data
+                    | price : "regularPrice"}}</p>
+                </div>
+              </div>
+<!--               END! home-right-decision-orders-confirm-card-->
+            </div>
 
             <div class="home-right-decision-orders-sub-total">
               <h2>Subtotal</h2>
@@ -130,11 +136,11 @@
                 | price : "regularPrice"}}</h3>
             </div>
 
-            <div class="home-right-decision-orders-sub-total">
-              <h2>Discount Amount</h2>
-              <h3>৳{{data
-                | price : "discountAmount"}}</h3>
-            </div>
+<!--            <div class="home-right-decision-orders-sub-total">-->
+<!--              <h2>Discount Amount</h2>-->
+<!--              <h3>৳{{data-->
+<!--                | price : "discountAmount"}}</h3>-->
+<!--            </div>-->
 
             <div class="home-right-decision-orders-total">
               <h2>Total</h2>

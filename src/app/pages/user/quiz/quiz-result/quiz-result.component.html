@@ -107,13 +107,13 @@
     <div class="q-again">
       <button (click)="onClickReQuiz()">কুইজটি আবার দিন</button>
     </div>
-    <div *ngIf="!course">
-      <button>নেক্সট</button>
+    <div >
+      <button [routerLink]="['/course-play-list/', courseId]">ফিরে যান</button>
     </div>
-    <div  *ngIf="course">
-      <button *ngIf="!result?.isPass" [routerLink]="['/course-details', course._id]">ফিরে যান</button>
-<!--      <button *ngIf="result?.isPass" (click)="onEligibleForEnroll()">কোর্সটি কিনুন</button>-->
-      <button *ngIf="result?.isPass" >কোর্সটি কিনুন</button>
-    </div>
+<!--    <div  *ngIf="course">-->
+<!--      <button *ngIf="!result?.isPass" [routerLink]="['/course-details', course?._id]">ফিরে যান</button>-->
+<!--&lt;!&ndash;      <button *ngIf="result?.isPass" (click)="onEligibleForEnroll()">কোর্সটি কিনুন</button>&ndash;&gt;-->
+<!--      <button *ngIf="result?.isPass" >কোর্সটি কিনুন</button>-->
+<!--    </div>-->
   </div>
 </main>

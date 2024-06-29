@@ -64,3 +64,21 @@ export const PAYMENTMETHOD: any[] = [
   //     "paymentType": "online_payment",
   // }
 ];
+
+
+export const PaymentMethod: any[] = [
+  {
+    id: '1',
+    name: 'Cash on Delivery',
+    title: 'Pay with cash upon delivery.',
+    image: 'https://www.rokomari.com/static/200/images/cod.png',
+    paymentType: 'cash_on_delivery',
+  },
+  {
+    id: '2',
+    name: 'Online Payment',
+    title: 'Pay with online.',
+    image: '/assets/images/brand/logo/bkash-logo-FBB258B90F-seeklogo.com.png',
+    paymentType: 'online_payment',
+  },
+];

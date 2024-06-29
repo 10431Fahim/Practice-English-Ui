@@ -10,11 +10,11 @@ import {UtilsService} from "../../../services/core/utils.service";
 import {Subscription} from "rxjs";
 import {ProductOrderService} from "../../../services/common/product-order.service";
 import {ConfirmOrderComponent} from "./confirm-order/confirm-order.component";
-import {PAYMENTMETHOD} from "../../../core/utils/app-data";
-import {Order} from '../../../interfaces/common/order.interface';
+import {PaymentMethod} from "../../../core/utils/app-data";
 import {environment} from '../../../../environments/environment';
 import {PaymentService} from '../../../services/common/payment.service';
 import {DOCUMENT} from '@angular/common';
+import {OtpService} from "../../../services/common/otp.service";
 
 @Component({
   selector: 'app-book-confirm-order',
@@ -23,18 +23,31 @@ import {DOCUMENT} from '@angular/common';
 })
 export class BookConfirmOrderComponent {
   isLoading: boolean = false;
+  otp: any;
   @ViewChild('confirm') confirm: ConfirmOrderComponent;
   selectedQty: number = 1;
+  sentOtp: boolean | any = false;
+  // Store Data
+  isOtpSent: boolean = false;
+  isOtpValid: boolean = false;
+  countDown = 0;
+  isCountDownEnd = false;
+  timeInstance = null;
+  // isLoading = false;
+  public sendVerificationCode = false;
   //Form Group
   formData!: FormGroup;
   selectedPaymentMethod: string = 'cash_on_delivery';
-  paymentMethods: any[] = PAYMENTMETHOD;
+  paymentMethods: any[] = PaymentMethod;
   private subDataFour: Subscription;
   @ViewChild('order') mainEl!: ElementRef;
 
+  private readonly otpService = inject(OtpService);
   private readonly paymentService = inject(PaymentService);
   private readonly document = inject(DOCUMENT);
 
+  private subOtpGenerate: Subscription;
+  private subOtpValidate: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -65,10 +78,10 @@ export class BookConfirmOrderComponent {
    */
   initForm() {
     this.formData = this.fb.group({
-      name: [null, Validators.required],
-      phoneNo: [null, Validators.required],
-      address: [null],
-      paymentMethod: ['cash_on_delivery', Validators.required],
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phoneNo: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.maxLength(11)]],
+      paymentMethod: [''],
       deliveryOptions: ['1', Validators.required],
     })
   }
@@ -92,8 +105,137 @@ export class BookConfirmOrderComponent {
     this.selectedQty -= 1;
   }
 
+  get name() {
+    return this.formData.get('name');
+  }
+
+  get address() {
+    return this.formData.get('address');
+  }
+
+  get phoneNo() {
+    return this.formData.get('phoneNo');
+  }
+
+
+  /**
+   * HTTP REQ HANDLE
+   * generateOtpWithPhoneNo()
+   * validateOtpWithPhoneNo()
+   */
+
+  public onConfirm() {
+    if (this.formData.invalid) {
+      this.uiService.warn('Please complete all the required field');
+      this.formData.markAllAsTouched();
+      return;
+    }
+
+    if (!this.formData.value.phoneNo) {
+      this.uiService.warn('Please enter phone')
+      return;
+    }
+
+    if (this.selectedQty > 0) {
+      this.generateOtpWithPhoneNo(this.formData?.value?.phoneNo)
+    }
+  }
+
+  // CountDown...
+  countTime(time?) {
+    const count = (num) => () => {
+      this.countDown = num;
+      num = num === 0 ? 0 : num - 1;
+      if (num <= 0) {
+        clearInterval(this.timeInstance);
+        this.countDown = 0;
+        this.isCountDownEnd = true;
+      }
+    };
+    this.timeInstance = setInterval(count(time), 1000);
+  }
+
+
+  generateOtpWithPhoneNo(phoneNo: string) {
+    this.sentOtp = true;
+    this.isLoading = true;
+    this.countTime(60);
+    this.subOtpGenerate = this.otpService.generateOtpWithPhoneNo(phoneNo)
+      .subscribe({
+        next: ((res) => {
+          if (res.success) {
+            this.isOtpSent = true;
+            this.uiService.success(res.message);
+            this.isLoading = false;
+            // this.isPass = true;
+            this.sendVerificationCode = true;
+          } else {
+            this.isOtpSent = false;
+            this.uiService.warn(res.message);
+          }
+        }),
+        error: ((error) => {
+          this.isOtpSent = false;
+          this.isLoading = false;
+          console.log(error);
+        })
+      });
+  }
+
+
+
+  public onSubmit() {
+    if (this.formData.invalid) {
+      this.uiService.warn('Please complete all the required field');
+      this.formData.markAllAsTouched();
+      return;
+    }
+    if (!this.formData.value.phoneNo) {
+      this.uiService.warn('Please enter phone')
+      return;
+    }
+    if (this.selectedQty > 0) {
+      this.validateOtpWithPhoneNo({
+        phoneNo: this.formData.value.phoneNo,
+        code: this.otp,
+        // password: this.dataForm.value.password,
+      })
+    }
+  }
+
+
+  validateOtpWithPhoneNo(data: { phoneNo: string, code: string }) {
+    this.isLoading = true;
+    this.subOtpValidate = this.otpService.validateOtpWithPhoneNo(data)
+      .subscribe({
+        next: (async (res) => {
+          if (res.success) {
+            this.isOtpValid = true;
+            this.sendVerificationCode = false;
+            this.isLoading = false;
+            try {
+              this.onConfirmOrder();
+              this.isLoading = false;
+            } catch (e) {
+              this.isLoading = false;
+            }
+
+          } else {
+            this.isOtpValid = false;
+            this.isLoading = false;
+            this.uiService.warn(res.message);
+          }
+        }),
+        error: ((error) => {
+          this.isOtpValid = false;
+          this.isLoading = false;
+          console.log(error);
+        })
+      });
+  }
 
   public onConfirmOrder() {
+
     if (this.formData.invalid) {
       this.uiService.warn('Please complete all the required field');
       this.formData.markAllAsTouched();
@@ -109,7 +251,7 @@ export class BookConfirmOrderComponent {
     const products = {
       _id: "65d39dbd518b059441073c97",
       name: 'Practice English',
-      image: null,
+      image: 'https://practiceenglishschool.com/wp-content/uploads/2024/03/1EimwxeckucGnFuusTs7r791bTGmy41fG6r6oXKbM7L5HJWktt97tbDFP785s3m0-300x300.webp',
       category: null,
       subCategory: null,
       // discountType: (m.product as Product).discountType,
@@ -126,7 +268,7 @@ export class BookConfirmOrderComponent {
       phoneNo: this.formData.value.phoneNo,
       shippingAddress: this.formData.value.address,
       city: this.formData.value?.city,
-      paymentType: this.formData.value.paymentMethod,
+      paymentType: this.selectedPaymentMethod,
       country: this.formData.value.country,
       paymentStatus: 'unpaid',
       orderStatus: OrderStatus.PENDING,
@@ -264,12 +406,12 @@ export class BookConfirmOrderComponent {
       name: orderData.name ?? 'PracticeEng User',
       email: orderData.email ?? 'peschoolpersonal@gmail.com',
       phoneNo: orderData.phoneNo ?? '01716299426',
-      desc: `Order Id: ${orderId}. Order_id: ${_id}`,
+      desc: `Order Id: ${_id}. Order_id: ${orderId}`,
       address: orderData.shippingAddress ?? 'Dhaka',
       city: 'Dhaka',
       amount: orderData.grandTotal,
-      orderId: orderId,
-      order_id: _id,
+      orderId: _id,
+      order_id: orderId,
       callbackUrl: environment.aamarpayProductCallbackUrl
     };
 

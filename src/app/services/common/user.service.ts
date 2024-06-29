@@ -63,9 +63,14 @@ export class UserService {
                 this.saveUserData(res.token, expirationDate, this.userId);
                 // Snack bar..
                 this.uiService.success(res.message);
-
                 // Navigate..
-                this.router.navigate(navigateFrom ? [navigateFrom] : [environment.userBaseUrl]).then();
+                if (navigateFrom) {
+                  this.router.navigate([navigateFrom]);
+                } else {
+                  this.router.navigate([environment.userBaseUrl]);
+                }
+                // Navigate..
+                // this.router.navigate(navigateFrom ? [navigateFrom] : [environment.userBaseUrl]).then();
                 resolve(res);
               }
             } else {

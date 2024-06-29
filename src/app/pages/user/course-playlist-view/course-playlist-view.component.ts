@@ -63,8 +63,6 @@ export class CoursePlaylistViewComponent implements OnInit {
               videoTitle: item.videoTitle.split(','),
               videoUrl: item.videoUrl.split(',')
             }));
-            console.log('transformedData',this.transformedData)
-            console.log('transformedData',this.course)
             if (this.course?.orderType === 'video-course') {
               this.selectedType = 'video-course';
               this.selectedVideo = this.transformedData[0].videoUrl[0];
@@ -91,7 +89,7 @@ export class CoursePlaylistViewComponent implements OnInit {
       videoTitleArray: item.videoTitle.split(','),
       videoUrlArray: item.videoUrl.split(',')
     }));
-    console.log('transformedData222',this.transformedData)
+
   }
 
   /**
@@ -102,7 +100,6 @@ export class CoursePlaylistViewComponent implements OnInit {
    */
   onChangeVideo(url: string) {
     this.selectedType = 'video-course';
-    console.log('url',url)
     this.selectedVideo = url;
   }
 
