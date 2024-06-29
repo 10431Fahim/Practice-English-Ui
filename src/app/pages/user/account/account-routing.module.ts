@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserAccountComponent } from './user-account/user-account.component';
 import {AccountComponent} from "./account.component";
 
-import {WishListComponent} from "./wish-list/wish-list.component";
 
 const routes: Routes = [
   {
@@ -13,10 +12,6 @@ const routes: Routes = [
   {
     path: 'my-account',
     component: UserAccountComponent
-  },
-  {
-    path:"wishlist",
-    component:WishListComponent
   },
 ];
 

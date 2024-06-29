@@ -19,7 +19,7 @@ export class HomeZeroToSuccessComponent implements OnInit {
   totalVideo = 0;
   videoCurrentPage = 1;
   videoPageSize = 6;
-  isLoading1:boolean = false;
+  isLoading1: boolean = false;
   isLoadMore = false;
 
   // Store Data
@@ -33,7 +33,8 @@ export class HomeZeroToSuccessComponent implements OnInit {
     private youtubeVideoService: YoutubeVideoService,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe(qPram => {
@@ -60,7 +61,7 @@ export class HomeZeroToSuccessComponent implements OnInit {
       pagination: pagination,
       filter: null,
       select: mSelect,
-      sort: { createdAt: -1 }
+      sort: {createdAt: -1}
     }
     this.isLoading1 = true
     this.subDataFive = this.youtubeVideoService.getAllYoutubeVideo(filterData, null)
@@ -74,10 +75,10 @@ export class HomeZeroToSuccessComponent implements OnInit {
 
             setTimeout(() => {
               this.isLoading1 = false;
-            },2000)
+            }, 2000)
 
-          } else{
-            this.video  = res.data;
+          } else {
+            this.video = res.data;
           }
           this.totalVideo = res.count;
         },
@@ -96,7 +97,6 @@ export class HomeZeroToSuccessComponent implements OnInit {
       this.getAllVideo(true);
     }
   }
-
 
 
 }

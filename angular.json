@@ -39,7 +39,13 @@
                 "src/theme"
               ]
             },
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "pdfjs-dist/web/pdf_viewer",
+              "crypto-js",
+              "moment-timezone",
+              "pdfjs-dist"
+            ]
           },
           "configurations": {
             "production": {

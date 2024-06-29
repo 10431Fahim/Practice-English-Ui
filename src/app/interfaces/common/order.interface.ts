@@ -1,7 +1,3 @@
-import { SubCategory } from './sub-category.interface';
-import { ChildCategory } from './child-category.interface';
-import { Unit } from './unit.interface';
-import {Category} from './category.interface';
 
 export type Order = {
   _id?: string;
@@ -35,13 +31,13 @@ export interface Item {
   name?: string;
   slug?: string;
   image?:string;
-  category?: Category;
-  subCategory?: SubCategory;
-  childCategory?: ChildCategory;
+  category?: any;
+  subCategory?: any;
+  childCategory?: any;
   isLiveClass?: boolean;
   salePrice?: number;
   discountType?: number;
   discountAmount?: number;
   specifications?: any;
-  unit?: Unit;
+  unit?: any;
 }

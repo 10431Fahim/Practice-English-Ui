@@ -19,58 +19,6 @@
     <div class="our-course">
       <div class="title"><h3>আমার কোর্সসমূহ</h3></div>
 
-<!--      <div class="order-top">-->
-<!--        <ul>-->
-<!--          <li>-->
-<!--            <a-->
-<!--              [class.active]="selectedStatus == 'all'"-->
-<!--              (click)="filterOrderList('all', null)"-->
-<!--              >{{ "All" | uppercase }}</a-->
-<!--            >-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <a-->
-<!--              [class.active]="selectedStatus == 'video-course'"-->
-<!--              (click)="-->
-<!--                filterOrderList('video-course', { orderType: 'video-course' })-->
-<!--              "-->
-<!--              >{{ "Video Course" | uppercase }}</a-->
-<!--            >-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <a-->
-<!--              [class.active]="selectedStatus == 'live-course'"-->
-<!--              (click)="-->
-<!--                filterOrderList('live-course', { orderType: 'live-course' })-->
-<!--              "-->
-<!--              >{{ "Live Course" | uppercase }}</a-->
-<!--            >-->
-<!--          </li>-->
-
-<!--          <li>-->
-<!--            <a-->
-<!--              [class.active]="selectedStatus == 'lecture-sheet'"-->
-<!--              (click)="-->
-<!--                filterOrderList('lecture-sheet', { orderType: 'lecture-sheet' })-->
-<!--              "-->
-<!--              >{{ "Lecture Sheet" | uppercase }}</a-->
-<!--            >-->
-<!--          </li>-->
-
-<!--          <li>-->
-<!--            <a-->
-<!--              [class.active]="selectedStatus == 'partial-payment'"-->
-<!--              (click)="-->
-<!--                filterOrderList('partial-payment', {-->
-<!--                  isPartialPaymentOrder: true-->
-<!--                })-->
-<!--              "-->
-<!--              >{{ "Partial Payment" | uppercase }}</a-->
-<!--            >-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </div>-->
-
       <div class="course-main">
         <ng-container *ngIf="loader">
           <app-product-card-one-loader
@@ -116,32 +64,9 @@
                 <p *ngIf="checkExpireDay(item.expiredIn)">মেয়াদ {{ checkExpireDay(item.expiredIn) }} দিন বাকি</p>
               </div>
               <div class="buy-courses">
-
-                <a
-                  (click)="getCourseForPreviewByUser(item?.orderItem?._id)"
-                  *ngIf="(item?.orderType === 'live-course' && item?.orderItem?.specifications?.length) || (item?.orderType === 'video-course' && item?.orderItem?.specifications?.length)"
-                  >Join Group
-                </a>
-
                 <a
                   *ngIf="item?.orderType === 'video-course'"
                   [routerLink]="['/course-play-list', item?.orderItem?._id]">Continue
-                </a>
-<!--                [href]="item.liveGroupLink"-->
-<!--                target="_blank"-->
-                <a
-                  *ngIf="item?.orderType === 'live-course'"
-                  (click)="
-                    onPostName(item?.orderItem?._id, item?.orderItem?.name)
-                  "
-                >View Details
-                </a>
-                <a
-                  *ngIf="item?.orderType === 'lecture-sheet'"
-                  (click)="
-                    onPostName(item?.orderItem?._id, item?.orderItem?.name)
-                  "
-                  >Continue
                 </a>
               </div>
             </div>

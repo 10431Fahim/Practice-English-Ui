@@ -9,11 +9,8 @@ export const environment = {
   ftpPrefix: 'api',
 
   aamarpayCourseCallbackUrl: 'https://api.practiceenglishschool.softlabit.com/api/payment/aamarpay-callback',
+  aamarpayProductCallbackUrl: 'https://api.practiceenglishschool.softlabit.com/api/payment/aamarpay-callback-product',
 
-  sslIpnUrl: 'https://practiceenglishschool.softlabit.com/api/payment/ssl-ipn',
-  bkashCallbackUrl: 'https://practiceenglishschool.softlabit.com/payment/check-bkash-payment',
-  bkashProductCallbackUrl: 'https://practiceenglishschool.softlabit.com/payment/check-bkash-product-payment',
-  videoBaseLink: 'https://api.practiceenglishschool.softlabit.com/api/bucket/file-stream/',
   appBaseUrl: '/',
   userBaseUrl: '/',
   userLoginUrl: '/login',

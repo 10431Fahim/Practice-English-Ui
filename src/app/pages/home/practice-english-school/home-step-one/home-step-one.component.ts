@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ReloadService} from "../../../../services/core/reload.service";
 
@@ -7,30 +7,33 @@ import {ReloadService} from "../../../../services/core/reload.service";
   templateUrl: './home-step-one.component.html',
   styleUrls: ['./home-step-one.component.scss']
 })
-export class HomeStepOneComponent implements OnInit,OnChanges{
+export class HomeStepOneComponent implements OnInit, OnChanges {
 
   selectedMenu = 0;
   // moduleBenefitArray: any;
-  @Input() data:any;
+  @Input() data: any;
 
   transformedData: any[] = [];
+
   constructor(
     private reloadService: ReloadService,
     private router: Router,
   ) {
 
   }
-ngOnInit() {
 
-}
+  ngOnInit() {
 
-ngOnChanges() {
-  this.transformBenefitToArray();
-  // // const str: any = this.data?.courseModules;
-  // // let arrayData = str?.split(",");
-  // // this.moduleBenefitArray = arrayData;
-  // console.log('this.moduleBenefitArray',this.data)
-}
+  }
+
+  ngOnChanges() {
+    this.transformBenefitToArray();
+    // // const str: any = this.data?.courseModules;
+    // // let arrayData = str?.split(",");
+    // // this.moduleBenefitArray = arrayData;
+    // console.log('this.moduleBenefitArray',this.data)
+  }
+
   transformBenefitToArray() {
     this.transformedData = this.data?.courseModules.map(item => ({
       ...item,
@@ -40,7 +43,6 @@ ngOnChanges() {
       videoUrl: item.videoUrl.split(',')
     }));
   }
-
 
 
   public onScrollWithNavigate(type: string) {

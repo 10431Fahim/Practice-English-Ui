@@ -1,9 +1,4 @@
-import { ChildCategory } from './child-category.interface';
-import { Instructor } from './instructor.interface';
-import { SubCategory } from './sub-category.interface';
-import { Tag } from './tag.interface';
 import {Quiz} from './quiz.interface';
-import {Category} from './category.interface';
 
 export interface Course {
   _id?: string;
@@ -14,10 +9,10 @@ export interface Course {
   bannerImage?: string;
   image?:string;
   introYoutubeVideo?: string;
-  category?: Category;
-  subCategory?: SubCategory;
-  tag?: Tag;
-  instructor?: Instructor;
+  category?: any;
+  subCategory?: any;
+  tag?: any;
+  instructor?: any;
   learningScopes?: string[];
   benefits?: string[];
   opportunities?: string[];
@@ -25,7 +20,7 @@ export interface Course {
   groupLink?: string;
   courseModules?: CourseModule[];
   prices?: Price[];
-  childCategory?:ChildCategory,
+  childCategory?:any,
   isMultiplePrice?: boolean;
   salePrice?: number;
   discountType?: number;

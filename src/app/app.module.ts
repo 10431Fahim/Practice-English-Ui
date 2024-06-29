@@ -12,17 +12,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthUserInterceptor } from './auth-interceptor/auth-user.interceptor';
 import { PagesComponent } from './pages/pages.component';
-import { GroupLinkComponent } from './pages/user/group-link/group-link.component';
 import { FooterModule } from './shared/components/footer/footer.module';
 import { HeaderSecondModule } from './shared/components/header-second/header-second.module';
-import { HeaderModule } from './shared/components/header/header.module';
 
 @NgModule({
-  declarations: [AppComponent, PagesComponent, GroupLinkComponent],
+  declarations: [AppComponent, PagesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HeaderModule,
     HeaderSecondModule,
     FooterModule,
     BrowserAnimationsModule,

@@ -8,7 +8,6 @@ import { StorageService } from '../core/storage.service';
 import { User, UserAuthResponse } from '../../interfaces/common/user.interface';
 import { UtilsService } from '../core/utils.service';
 import { environment } from '../../../environments/environment';
-import {CartService} from "./cart.service";
 
 const API_URL = environment.apiBaseLink + '/api/user/';
 const API_URL_USER = environment.apiBaseLink + '/api/user/';
@@ -31,7 +30,6 @@ export class UserService {
   private readonly uiService = inject(UiService);
   private readonly utilsService = inject(UtilsService);
   private readonly storageService = inject(StorageService);
-  private readonly cartService = inject(CartService);
 
 
   /**
@@ -169,9 +167,6 @@ export class UserService {
             const expirationDate = this.utilsService.getNextDateString(new Date(now.getTime() - 3600 * 1000), expiredInDays);
             // Store to Local
             this.saveUserData(res.token, expirationDate, this.userId);
-
-            // Cart Sync
-            await this.syncLocalCartItems();
             // Snack bar..
             this.uiService.success(res.message);
             // Navigate..
@@ -222,26 +217,6 @@ export class UserService {
     return this.httpClient.get<{ data: User }>(API_URL + 'logged-in-user-data', { params });
   }
 
-  /**
-   * CART UPDATE LOCAL TO MAIN DATABASE
-   * syncLocalCartItems()
-   */
-
-  private async syncLocalCartItems(): Promise<any> {
-    const items = this.cartService.getCartItemFromLocalStorage();
-
-    if (items && items.length) {
-      return new Promise((resolve, reject) => {
-        this.cartService.addToCartMultiple(items)
-          .subscribe(res => {
-            this.cartService.deleteAllCartFromLocal(true);
-            resolve(res);
-          }, error => {
-            reject(error);
-          })
-      });
-    }
-  }
 
   /**
    * USER AUTH METHODS

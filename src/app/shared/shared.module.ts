@@ -9,17 +9,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {SocialShareComponent} from "./dialog-view/social-share/social-share.component";
 import {PdfViewerModule} from "ng2-pdf-viewer";
-import {PdfViewerComponent} from "./dialog-view/pdf-viewer/pdf-viewer.component";
 import {NgModelChangeDebouncedDirective} from "./directives/ng-model-change.directive";
 
 
 
 
 @NgModule({
-  declarations: [ConfirmDialogComponent,SocialShareComponent,
-    PdfViewerComponent,NgModelChangeDebouncedDirective],
+  declarations: [ConfirmDialogComponent,NgModelChangeDebouncedDirective],
   imports: [
     CommonModule,
     MatButtonModule,

@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {ReloadService} from "../../../../services/core/reload.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-banner',
@@ -12,12 +11,14 @@ export class HomeBannerComponent {
   // Store Data
   videoStart: boolean = false;
 
-@Input() data:any;
+  @Input() data: any;
+
   constructor(
     private reloadService: ReloadService,
   ) {
 
   }
+
   /**
    * onVideoStart()
    */

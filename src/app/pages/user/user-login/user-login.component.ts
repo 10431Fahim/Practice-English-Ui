@@ -3,7 +3,7 @@ import {OtpService} from "../../../services/common/otp.service";
 import {UiService} from "../../../services/core/ui.service";
 import {UserService} from "../../../services/common/user.service";
 import {ActivatedRoute} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {User} from "../../../interfaces/common/user.interface";
 import {UtilsService} from "../../../services/core/utils.service";
@@ -78,21 +78,21 @@ export class UserLoginComponent implements OnInit {
    * onChangePhoneNo()
    */
 
-  onSubmitData(){
-      const isEmail = this.utilsService.validateEmail(this.dataForm.value.username);
-      if (isEmail) {
-        this.validateOtpWithEmail({
-          email: this.dataForm.value.username,
-          code: this.dataForm.value.otp,
-          // password: this.dataForm.value.password,
-        });
-      } else {
-        this.validateOtpWithPhoneNo({
-          phoneNo: this.dataForm.value.username,
-          code: this.dataForm.value.otp,
-          // password: this.dataForm.value.password,
-        });
-      }
+  onSubmitData() {
+    const isEmail = this.utilsService.validateEmail(this.dataForm.value.username);
+    if (isEmail) {
+      this.validateOtpWithEmail({
+        email: this.dataForm.value.username,
+        code: this.dataForm.value.otp,
+        // password: this.dataForm.value.password,
+      });
+    } else {
+      this.validateOtpWithPhoneNo({
+        phoneNo: this.dataForm.value.username,
+        code: this.dataForm.value.otp,
+        // password: this.dataForm.value.password,
+      });
+    }
   }
 
   onShowPassword() {
@@ -101,7 +101,7 @@ export class UserLoginComponent implements OnInit {
 
   onSubmit() {
     if (this.dataForm.valid) {
-        this.checkUserForRegistration(this.dataForm.value)
+      this.checkUserForRegistration(this.dataForm.value)
     } else {
       this.dataForm.markAllAsTouched();
     }
@@ -115,7 +115,7 @@ export class UserLoginComponent implements OnInit {
           this.hasUser = res.data.hasUser;
           this.isPass = true;
           try {
-            if(this.dataForm.value.password){
+            if (this.dataForm.value.password) {
               await this.userService.userLogin(this.dataForm.value);
               this.isLoading = false;
             }
@@ -282,6 +282,7 @@ export class UserLoginComponent implements OnInit {
         })
       });
   }
+
   /**
    * USER LOGIN OR SIGNUP METHODS
    * userSignupOrLogin()

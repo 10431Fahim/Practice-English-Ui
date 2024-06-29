@@ -18,7 +18,6 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {MatButtonModule} from "@angular/material/button";
-import {WishListComponent} from "./wish-list/wish-list.component";
 import {PipesModule} from "../../../shared/pipes/pipes.module";
 
 @NgModule({
@@ -27,7 +26,6 @@ import {PipesModule} from "../../../shared/pipes/pipes.module";
     AccountSidebarComponent,
     UserAccountComponent,
     ImageCropComponent,
-    WishListComponent
   ],
   imports: [
     CommonModule,

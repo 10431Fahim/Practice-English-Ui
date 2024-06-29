@@ -1,8 +1,5 @@
 import {Component, ElementRef, inject, ViewChild} from '@angular/core';
-import {ShippingChargeService} from "../../../services/common/shipping-charge.service";
 import {UiService} from "../../../services/core/ui.service";
-import {ActivatedRoute} from "@angular/router";
-import {UserService} from "../../../services/common/user.service";
 import {ReloadService} from "../../../services/core/reload.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {OrderStatus} from "../../../enum/order.enum";
@@ -51,14 +48,12 @@ export class BookConfirmOrderComponent {
 
   constructor(
     private fb: FormBuilder,
-    private activateRoute: ActivatedRoute,
     private orderService: ProductOrderService,
     private utilsService: UtilsService,
     private reloadService: ReloadService,
-    private userService: UserService,
-    private shippingChargeService: ShippingChargeService,
     private uiService: UiService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.reloadService.refreshFeature$.subscribe((res) => {
@@ -85,6 +80,7 @@ export class BookConfirmOrderComponent {
       deliveryOptions: ['1', Validators.required],
     })
   }
+
   onIncrementQtySimple(event?: MouseEvent, url?: string) {
     if (event) {
       event.stopPropagation();
@@ -181,7 +177,6 @@ export class BookConfirmOrderComponent {
         })
       });
   }
-
 
 
   public onSubmit() {
@@ -393,7 +388,6 @@ export class BookConfirmOrderComponent {
   }
 
 
-
   /**
    * PAYMENT API
    * createAamarpayPayment()
@@ -431,7 +425,6 @@ export class BookConfirmOrderComponent {
         }
       })
   }
-
 
 
   /**
