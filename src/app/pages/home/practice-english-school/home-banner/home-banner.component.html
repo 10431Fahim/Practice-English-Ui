@@ -1,11 +1,11 @@
 <section class="home-banner">
   <div class="container">
     <div class="home-banner-child">
-      <ng-container *ngIf="!isLoading">
+      <ng-container *ngIf="isLoading">
         <app-course-detail-loader-left></app-course-detail-loader-left>
       </ng-container>
 
-      <ng-container *ngIf="isLoading">
+      <ng-container *ngIf="!isLoading">
       <div class="home-banner-left">
         <h1>
           {{data?.name}}
@@ -40,11 +40,11 @@
       </div>
       </ng-container>
 
-      <ng-container *ngIf="!isLoading">
+      <ng-container *ngIf="isLoading">
         <app-course-detail-loader-right></app-course-detail-loader-right>
       </ng-container>
 
-      <ng-container *ngIf="isLoading">
+      <ng-container *ngIf="!isLoading">
       <div class="home-banner-right" >
         <img *ngIf="!videoStart" [src]="data?.thumbnailImage ? data?.thumbnailImage : './assets/images/brand/png/next-level.png'" alt="next-level" />
 
