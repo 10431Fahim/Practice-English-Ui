@@ -25,10 +25,9 @@ import {CourseService} from "../../../../services/common/course.service";
   styleUrls: ['./home-right-decision.component.scss'],
   providers: [PricePipe],
 })
-export class HomeRightDecisionComponent implements OnChanges{
-  @Input() data:any;
+export class HomeRightDecisionComponent implements OnChanges {
+  @Input() data: any;
   coupon: Coupon = null;
-  url: string = ' ';
   user: User;
   isLoading: boolean = false;
   couponCode: string = null;
@@ -62,15 +61,18 @@ export class HomeRightDecisionComponent implements OnChanges{
   private readonly utilService = inject(UtilsService);
   private readonly pricePipe = inject(PricePipe);
   private readonly document = inject(DOCUMENT);
+
   ngOnInit(): void {
-    this.url = window.location.href;
     this.isUser = this.userService.getUserStatus();
+
     this.userService.getUserStatusListener().subscribe((res) => {
       this.isUser = res;
       if (this.isUser) {
         this.getLoggedUserData();
       }
     });
+
+
     this.reloadService.refreshFeature$.subscribe((res) => {
       if (res) {
         this.onScrollSection();
@@ -83,7 +85,6 @@ export class HomeRightDecisionComponent implements OnChanges{
     if (this.isUser) {
       this.getCourseEnrollStatusByUser(this.data?._id);
     }
-
   }
 
   private getLoggedUserData() {
@@ -194,7 +195,7 @@ export class HomeRightDecisionComponent implements OnChanges{
       this.isLoading = false;
       this.router
         .navigate(['/login'], {
-          queryParams: { navigateFrom: this.router.url },
+          queryParams: {navigateFrom: this.router.url},
         })
         .then();
     }
@@ -204,9 +205,10 @@ export class HomeRightDecisionComponent implements OnChanges{
   private addOrderByUser(data: Order) {
     this.subAddData1 = this.orderService.addOrderByUser(data).subscribe({
       next: (res) => {
+        console.log(res)
         if (res.success) {
           if (data.grandTotal > 0) {
-            this.bKashCreatePayment(data, res.data?._id);
+            this.createAamarpayPayment(data, res.data?._id, res.data?.orderId);
           } else {
             this.uiService.success('Course added to your enroll list');
             this.router.navigate(['/my-course']);
@@ -240,66 +242,45 @@ export class HomeRightDecisionComponent implements OnChanges{
         },
       });
   }
+
   /**
    * PAYMENT API
-   * bKashCreatePayment()
+   * createAamarpayPayment()
    */
 
-  private bKashCreatePayment(orderData: Order, _id: string) {
+  private createAamarpayPayment(orderData: Order, _id: string, orderId: string) {
     this.isLoading = true;
 
     const reqData = {
-      mode: '0011',
-      payerReference: ' ',
-      callbackURL: environment.bkashCallbackUrl,
+      name: orderData.name ?? 'PracticeEng User',
+      email: orderData.email ?? 'peschoolpersonal@gmail.com',
+      phoneNo: orderData.phoneNo ?? '01716299426',
+      desc: `Order Id: ${orderId}. Order_id: ${_id}`,
+      address: 'Dhaka',
+      city: 'Dhaka',
       amount: orderData.grandTotal,
-      currency: 'BDT',
-      intent: 'sale',
-      merchantInvoiceNumber: _id, // Must be unique
+      orderId: orderId,
+      order_id: _id,
+      callbackUrl: environment.aamarpayCourseCallbackUrl
     };
 
-    this.paymentService.createBkashPayment(reqData).subscribe({
-      next: (res) => {
-        if (res.success) {
-          const updateData = {
-            paymentMethod: 'bKash',
-            paymentApiType: 'bKash',
-            paymentRefId: res.data.paymentID,
-          };
-          this.updateOrderByUserId(_id, updateData, res.data.bkashURL);
-        } else {
-          this.isLoading = false;
-          this.uiService.warn('Something went wrong! Please try again.');
-        }
-      },
-      error: (err) => {
-        console.log(err);
-        this.isLoading = false;
-      },
-    });
-  }
-
-  private updateOrderByUserId(
-    _id: string,
-    data: any,
-    paymentRedirectUrl: string
-  ) {
-    this.subAddData1 = this.orderService
-      .updateOrderByUserId(_id, data)
+    this.paymentService.createAamarpayPayment(reqData)
       .subscribe({
-        next: (res) => {
+        next: res => {
+          this.isLoading = false;
           if (res.success) {
-            this.document.location.href = paymentRedirectUrl;
+            this.document.location.href = res.data.url;
           } else {
-            this.isLoading = false;
+            this.uiService.warn('Something went wrong! Please try again.');
           }
         },
-        error: (err) => {
-          console.log(err);
+        error: err => {
           this.isLoading = false;
-        },
-      });
+          console.log(err)
+        }
+      })
   }
+
   /**
    * COUPON HANDLE
    * checkCouponAvailability()
@@ -312,7 +293,7 @@ export class HomeRightDecisionComponent implements OnChanges{
       this.uiService.warn('Please enter your vouchers code.');
       return;
     }
-    if(this.userService.getUserStatus()){
+    if (this.userService.getUserStatus()) {
       this.subDataFive = this.couponService
         .checkCouponAvailability({
           couponCode: this.couponCode,
@@ -340,7 +321,7 @@ export class HomeRightDecisionComponent implements OnChanges{
             console.log(error);
           },
         });
-    }else{
+    } else {
       this.router.navigate(['/login'], {queryParams: {navigateFrom: this.router.url}, queryParamsHandling: 'merge'})
     }
 
@@ -365,78 +346,6 @@ export class HomeRightDecisionComponent implements OnChanges{
     this.couponCode = null;
     this.coupon = null;
   }
-  dummyData: any[] = [
-    {
-      id: '1',
-      name: 'Listing',
-      price: '10000',
-    },
-    {
-      id: '2',
-      name: 'Speaking',
-      price: '3000',
-    },
-    {
-      id: '3',
-      name: 'Reading',
-      price: '2000',
-    },
-    {
-      id: '4',
-      name: 'Writing',
-      price: '2000',
-    },
-    {
-      id: '5',
-      name: 'Grammar',
-      price: '2000',
-    },
-    {
-      id: '6',
-      name: 'Pronounciation',
-      price: '2000',
-    },
-    {
-      id: '7',
-      name: 'Vocabulary',
-      price: '5000',
-    },
-    {
-      id: '8',
-      name: 'Conversation',
-      price: '10000',
-    },
-    {
-      id: '9',
-      name: 'Communication',
-      price: '10000',
-    },
-    {
-      id: '10',
-      name: 'Presentation',
-      price: '15000',
-    },
-    {
-      id: '11',
-      name: 'Weekly Live with  Teacher',
-      price: '15000',
-    },
-    {
-      id: '12',
-      name: 'Speaking Club',
-      price: '15000',
-    },
-    {
-      id: '13',
-      name: 'Advance Tips',
-      price: '15000',
-    },
-    {
-      id: '14',
-      name: '24/7  Supports',
-      price: '15000',
-    },
-  ];
 
   /**
    * SCROLL WITH NAVIGATE

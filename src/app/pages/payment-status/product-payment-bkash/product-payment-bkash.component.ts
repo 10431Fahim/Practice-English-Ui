@@ -48,24 +48,24 @@ export class ProductPaymentBkashComponent implements OnInit, OnInit {
 
 
   private callbackBkashPayment() {
-    const data = {
-      paymentID: this.paymentID,
-      status: this.status,
-    };
-
-    this.paymentService.callbackBkashProductPayment(data)
-      .subscribe({
-        next: res => {
-          if (res.data.statusCode === '0000') {
-            this.router.navigate(['/payment/payment-success'], {queryParams: {message: res.data.message}});
-          } else {
-            this.router.navigate(['/payment/fail'], {queryParams: {message: res.data.message}});
-          }
-        },
-        error: error => {
-          console.log(error);
-        }
-      })
+    // const data = {
+    //   paymentID: this.paymentID,
+    //   status: this.status,
+    // };
+    //
+    // this.paymentService.callbackBkashProductPayment(data)
+    //   .subscribe({
+    //     next: res => {
+    //       if (res.data.statusCode === '0000') {
+    //         this.router.navigate(['/payment/payment-success'], {queryParams: {message: res.data.message}});
+    //       } else {
+    //         this.router.navigate(['/payment/fail'], {queryParams: {message: res.data.message}});
+    //       }
+    //     },
+    //     error: error => {
+    //       console.log(error);
+    //     }
+    //   })
 
   }
 

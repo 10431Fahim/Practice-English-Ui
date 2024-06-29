@@ -207,26 +207,6 @@ export class QuizResultComponent implements OnInit {
       intent: 'sale',
       merchantInvoiceNumber: _id, // Must be unique
     };
-
-    this.paymentService.createBkashPayment(reqData).subscribe({
-      next: (res) => {
-        if (res.success) {
-          const updateData = {
-            paymentMethod: 'bKash',
-            paymentApiType: 'bKash',
-            paymentRefId: res.data.paymentID,
-          };
-          this.updateOrderByUserId(_id, updateData, res.data.bkashURL);
-        } else {
-          this.isLoading = false;
-          this.uiService.warn('Something went wrong! Please try again.');
-        }
-      },
-      error: (err) => {
-        console.log(err);
-        this.isLoading = false;
-      },
-    });
   }
 
   private updateOrderByUserId(

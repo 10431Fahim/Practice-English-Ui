@@ -58,23 +58,23 @@ export class PaymentBkashComponent implements OnInit, OnInit {
       courseId: courseId,
     };
 
-    this.paymentService.callbackBkashPayment(data).subscribe({
-      next: (res) => {
-        if (res.data.statusCode === '0000') {
-          this.storageService.removeLocalData('PAYMENT_COURSE_ID');
-          this.storageService.removeLocalData('PAYMENT_ID');
-          this.router.navigate(['/payment/success'], {
-            queryParams: { message: res.data.message },
-          });
-        } else {
-          this.router.navigate(['/payment/fail'], {
-            queryParams: { message: res.data.message },
-          });
-        }
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    // this.paymentService.callbackBkashPayment(data).subscribe({
+    //   next: (res) => {
+    //     if (res.data.statusCode === '0000') {
+    //       this.storageService.removeLocalData('PAYMENT_COURSE_ID');
+    //       this.storageService.removeLocalData('PAYMENT_ID');
+    //       this.router.navigate(['/payment/success'], {
+    //         queryParams: { message: res.data.message },
+    //       });
+    //     } else {
+    //       this.router.navigate(['/payment/fail'], {
+    //         queryParams: { message: res.data.message },
+    //       });
+    //     }
+    //   },
+    //   error: (error) => {
+    //     console.log(error);
+    //   },
+    // });
   }
 }

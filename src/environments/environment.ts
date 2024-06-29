@@ -19,6 +19,8 @@ export const environment = {
   //
   // ftpPrefix: 'api',
 
+  aamarpayCourseCallbackUrl: 'http://localhost:3000/api/payment/aamarpay-callback',
+  aamarpayProductCallbackUrl: 'http://localhost:3000/api/payment/aamarpay-callback-product',
   sslIpnUrl: 'http://localhost:4001/api/payment/ssl-ipn',
 
   bkashCallbackUrl: 'http://localhost:4200/payment/check-bkash-payment',

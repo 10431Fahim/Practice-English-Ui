@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, ViewChild} from '@angular/core';
 import {ShippingChargeService} from "../../../services/common/shipping-charge.service";
 import {UiService} from "../../../services/core/ui.service";
 import {ActivatedRoute} from "@angular/router";
@@ -11,6 +11,10 @@ import {Subscription} from "rxjs";
 import {ProductOrderService} from "../../../services/common/product-order.service";
 import {ConfirmOrderComponent} from "./confirm-order/confirm-order.component";
 import {PAYMENTMETHOD} from "../../../core/utils/app-data";
+import {Order} from '../../../interfaces/common/order.interface';
+import {environment} from '../../../../environments/environment';
+import {PaymentService} from '../../../services/common/payment.service';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
   selector: 'app-book-confirm-order',
@@ -18,6 +22,7 @@ import {PAYMENTMETHOD} from "../../../core/utils/app-data";
   styleUrls: ['./book-confirm-order.component.scss']
 })
 export class BookConfirmOrderComponent {
+  isLoading: boolean = false;
   @ViewChild('confirm') confirm: ConfirmOrderComponent;
   selectedQty: number = 1;
   //Form Group
@@ -26,6 +31,10 @@ export class BookConfirmOrderComponent {
   paymentMethods: any[] = PAYMENTMETHOD;
   private subDataFour: Subscription;
   @ViewChild('order') mainEl!: ElementRef;
+
+  private readonly paymentService = inject(PaymentService);
+  private readonly document = inject(DOCUMENT);
+
 
   constructor(
     private fb: FormBuilder,
@@ -206,7 +215,7 @@ export class BookConfirmOrderComponent {
       next: (res => {
         switch (this.selectedPaymentMethod) {
           case 'online_payment': {
-            this.sslInitWithOrder(res.data.orderId, res.data._id);
+            this.createAamarpayPayment(data, res.data.orderId, res.data._id);
             break;
           }
           case 'cash_on_delivery': {
@@ -241,66 +250,48 @@ export class BookConfirmOrderComponent {
     this.selectedPaymentMethod = data.paymentType;
   }
 
+
+
   /**
    * PAYMENT API
-   * sslInitWithOrder()
-   * updateOrderSessionKey
+   * createAamarpayPayment()
    */
-  private sslInitWithOrder(orderId: string, _id: string) {
-    // const baseHost = this.utilsService.getHostBaseUrl();
-    // const sslPaymentInit: SslInit = {
-    //   store_id: null,
-    //   store_passwd: null,
-    //   total_amount: this.grandTotal,
-    //   currency: this.currency,
-    //   tran_id: orderId,
-    //   success_url: baseHost + '/callback/payment/success',
-    //   fail_url: baseHost + '/callback/payment/fail',
-    //   cancel_url: baseHost + '/callback/payment/cancel',
-    //   ipn_url: environment.sslIpnUrl,
-    //   shipping_method: 'Courier',
-    //   product_name: 'default product',
-    //   product_category: 'default category',
-    //   product_profile: 'general',
-    //   cus_name: this.formData?.value?.name ? this.formData?.value?.name : 'Unknown',
-    //   cus_email: this.user?.email ? this.user?.email : 'guardianpubs@gmail.com',
-    //   cus_add1: this.formData?.value?.address ?? 'Dhaka',
-    //   cus_add2: '',
-    //   cus_city: this.selectDivisionData?.name ?? 'Dhaka',
-    //   cus_state: '',
-    //   cus_postcode: this.selectAreaData?.name ?? 'Dhaka',
-    //   cus_country: 'Bangladesh',
-    //   cus_phone: this.formData.value?.phoneNo ?? '01700000000',
-    //   cus_fax: '',
-    //   ship_name: this.formData?.value?.name ? this.formData?.value?.name : 'Unknown',
-    //   ship_add1: this.formData?.value?.address ?? 'Dhaka',
-    //   ship_add2: '',
-    //   ship_city: this.selectDivisionData?.name ?? 'Dhaka',
-    //   ship_state: '',
-    //   ship_postcode: this.selectAreaData?.name ?? 'Dhaka',
-    //   ship_country: 'Bangladesh',
-    // };
-    //
-    // // console.log('sslPaymentInit',sslPaymentInit);
-    //
-    // this.paymentService.initSslPayment(sslPaymentInit)
-    //   .subscribe({
-    //     next: res => {
-    //       console.log('res', res)
-    //       if (res.success) {
-    //         const sslInitResponse: SslInitResponse = res.data;
-    //         const sslSessionId = sslInitResponse.sessionkey;
-    //         this.updateOrderSessionKey(_id, {sslSessionId: sslSessionId}, sslInitResponse.GatewayPageURL)
-    //       } else {
-    //         this.orderBtnTxt = 'Complete Order';
-    //         this.uiService.warn('Something went wrong! Please try again.')
-    //       }
-    //
-    //     }, error: error => {
-    //       console.log(error);
-    //     }
-    //   });
+
+  private createAamarpayPayment(orderData: any, _id: string, orderId: string) {
+    this.isLoading = true;
+
+    const reqData = {
+      name: orderData.name ?? 'PracticeEng User',
+      email: orderData.email ?? 'peschoolpersonal@gmail.com',
+      phoneNo: orderData.phoneNo ?? '01716299426',
+      desc: `Order Id: ${orderId}. Order_id: ${_id}`,
+      address: orderData.shippingAddress ?? 'Dhaka',
+      city: 'Dhaka',
+      amount: orderData.grandTotal,
+      orderId: orderId,
+      order_id: _id,
+      callbackUrl: environment.aamarpayProductCallbackUrl
+    };
+
+    this.paymentService.createAamarpayPaymentProduct(reqData)
+      .subscribe({
+        next: res => {
+          this.isLoading = false;
+          if (res.success) {
+            this.document.location.href = res.data.url;
+          } else {
+            this.uiService.warn('Something went wrong! Please try again.');
+          }
+        },
+        error: err => {
+          this.isLoading = false;
+          console.log(err)
+        }
+      })
   }
+
+
+
   /**
    * SCROLL WITH NAVIGATE
    */

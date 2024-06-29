@@ -141,25 +141,25 @@ export class PartialPaymentComponent implements OnInit {
       merchantInvoiceNumber: this.order?._id
     };
 
-    this.paymentService.createBkashPayment(reqData).subscribe({
-      next: res => {
-        if (res.success) {
-          const updateData = {
-            paymentMethod: 'bKash',
-            paymentApiType: 'bKash',
-            paymentRefId: res.data.paymentID
-          }
-          this.updateOrderByUserId(this.order?._id, updateData, res.data.bkashURL)
-        } else {
-          this.isLoading = false;
-          this.uiService.warn('Something went wrong! Please try again.')
-        }
-      },
-      error: err => {
-        console.log(err);
-        this.isLoading = false;
-      }
-    })
+    // this.paymentService.createBkashPayment(reqData).subscribe({
+    //   next: res => {
+    //     if (res.success) {
+    //       const updateData = {
+    //         paymentMethod: 'bKash',
+    //         paymentApiType: 'bKash',
+    //         paymentRefId: res.data.paymentID
+    //       }
+    //       this.updateOrderByUserId(this.order?._id, updateData, res.data.bkashURL)
+    //     } else {
+    //       this.isLoading = false;
+    //       this.uiService.warn('Something went wrong! Please try again.')
+    //     }
+    //   },
+    //   error: err => {
+    //     console.log(err);
+    //     this.isLoading = false;
+    //   }
+    // })
   }
 
 }

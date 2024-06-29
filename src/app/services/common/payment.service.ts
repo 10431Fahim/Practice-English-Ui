@@ -1,8 +1,7 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 import {ResponsePayload} from "../../interfaces/core/response-payload.interface";
-import {SslInit} from "../../interfaces/common/ssl-init";
 
 const API_URL = environment.apiBaseLink + '/api/payment/';
 
@@ -17,34 +16,19 @@ export class PaymentService {
 
 
   /**
-   * SSL COMMERCE
-   * initSslPayment()
+   * Aamarpay Payment
+   * createAamarpayPayment()
+   * createAamarpayPaymentProduct()
    */
 
-  initSslPayment(data: SslInit) {
+  createAamarpayPayment(data: any) {
     return this.httpClient.post<ResponsePayload>
-    (API_URL + 'init-ssl', data);
+    (API_URL + 'create-aamarpay-payment', data);
   }
 
-  /**
-   * Bkash
-   * createBkashPayment()
-   * callbackBkashPayment()
-   */
-
-  createBkashPayment(data: any) {
-    return this.httpClient.post<{ success: boolean, data: { bkashURL: string, paymentID: string } }>
-      (API_URL + 'create-bkash-payment', data);
-  }
-
-  callbackBkashPayment(data: any) {
-    return this.httpClient.post<{ success: boolean, data: { statusCode: string, message: string } }>
-      (API_URL + 'callback-bkash-payment', data);
-  }
-
-  callbackBkashProductPayment(data: any) {
-    return this.httpClient.post<{ success: boolean, data: { statusCode: string, message: string } }>
-      (API_URL + 'callback-bkash-product-payment', data);
+  createAamarpayPaymentProduct(data: any) {
+    return this.httpClient.post<ResponsePayload>
+    (API_URL + 'create-aamarpay-payment-product', data);
   }
 
 }

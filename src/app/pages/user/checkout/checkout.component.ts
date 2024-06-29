@@ -524,27 +524,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       intent: 'sale',
       merchantInvoiceNumber: _id, // Must be unique
     };
-    this.subDataNine = this.paymentService.createBkashPayment(reqData)
-      .subscribe({
-        next: res => {
-          if (res.success) {
-
-            const updateData = {
-              paymentMethod: 'bKash',
-              paymentApiType: 'bKash',
-              paymentRefId: res.data.paymentID,
-            };
-            this.updateOrderPaymentIdById(_id, updateData, res.data.bkashURL)
-          } else {
-            this.isLoading = false;
-            this.uiService.warn('Something went wrong! Please try again.')
-          }
-        },
-        error: error => {
-          this.isLoading = false;
-          console.log(error);
-        }
-      })
   }
 
   private updateOrderPaymentIdById(
@@ -613,23 +592,23 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     // console.log('sslPaymentInit',sslPaymentInit);
 
-    this.paymentService.initSslPayment(sslPaymentInit)
-      .subscribe({
-        next: res => {
-          console.log('res', res)
-          if (res.success) {
-            const sslInitResponse: SslInitResponse = res.data;
-            const sslSessionId = sslInitResponse.sessionkey;
-            this.updateOrderSessionKey(_id, { sslSessionId: sslSessionId }, sslInitResponse.GatewayPageURL)
-          } else {
-            this.orderBtnTxt = 'Complete Order';
-            this.uiService.warn('Something went wrong! Please try again.')
-          }
-
-        }, error: error => {
-          console.log(error);
-        }
-      });
+    // this.paymentService.initSslPayment(sslPaymentInit)
+    //   .subscribe({
+    //     next: res => {
+    //       console.log('res', res)
+    //       if (res.success) {
+    //         const sslInitResponse: SslInitResponse = res.data;
+    //         const sslSessionId = sslInitResponse.sessionkey;
+    //         this.updateOrderSessionKey(_id, { sslSessionId: sslSessionId }, sslInitResponse.GatewayPageURL)
+    //       } else {
+    //         this.orderBtnTxt = 'Complete Order';
+    //         this.uiService.warn('Something went wrong! Please try again.')
+    //       }
+    //
+    //     }, error: error => {
+    //       console.log(error);
+    //     }
+    //   });
   }
 
 

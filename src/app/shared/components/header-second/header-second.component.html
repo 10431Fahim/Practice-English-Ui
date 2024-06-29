@@ -2,16 +2,8 @@
   <div class="container">
     <div class="header-second-child">
       <div class="header-second-left">
-        <a class="logo" routerLink="/">
-          <img
-            *ngIf="shopInformation?.siteLogo"
-            [ngSrc]="shopInformation?.siteLogo | imgCtrl : 'filename'"
-            [ngSrcset]="rawSrcset"
-            [width]="shopInformation?.siteLogo | imgCtrl : 'width'"
-            [height]="shopInformation?.siteLogo | imgCtrl : 'height'"
-            sizes="(max-width: 78px) 50vw, 25vw"
-            alt=""
-          />
+        <a class="logo" routerLink="/" *ngIf="shopInformation?.siteLogo">
+          <img [src]="shopInformation?.siteLogo" alt=""/>
         </a>
       </div>
 
@@ -27,7 +19,7 @@
         </h4>
         <p>:</p>
         <h4>
-          <span>{{ seconds }}</span>
+          <span>{{ seconds | numMinDigit}}</span>
           <small>SECS</small>
         </h4>
       </div>
