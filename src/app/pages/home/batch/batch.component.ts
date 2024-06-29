@@ -55,7 +55,6 @@ export class BatchComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (res) => {
           this.subCategories = res.data;
-          // console.log('this.subCategories',this.subCategories)
           this.isLoading = false;
         },
         error: (err) => {

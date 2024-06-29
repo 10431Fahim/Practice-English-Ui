@@ -1,6 +1,11 @@
 @import "../../../../theme/variables";
 @import "../../../../theme/exports/pagination-nav";
 
+
+.icon-link.active {
+  color: $color-primary!important;
+  font-weight: bold !important;
+}
 .ytp-chrome-controls .ytp-button.ytp-youtube-button, .ytp-small-mode .ytp-chrome-controls .ytp-button.ytp-youtube-button, .ytp-embed .ytp-chrome-controls .ytp-button.ytp-youtube-button, .ytp-embed.ytp-small-mode .ytp-chrome-controls .ytp-button.ytp-youtube-button, .ytp-dni.ytp-embed .ytp-chrome-controls .ytp-button.ytp-youtube-button {
   width: 67px;
   display: none!important;

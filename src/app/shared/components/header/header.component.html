@@ -9,7 +9,7 @@
 <div class="header-area" [ngClass]="{ fixed: isHeaderFixed }">
   <div class="container">
     <div class="header-main">
-      <a class="logo" routerLink="/">
+      <a class="logo" routerLink="/" >
         <img *ngIf="shopInformation?.siteLogo" [ngSrc]="shopInformation?.siteLogo | imgCtrl : 'filename'"
           [ngSrcset]="rawSrcset" [width]="shopInformation?.siteLogo | imgCtrl : 'width'"
           [height]="shopInformation?.siteLogo | imgCtrl : 'height'" sizes="(max-width: 768px) 50vw, 25vw" alt="">

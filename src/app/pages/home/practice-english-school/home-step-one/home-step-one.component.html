@@ -1,6 +1,8 @@
-<section class="home-steps">
+
+<section *ngFor="let d of transformedData">
+<div class="home-steps">
   <div class="container">
-    <div class="home-steps-child" *ngFor="let d of transformedData">
+    <div class="home-steps-child" >
       <div class="home-steps-left">
         <div class="home-steps-title">
           <h1>{{d?.step}}</h1>
@@ -70,5 +72,8 @@
     </div>
     <!-- END! home-steps-child -->
   </div>
-</section>
+  <!-- END! home-course-content -->
+</div>
+  <app-home-course-content [data]="d"></app-home-course-content>
 <!-- END! home-steps -->
+</section>

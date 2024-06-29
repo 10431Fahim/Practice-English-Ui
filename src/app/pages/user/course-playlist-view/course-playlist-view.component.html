@@ -2,12 +2,12 @@
   <div class="container">
     <ul>
       <ng-container>
-        <li><a routerLink="/account/my-account">আমার একাউন্ট</a></li>
+        <li><a routerLink="/account">আমার একাউন্ট</a></li>
         <li><small> <fa-icon [icon]="faAngleRight"></fa-icon></small></li>
       </ng-container>
 
       <ng-container>
-        <li><a>আমার কোর্সসমূহ</a></li>
+        <li><a routerLink="/my-course">আমার কোর্সসমূহ</a></li>
         <li><small> <fa-icon [icon]="faAngleRight"></fa-icon></small></li>
       </ng-container>
 
@@ -80,9 +80,10 @@
                 *ngFor="let d of c?.videoUrl;let j = index"
                 class="icon-link"
                 (click)="onChangeVideo(d)"
+                [class.active]="selectedVideo === d"
               >
                 <mat-icon>play_circle_filled</mat-icon>
-                Video: {{ c.videoTitle[j] }}
+                {{ c.videoTitle[j] }}
               </a>
               <a
                 *ngIf="c?.attachment"
@@ -95,7 +96,7 @@
               <a
                 class="icon-link"
                 *ngIf="c?.quiz"
-                [routerLink]="['/', 'quiz', c?.quiz?._id]"
+                [routerLink]="['/', 'quiz', c?.quiz?._id]" [queryParams]="{ course: course?._id }"
               >
                 <mat-icon>quiz</mat-icon>
                 Quiz: {{ c?.quiz?.name }}

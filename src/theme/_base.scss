@@ -14,7 +14,7 @@ html {
 
 .offer-popup-dialog {
   .mat-dialog-container {
-    padding: 0px !important;
+    padding: 0 !important;
     background-color: transparent !important;
     box-shadow: none !important;
     margin: 15px;
@@ -85,6 +85,21 @@ a {
   font-display: swap;
 }
 
+/* =Global notification
+----------------------------------------------------------------------------- */
+
+.success-snackbar {
+  --mdc-snackbar-container-color: #00BF61 !important;
+}
+
+.warn-snackbar {
+  --mdc-snackbar-container-color: #FF7515 !important;
+}
+
+.wrong-snackbar {
+  --mdc-snackbar-container-color: #FE3030 !important;
+}
+
 
 /* =MESSENGER CHAT BOOT
 ----------------------------------------------------------------------------- */
@@ -94,5 +109,3 @@ a {
   left: 0 !important;
   bottom: 0;
 }
-
-;

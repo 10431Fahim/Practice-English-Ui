@@ -34,9 +34,11 @@ ngOnChanges() {
   transformBenefitToArray() {
     this.transformedData = this.data?.courseModules.map(item => ({
       ...item,
-      benefit: item.benefit.split(',').map(benefit => benefit.trim())
+      benefit: item.benefit.split(',').map(benefit => benefit.trim()),
+      videoDuration: item.videoDuration.split(','),
+      videoTitle: item.videoTitle.split(','),
+      videoUrl: item.videoUrl.split(',')
     }));
-
   }
 
 

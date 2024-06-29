@@ -2,7 +2,7 @@
   <div class="container">
     <ul>
       <ng-container>
-        <li><a routerLink="/account/my-account">আমার একাউন্ট</a></li>
+        <li><a routerLink="/account">আমার একাউন্ট</a></li>
         <li><small><fa-icon [icon]="faAngleRight"></fa-icon></small></li>
       </ng-container>
 
@@ -19,57 +19,57 @@
     <div class="our-course">
       <div class="title"><h3>আমার কোর্সসমূহ</h3></div>
 
-      <div class="order-top">
-        <ul>
-          <li>
-            <a
-              [class.active]="selectedStatus == 'all'"
-              (click)="filterOrderList('all', null)"
-              >{{ "All" | uppercase }}</a
-            >
-          </li>
-          <li>
-            <a
-              [class.active]="selectedStatus == 'video-course'"
-              (click)="
-                filterOrderList('video-course', { orderType: 'video-course' })
-              "
-              >{{ "Video Course" | uppercase }}</a
-            >
-          </li>
-          <li>
-            <a
-              [class.active]="selectedStatus == 'live-course'"
-              (click)="
-                filterOrderList('live-course', { orderType: 'live-course' })
-              "
-              >{{ "Live Course" | uppercase }}</a
-            >
-          </li>
+<!--      <div class="order-top">-->
+<!--        <ul>-->
+<!--          <li>-->
+<!--            <a-->
+<!--              [class.active]="selectedStatus == 'all'"-->
+<!--              (click)="filterOrderList('all', null)"-->
+<!--              >{{ "All" | uppercase }}</a-->
+<!--            >-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a-->
+<!--              [class.active]="selectedStatus == 'video-course'"-->
+<!--              (click)="-->
+<!--                filterOrderList('video-course', { orderType: 'video-course' })-->
+<!--              "-->
+<!--              >{{ "Video Course" | uppercase }}</a-->
+<!--            >-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a-->
+<!--              [class.active]="selectedStatus == 'live-course'"-->
+<!--              (click)="-->
+<!--                filterOrderList('live-course', { orderType: 'live-course' })-->
+<!--              "-->
+<!--              >{{ "Live Course" | uppercase }}</a-->
+<!--            >-->
+<!--          </li>-->
 
-          <li>
-            <a
-              [class.active]="selectedStatus == 'lecture-sheet'"
-              (click)="
-                filterOrderList('lecture-sheet', { orderType: 'lecture-sheet' })
-              "
-              >{{ "Lecture Sheet" | uppercase }}</a
-            >
-          </li>
+<!--          <li>-->
+<!--            <a-->
+<!--              [class.active]="selectedStatus == 'lecture-sheet'"-->
+<!--              (click)="-->
+<!--                filterOrderList('lecture-sheet', { orderType: 'lecture-sheet' })-->
+<!--              "-->
+<!--              >{{ "Lecture Sheet" | uppercase }}</a-->
+<!--            >-->
+<!--          </li>-->
 
-          <li>
-            <a
-              [class.active]="selectedStatus == 'partial-payment'"
-              (click)="
-                filterOrderList('partial-payment', {
-                  isPartialPaymentOrder: true
-                })
-              "
-              >{{ "Partial Payment" | uppercase }}</a
-            >
-          </li>
-        </ul>
-      </div>
+<!--          <li>-->
+<!--            <a-->
+<!--              [class.active]="selectedStatus == 'partial-payment'"-->
+<!--              (click)="-->
+<!--                filterOrderList('partial-payment', {-->
+<!--                  isPartialPaymentOrder: true-->
+<!--                })-->
+<!--              "-->
+<!--              >{{ "Partial Payment" | uppercase }}</a-->
+<!--            >-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
 
       <div class="course-main">
         <ng-container *ngIf="loader">
@@ -97,9 +97,9 @@
             <div class="courses-details">
               <div class="course-body">
                 <h3 class="courses-name">{{ item?.orderItem?.name }}</h3>
-                <div class="progress-bar">
-                  <span></span>
-                </div>
+<!--                <div class="progress-bar">-->
+<!--                  <span></span>-->
+<!--                </div>-->
                 <div
                   class="live-course-action"
                   *ngIf="(item?.orderType === 'live-course' && item?.orderItem?.specifications?.length) || (item?.orderType === 'video-course' && item?.orderItem?.specifications?.length) "

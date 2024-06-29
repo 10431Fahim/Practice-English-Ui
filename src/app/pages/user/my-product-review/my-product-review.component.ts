@@ -61,7 +61,6 @@ export class MyProductReviewComponent implements OnInit, OnDestroy {
     this.subDataTwo = this.productReviewService.getReviewByUserId()
       .subscribe(res => {
         this.productReviews = res.data;
-        console.log('this.productReviews',this.productReviews)
       }, error => {
         console.log(error);
       });

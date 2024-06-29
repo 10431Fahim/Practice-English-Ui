@@ -7,18 +7,17 @@
 
     <div class="home-course-content-child">
       <div
-        *ngFor="let d of transformedData; let i = index"
         class="home-course-content-dorp-down"
-        [class.active]="isToggleActive === i"
+        [class.active]="isToggleActive === 1"
       >
         <div class="home-course-content-dorp-down-top">
           <button
             type="button"
             (click)="
-              isToggleActive === i ? onToggleActive(0) : onToggleActive(i)
+               isToggleActive === 1 ? onToggleActive(0) : onToggleActive(1)
             "
           >
-            <span>{{d?.name}}</span>
+            <span>{{data?.name}}</span>
 
             <small>
               <i class="fa-solid fa-angle-down"></i>
@@ -31,7 +30,7 @@
             <div class="course-content-dorp-down-lists">
               <div
                 class="course-content-dorp-down-list-item"
-                *ngFor="let video of d.videoTitleArray; let i = index"
+                *ngFor="let video of data?.videoTitle; let i = index"
               >
                 <h3>
                   <small>
@@ -41,7 +40,7 @@
                   <span> {{video}} </span>
                 </h3>
                 <p>
-                  <span>{{d.videoDurationArray[i]}}</span>
+                  <span>{{data?.videoDuration[i]}}</span>
                   <small>
                     <i class="fa-regular fa-eye"></i>
                   </small>

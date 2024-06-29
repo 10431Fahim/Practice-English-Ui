@@ -36,7 +36,7 @@
             <button type="button" (click)="onScrollWithNavigate('feature')">Join Course</button>
           </div>
           <div class="join-and-total-student-right">
-            <img src="./assets/images/brand/png/learner.png" alt="learner" />
+            <img src="/assets/images/temp/png/users.png" alt="learner" />
 
             <div class="total-learner">
               <h3>{{data?.totalUsers}} Student</h3>
@@ -49,7 +49,7 @@
       <div class="home-banner-right" >
         <img *ngIf="!videoStart" [src]="data?.thumbnailImage ? data?.thumbnailImage : './assets/images/brand/png/next-level.png'" alt="next-level" />
 
-        <div *ngIf="videoStart" class=" home-banner-right youtube-container" >
+        <div *ngIf="videoStart" class=" youtube-container" >
           <iframe *ngIf="videoStart" [src]="
                     data?.introYoutubeVideo +
                       '?autoplay=1&mute=0&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1'

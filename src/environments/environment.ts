@@ -27,7 +27,7 @@ export const environment = {
   bkashProductCallbackUrl: 'http://localhost:4200/payment/check-bkash-product-payment',
   videoBaseLink: 'http://localhost:1441/api/bucket/file-stream/',
   appBaseUrl: '/',
-  userBaseUrl: 'account',
+  userBaseUrl: '/',
   userLoginUrl: 'login',
   userProfileUrl: '/my-profile',
   storageSecret: 'SOFT_2021_IT_1998',

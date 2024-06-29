@@ -16,11 +16,13 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   // Store Data
   id: string;
+  courseId: string;
   quiz: Quiz;
 
   // Subscriptions
   private subGetData1: Subscription;
   private subRouteOne: Subscription;
+  private subRouteTwo: Subscription;
 
   // Inject
   private readonly activatedRoute = inject(ActivatedRoute);
@@ -34,6 +36,10 @@ export class QuizComponent implements OnInit, OnDestroy {
         this.getQuizById();
       }
     });
+
+    this.subRouteTwo = this.activatedRoute.queryParamMap.subscribe(qParam => {
+      this.courseId = qParam.get('course');
+    })
   }
 
   /**
