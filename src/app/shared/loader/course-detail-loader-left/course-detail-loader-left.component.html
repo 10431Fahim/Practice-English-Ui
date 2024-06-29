@@ -4,10 +4,10 @@
       count="1"
       [theme]="{
         'border-radius': '5px',
-        height: '12px',
-        width: '100%',
+        height: '20px',
+        width: '80%',
         'background-color': '#e5e5e5',
-        border: '1px solid white'
+
       }"
     >
     </ngx-skeleton-loader>
@@ -17,10 +17,23 @@
     count="1"
     [theme]="{
       'border-radius': '5px',
-      height: '12px',
-      width: '80%',
+      height: '20px',
+      width: '75%',
       'background-color': '#e5e5e5',
-      border: '1px solid white'
+
+    }"
+  >
+  </ngx-skeleton-loader>
+
+  <ngx-skeleton-loader
+    count="1"
+    [theme]="{
+      'border-radius': '5px',
+       height: '20px',
+       'margin-bottom': '20px',
+       width: '70%',
+      'background-color': '#e5e5e5',
+
     }"
   >
   </ngx-skeleton-loader>
@@ -32,7 +45,7 @@
       height: '12px',
       width: '80%',
       'background-color': '#e5e5e5',
-      border: '1px solid white'
+
     }"
   >
   </ngx-skeleton-loader>
@@ -44,7 +57,7 @@
       height: '12px',
       width: '80%',
       'background-color': '#e5e5e5',
-      border: '1px solid white'
+
     }"
   >
   </ngx-skeleton-loader>
@@ -54,12 +67,139 @@
     [theme]="{
       'border-radius': '5px',
       height: '12px',
-      width: '80%',
+      width: '70%',
+      'margin-bottom': '20px',
       'background-color': '#e5e5e5',
-      border: '1px solid white'
+
     }"
   >
   </ngx-skeleton-loader>
+
+
+  <div class="fb-item">
+    <div class="first-section-wrapper">
+      <div class="gravatar">
+        <ngx-skeleton-loader
+          appearance="circle"
+          [theme]="{ width: '30px', height: '30px',
+          'margin-right': '15px',
+          'background-color': '#e5e5e5',
+          }"
+        >
+        </ngx-skeleton-loader>
+      </div>
+      <div class="gravatar-title">
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+            width: '200px',
+            'border-radius': '0',
+            'margin-top': '8px',
+            height: '18px',
+            'background-color': '#e5e5e5',
+          }"
+          ></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div class="first-section-wrapper">
+      <div class="gravatar">
+        <ngx-skeleton-loader
+          appearance="circle"
+          [theme]="{ width: '30px', height: '30px',
+          'margin-right': '15px',
+          'background-color': '#e5e5e5',
+          }"
+        >
+        </ngx-skeleton-loader>
+      </div>
+      <div class="gravatar-title">
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+            width: '200px',
+            'border-radius': '0',
+            'margin-top': '8px',
+            height: '18px',
+            'background-color': '#e5e5e5',
+          }"
+          ></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div class="first-section-wrapper">
+      <div class="gravatar">
+        <ngx-skeleton-loader
+          appearance="circle"
+          [theme]="{ width: '30px', height: '30px',
+          'margin-right': '15px',
+          'background-color': '#e5e5e5',
+          }"
+        >
+        </ngx-skeleton-loader>
+      </div>
+      <div class="gravatar-title">
+        <div>
+          <ngx-skeleton-loader
+            [theme]="{
+            width: '200px',
+            'border-radius': '0',
+            'margin-top': '8px',
+            height: '18px',
+            'background-color': '#e5e5e5',
+          }"
+          ></ngx-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div class="second-section-wrapper">
+      <div class="wrapper">
+        <ngx-skeleton-loader
+          [theme]="{
+           width: '100px',
+          'border-radius': '50px',
+          height: '40px',
+           'margin-top': '9px',
+          'margin-bottom': '10px',
+           'background-color': '#e5e5e5',
+        }"
+        ></ngx-skeleton-loader>
+      </div>
+      <div class="wrapper">
+        <div class="item">
+          <ngx-skeleton-loader
+            [theme]="{
+            'margin': '0px',
+           'background-color': '#e5e5e5',
+        }"
+            count="3"
+            animation="false"
+            appearance="circle"
+          ></ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="wrapper" style="display: flex;flex-direction: column;margin-top: 10px">
+        <ngx-skeleton-loader
+          [theme]="{
+           width: '50px',
+          'border-radius': '0',
+          height: '10px',
+          'margin-bottom': '10px',
+          'background-color': '#e5e5e5',
+        }"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          [theme]="{
+          width: '50px',
+          'border-radius': '0',
+          height: '10px',
+          'margin-bottom': '10px',
+          'background-color': '#e5e5e5',
+        }"
+        ></ngx-skeleton-loader>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="product" *ngIf="type === 'list'">
@@ -72,7 +212,7 @@
           height: '20px',
           width: '80%',
           'background-color': '#e5e5e5',
-          border: '1px solid white'
+
         }"
       >
       </ngx-skeleton-loader>
@@ -84,7 +224,7 @@
           height: '20px',
           width: '100%',
           'background-color': '#e5e5e5',
-          border: '1px solid white'
+
         }"
       >
       </ngx-skeleton-loader>
@@ -96,7 +236,7 @@
           height: '40px',
           width: '100%',
           'background-color': '#e5e5e5',
-          border: '1px solid white'
+
         }"
       >
       </ngx-skeleton-loader>

@@ -4,7 +4,7 @@ import {PricePipe} from "../../../../shared/pipes/price.pipe";
 import {DiscountTypeEnum} from "../../../../enum/discount.enum";
 import {Coupon} from "../../../../interfaces/common/coupon.interface";
 import {UserService} from "../../../../services/common/user.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {UtilsService} from "../../../../services/core/utils.service";
 import {OrderService} from "../../../../services/common/order.service";
 import {UserDataService} from "../../../../services/common/user-data.service";
@@ -39,14 +39,11 @@ export class HomeRightDecisionComponent implements OnChanges {
   @ViewChild('feature') mainEl!: ElementRef;
 
   // Subscriptions
-  private subGetData1!: Subscription;
   private subGetData2!: Subscription;
-  private subGetData3!: Subscription;
   private subGetData4!: Subscription;
   private subAddData1!: Subscription;
-  private subRoute1!: Subscription;
-  private subRoute2: Subscription;
   private subDataFive: Subscription;
+
   // Inject
   private readonly reloadService = inject(ReloadService);
   private readonly userService = inject(UserService);
@@ -54,7 +51,6 @@ export class HomeRightDecisionComponent implements OnChanges {
   private readonly paymentService = inject(PaymentService);
   private readonly router = inject(Router);
   private readonly uiService = inject(UiService);
-  private readonly activatedRoute = inject(ActivatedRoute);
   private readonly courseService = inject(CourseService);
   private readonly orderService = inject(OrderService);
   private readonly couponService = inject(CouponService);

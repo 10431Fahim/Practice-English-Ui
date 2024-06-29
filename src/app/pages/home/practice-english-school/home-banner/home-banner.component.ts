@@ -12,6 +12,7 @@ export class HomeBannerComponent {
   videoStart: boolean = false;
 
   @Input() data: any;
+  @Input() isLoading: boolean;
 
   constructor(
     private reloadService: ReloadService,

@@ -21,6 +21,12 @@ import { HomeMembershipComponent } from './practice-english-school/home-membersh
 import { HomeStepOneComponent } from './practice-english-school/home-step-one/home-step-one.component';
 import { HomeZeroToSuccessComponent } from './practice-english-school/home-zero-to-success/home-zero-to-success.component';
 import { HomeRightDecisionComponent } from './practice-english-school/home-right-decision/home-right-decision.component';
+import {
+    CourseDetailLoaderLeftModule
+} from "../../shared/loader/course-detail-loader-left/course-detail-loader-left.module";
+import {
+  CourseDetailLoaderRightModule
+} from "../../shared/loader/course-detail-loader-right/course-detail-loader-right.module";
 
 @NgModule({
   declarations: [
@@ -49,6 +55,8 @@ import { HomeRightDecisionComponent } from './practice-english-school/home-right
     FontAwesomeModule,
     MatMenuModule,
     SuccessVideoModule,
+    CourseDetailLoaderLeftModule,
+    CourseDetailLoaderRightModule,
   ],
 })
 export class HomeModule {}
