@@ -68,6 +68,10 @@ export class HomeRightDecisionComponent implements OnChanges {
       }
     });
 
+    if (this.isUser) {
+      this.getLoggedUserData();
+    }
+
 
     this.reloadService.refreshFeature$.subscribe((res) => {
       if (res) {

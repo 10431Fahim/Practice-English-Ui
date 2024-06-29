@@ -18,5 +18,5 @@ export const environment = {
   storageSecret: 'SOFT_2021_IT_1998',
   userTokenSecret: 'SOFT_ADMIN_1996_&&_SOBUR_dEv',
   apiTokenSecret: 'SOFT_API_1998_&&_SAZIB_dEv',
-  VERSION: 2,
+  VERSION: 1,
 };

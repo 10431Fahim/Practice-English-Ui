@@ -2,12 +2,12 @@
   <div class="container">
     <ul>
       <ng-container>
-        <li><a routerLink="/account">আমার একাউন্ট</a></li>
+        <li><a routerLink="/account">My Account</a></li>
         <li><small> <fa-icon [icon]="faAngleRight"></fa-icon></small></li>
       </ng-container>
 
       <ng-container>
-        <li><a routerLink="/my-course">আমার কোর্সসমূহ</a></li>
+        <li><a routerLink="/my-course">My Courses</a></li>
         <li><small> <fa-icon [icon]="faAngleRight"></fa-icon></small></li>
       </ng-container>
 
@@ -50,14 +50,14 @@
 <!--        </div>        -->
         <a class="pdf-download-btn" *ngIf="selectedType === 'lecture-sheet' && selectedAttachment" [href]="selectedAttachment" target="_blank">
           <button>
-            পিডিএফ ডাউনলোড করুন
+            Download PDF
           </button>
         </a>
       </div>
     </div>
     <div class="course-content">
       <div class="title-top">
-        <p>কোর্স সিলেবাস</p>
+        <p>Course Syllabus</p>
 <!--        <p>১৮% সম্পন্ন</p>-->
       </div>
       <div class="main">
