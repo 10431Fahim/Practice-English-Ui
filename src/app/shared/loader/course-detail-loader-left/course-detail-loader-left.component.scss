@@ -4,8 +4,21 @@
   padding: 15px 18px;
   box-sizing: border-box;
   border-radius: 8px;
-  background: #fff;
-  border: 1px solid #fff;
+  //background: #fff;
+  //border: 1px solid #fff;
   transition: all 0.3s linear;
   cursor: pointer;
 }
+
+.first-section-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+
+.second-section-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+

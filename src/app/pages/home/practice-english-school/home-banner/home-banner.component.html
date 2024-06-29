@@ -1,6 +1,11 @@
 <section class="home-banner">
   <div class="container">
     <div class="home-banner-child">
+      <ng-container *ngIf="!isLoading">
+        <app-course-detail-loader-left></app-course-detail-loader-left>
+      </ng-container>
+
+      <ng-container *ngIf="isLoading">
       <div class="home-banner-left">
         <h1>
           {{data?.name}}
@@ -17,18 +22,6 @@
             </small>
             <span> {{d}} </span>
           </li>
-<!--          <li>-->
-<!--            <small>-->
-<!--              <i class="fa-solid fa-angle-right"></i>-->
-<!--            </small>-->
-<!--            <span> Access Your Class anywhere </span>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <small>-->
-<!--              <i class="fa-solid fa-angle-right"></i>-->
-<!--            </small>-->
-<!--            <span> Flexible Course Plan </span>-->
-<!--          </li>-->
         </ul>
 
         <div class="join-and-total-student">
@@ -45,7 +38,13 @@
           </div>
         </div>
       </div>
+      </ng-container>
 
+      <ng-container *ngIf="!isLoading">
+        <app-course-detail-loader-right></app-course-detail-loader-right>
+      </ng-container>
+
+      <ng-container *ngIf="isLoading">
       <div class="home-banner-right" >
         <img *ngIf="!videoStart" [src]="data?.thumbnailImage ? data?.thumbnailImage : './assets/images/brand/png/next-level.png'" alt="next-level" />
 
@@ -64,16 +63,7 @@
           <i class="fa-solid fa-play"></i>
         </span>
       </div>
-<!--      <div class=" home-banner-right youtube-container" *ngIf="data?.introYoutubeVideo">-->
-<!--        <iframe [src]="-->
-<!--                    data?.introYoutubeVideo +-->
-<!--                      '?autoplay=1&mute=0&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1'-->
-<!--                      | safeUrl-->
-<!--                  " title="YouTube video player" frameborder="0"-->
-<!--                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
-<!--                allowfullscreen>-->
-<!--        </iframe>-->
-<!--      </div>-->
+      </ng-container>
     </div>
     <!-- END! home-banner-child -->
   </div>
