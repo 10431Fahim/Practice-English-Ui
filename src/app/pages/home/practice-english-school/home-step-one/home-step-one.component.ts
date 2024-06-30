@@ -14,6 +14,7 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
   @Input() data: any;
 
   transformedData: any[] = [];
+  courseModules: any[] = [];
 
   constructor(
     private reloadService: ReloadService,
@@ -35,13 +36,57 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
   }
 
   transformBenefitToArray() {
-    this.transformedData = this.data?.courseModules.map(item => ({
-      ...item,
-      benefit: item.benefit.split(',').map(benefit => benefit.trim()),
-      videoDuration: item.videoDuration.split(','),
-      videoTitle: item.videoTitle.split(','),
-      videoUrl: item.videoUrl.split(',')
-    }));
+    const finalModules = [];
+    if (this.data) {
+      this.data.courseModules.forEach(item => {
+        const fIndex = finalModules.findIndex(f => f.step._id === item.step._id);
+        const videoTitleArr = item.videoTitle.trim().split(',');
+        const videoUrlArr = item.videoUrl.trim().split(',');
+        const videoDurationArr = item.videoDuration.trim().split(',');
+        if (fIndex === -1) {
+          const g = {
+            step: item.step,
+            contents: [
+              {
+                _id: item._id,
+                name: item.name,
+                modules: videoTitleArr.map((m, i) => {
+                  return {
+                    videoTitle: m,
+                    videoUrl: videoUrlArr[i],
+                    videoDuration: videoDurationArr[i],
+                  }
+                })
+              }
+            ]
+          }
+          finalModules.push(g);
+        } else {
+          // const h = finalModules[fIndex];
+          const mContent =  {
+            _id: item._id,
+            name: item.name,
+            modules: videoTitleArr.map((m, i) => {
+              return {
+                videoTitle: m,
+                videoUrl: videoUrlArr[i],
+                videoDuration: videoDurationArr[i],
+              }
+            })
+          }
+          finalModules[fIndex].contents.push(mContent);
+        }
+      })
+
+      this.courseModules = finalModules;
+    }
+    // this.transformedData = this.data?.courseModules.map(item => ({
+    //   ...item,
+    //   benefit: item.benefit.split(',').map(benefit => benefit.trim()),
+    //   videoDuration: item.videoDuration.split(','),
+    //   videoTitle: item.videoTitle.split(','),
+    //   videoUrl: item.videoUrl.split(',')
+    // }));
   }
 
 
@@ -53,6 +98,14 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
         break;
       default:
         this.selectedMenu = 0;
+    }
+  }
+
+  getBenefitArr(data: string) {
+    if (data) {
+      return data.trim().split(',')
+    } else {
+      return [];
     }
   }
 }

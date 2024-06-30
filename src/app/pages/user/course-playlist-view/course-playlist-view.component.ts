@@ -58,7 +58,7 @@ export class CoursePlaylistViewComponent implements OnInit {
             this.course = res.data;
             this.transformedData = this.course?.courseModules.map(item => ({
               ...item,
-              benefit: item.benefit.split(',').map(benefit => benefit.trim()),
+              // benefit: item.benefit.split(',').map(benefit => benefit.trim()),
               videoDuration: item.videoDuration.split(','),
               videoTitle: item.videoTitle.split(','),
               videoUrl: item.videoUrl.split(',')

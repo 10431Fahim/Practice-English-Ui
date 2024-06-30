@@ -338,8 +338,6 @@ export class HomeRightDecisionComponent implements OnChanges {
     } else {
       this.couponDiscount = Math.floor(this.coupon.discountAmount);
     }
-
-    console.log('this.couponDiscount', this.couponDiscount)
   }
 
   onRemoveCoupon() {

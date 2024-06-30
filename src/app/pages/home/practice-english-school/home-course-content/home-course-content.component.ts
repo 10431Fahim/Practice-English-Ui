@@ -5,14 +5,20 @@ import {Component, Input, OnChanges} from '@angular/core';
   templateUrl: './home-course-content.component.html',
   styleUrls: ['./home-course-content.component.scss'],
 })
-export class HomeCourseContentComponent implements OnChanges{
-  @Input() data:any;
+export class HomeCourseContentComponent implements OnChanges {
+  @Input() data: any[];
   // dropdown toggle
   isToggleActive: number = 0;
   transformedData: any[] = [];
+
   // dropdown toggle method
   onToggleActive(num: number) {
-    this.isToggleActive = num;
+    if(this.isToggleActive === num) {
+      this.isToggleActive = null;
+    } else {
+      this.isToggleActive = num;
+    }
+
   }
 
 
@@ -23,6 +29,7 @@ export class HomeCourseContentComponent implements OnChanges{
     // // this.moduleBenefitArray = arrayData;
     // console.log('this.moduleBenefitArray',this.data)
   }
+
   // transformBenefitToArray() {
   //   this.transformedData = this.data?.courseModules.map(item => ({
   //     ...item,

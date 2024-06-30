@@ -1,20 +1,20 @@
 
-<section *ngFor="let d of transformedData">
+<section *ngFor="let d of courseModules">
 <div class="home-steps">
   <div class="container">
     <div class="home-steps-child" >
       <div class="home-steps-left">
         <div class="home-steps-title">
-          <h1>{{d?.step}}</h1>
+          <h1>{{d?.step?.name}}</h1>
 
           <p>
-            {{d?.description}}
+            {{d?.step?.description}}
           </p>
         </div>
         <!-- END! home-steps-title -->
 
         <div class="home-steps-cards">
-          <div class="home-steps-card" *ngFor="let benefit of d.benefit">
+          <div class="home-steps-card" *ngFor="let benefit of getBenefitArr(d?.step?.benefit)">
             <div class="home-steps-card-left">
               <i class="fa-solid fa-rocket"></i>
             </div>
@@ -44,6 +44,6 @@
   </div>
   <!-- END! home-course-content -->
 </div>
-  <app-home-course-content [data]="d"></app-home-course-content>
+  <app-home-course-content [data]="d?.contents"></app-home-course-content>
 <!-- END! home-steps -->
 </section>
