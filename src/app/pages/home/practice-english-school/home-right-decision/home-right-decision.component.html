@@ -78,7 +78,7 @@
             <button type="button" *ngIf="!isEnrolled && !isLoading" [disabled]="isLoading" (click)="onBuyCourse()">
               <small><i class="fa-solid fa-lock"></i></small>
               <span>Place Order  ৳ {{coupon? (data
-                | price : "regularPrice") - couponDiscount : data
+                | price : "salePrice") - couponDiscount : data
                 | price : "salePrice"}}</span>
             </button>
 
@@ -145,7 +145,7 @@
             <div class="home-right-decision-orders-total">
               <h2>Total</h2>
               <h1>৳{{coupon? (data
-                | price : "regularPrice") - couponDiscount : data
+                | price : "salePrice") - couponDiscount : data
                 | price : "salePrice"}}</h1>
             </div>
           </div>

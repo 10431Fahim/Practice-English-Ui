@@ -141,7 +141,7 @@ export class HomeRightDecisionComponent implements OnChanges {
 
       grandTotal: this.coupon ? this.pricePipe.transform(
         this.data,
-        'regularPrice',
+        'salePrice',
         this.selectedPriceData
       ) - this.couponDiscount : this.pricePipe.transform(
         this.data,
@@ -309,7 +309,6 @@ export class HomeRightDecisionComponent implements OnChanges {
             if (res.success) {
               this.uiService.success(res.message);
               this.coupon = res.data;
-              // console.log(this.coupon);
               if (this.coupon) {
                 this.calculateCouponDiscount();
               }
@@ -332,13 +331,15 @@ export class HomeRightDecisionComponent implements OnChanges {
       this.couponDiscount = Math.floor(
         (this.coupon.discountAmount / 100) * this.pricePipe.transform(
           this.data,
-          'regularPrice',
+          'salePrice',
           this.selectedPriceData
         ),
       );
     } else {
       this.couponDiscount = Math.floor(this.coupon.discountAmount);
     }
+
+    console.log('this.couponDiscount', this.couponDiscount)
   }
 
   onRemoveCoupon() {
