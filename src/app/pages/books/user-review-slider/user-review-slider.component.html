@@ -40,21 +40,21 @@
           }"
           class="mySwiper image-select-slide"
         >
-          <ng-template swiperSlide>
-            <app-success-video></app-success-video>
+          <ng-template swiperSlide *ngFor="let data of allReview">
+            <app-success-video [data]="data"></app-success-video>
           </ng-template>
-          <ng-template swiperSlide>
-            <app-success-video></app-success-video>
-          </ng-template>
-          <ng-template swiperSlide>
-            <app-success-video></app-success-video>
-          </ng-template>
-          <ng-template swiperSlide>
-            <app-success-video></app-success-video>
-          </ng-template>
-          <ng-template swiperSlide>
-            <app-success-video></app-success-video>
-          </ng-template>
+<!--          <ng-template swiperSlide>-->
+<!--            <app-success-video></app-success-video>-->
+<!--          </ng-template>-->
+<!--          <ng-template swiperSlide>-->
+<!--            <app-success-video></app-success-video>-->
+<!--          </ng-template>-->
+<!--          <ng-template swiperSlide>-->
+<!--            <app-success-video></app-success-video>-->
+<!--          </ng-template>-->
+<!--          <ng-template swiperSlide>-->
+<!--            <app-success-video></app-success-video>-->
+<!--          </ng-template>-->
         </swiper>
       </div>
 
