@@ -1,12 +1,59 @@
 @import "variables";
 
+
+
+.footer-social {
+  h3 {
+    margin-top: 15px;
+    color: #fff;
+    font-family: $font-bn-primary;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 12px;
+
+    li {
+      display: block;
+
+      a {
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #1c1d1e;
+        font-size: 16px;
+        transition: all 0.3s linear;
+
+        &:hover {
+          background-color: #1c1d1e;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
 /* --- footer-area-main --- */
 .footer-area-main {
     background-image: url("../../../../assets/images/brand/jpg/footer-bg.jpg");
     background-size: cover;
     background-position: top left;
     overflow-y: hidden;
-    
+
 }
 
 

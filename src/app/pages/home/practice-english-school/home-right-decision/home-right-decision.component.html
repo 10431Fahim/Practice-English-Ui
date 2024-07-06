@@ -74,7 +74,9 @@
               your experience throughout this website, and for other purposes
               described in our <a routerLink="/pages/privacy-policy">privacy policy</a>.
             </p>
-
+            <mat-checkbox class="custom-checkbox"  [(ngModel)]="isCheckedTerms" required
+            >আমি এই প্ল্যাটফর্ম <u routerLink="/pages/terms-and-conditions">ব্যবহারের শর্তাবলি</u> ও <u routerLink="/pages/privacy-policy">গোপনীয়তা নীতির</u> ব্যাপারে সম্মতি দিচ্ছি</mat-checkbox
+            >
             <button type="button" *ngIf="!isEnrolled && !isLoading" [disabled]="isLoading" (click)="onBuyCourse()">
               <small><i class="fa-solid fa-lock"></i></small>
               <span>Place Order  ৳ {{coupon? (data

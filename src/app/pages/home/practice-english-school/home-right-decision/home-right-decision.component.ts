@@ -27,6 +27,7 @@ import {CourseService} from "../../../../services/common/course.service";
 })
 export class HomeRightDecisionComponent implements OnChanges {
   @Input() data: any;
+  isCheckedTerms: Boolean = false;
   coupon: Coupon = null;
   user: User;
   isLoading: boolean = false;
@@ -105,6 +106,11 @@ export class HomeRightDecisionComponent implements OnChanges {
 
 
   public onBuyCourse() {
+    if (!this.isCheckedTerms) {
+      this.uiService.warn('Please accept ours terms & condition to continue.')
+      return;
+    }
+
     this.isLoading = true;
 
     const mData: any = {

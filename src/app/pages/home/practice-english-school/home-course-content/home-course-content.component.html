@@ -41,8 +41,10 @@
                 </h3>
                 <p>
                   <span>{{item.videoDuration}}</span>
-                  <small>
-                    <i class="fa-regular fa-eye"></i>
+
+                  <small style="cursor: pointer" (click)="openYoutubeVideoDialog($event, item?.videoUrl,item?.isFreeVideo)">
+                    <span style="color: #0f8f3e;cursor: pointer;padding-right: 5px" *ngIf="item?.isFreeVideo == 'isFree'">Free</span>
+                    <i  class="fa-regular fa-eye"></i>
                   </small>
                 </p>
               </div>

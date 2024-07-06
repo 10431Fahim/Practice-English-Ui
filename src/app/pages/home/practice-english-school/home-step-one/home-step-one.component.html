@@ -1,5 +1,5 @@
 
-<section *ngFor="let d of courseModules">
+<section *ngFor="let d of courseModules; let i =index">
 <div class="home-steps">
   <div class="container">
     <div class="home-steps-child" >
@@ -37,8 +37,32 @@
       </div>
 
       <div class="home-steps-right">
-        <img [src]="d?.bannerImage ? d?.bannerImage : './assets/images/brand/png/success.png'" alt="" />
+        <img [src]="d?.step?.bannerImage ? d?.step?.bannerImage : './assets/images/brand/png/success.png'" alt="" />
+
+        <span (click)="openYoutubeVideoDialog($event, d?.step?.url)" *ngIf="d?.step?.url">
+          <i class="fa-solid fa-play"></i>
+        </span>
       </div>
+
+<!--      <div class="home-banner-right" >-->
+<!--        <img *ngIf="!videoStart && d?.step?.url" [src]="d?.step?.bannerImage ? d?.step?.bannerImage : './assets/images/brand/png/success.png'" alt=""  alt="next-level" />-->
+
+<!--&lt;!&ndash;        <div *ngIf="videoStart && selectedVideo == i" class=" youtube-container" >&ndash;&gt;-->
+<!--&lt;!&ndash;          <iframe *ngIf="videoStart" [src]="&ndash;&gt;-->
+<!--&lt;!&ndash;                    d?.step?.url +&ndash;&gt;-->
+<!--&lt;!&ndash;                      '?autoplay=1&mute=0&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1'&ndash;&gt;-->
+<!--&lt;!&ndash;                      | safeUrl&ndash;&gt;-->
+<!--&lt;!&ndash;                  " title="YouTube video player" frameborder="0"&ndash;&gt;-->
+<!--&lt;!&ndash;                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"&ndash;&gt;-->
+<!--&lt;!&ndash;                  allowfullscreen>&ndash;&gt;-->
+<!--&lt;!&ndash;          </iframe>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--        <span (click)="openYoutubeVideoDialog($event, d?.step?.url)" *ngIf="d?.step?.url">-->
+<!--          <i class="fa-solid fa-play"></i>-->
+<!--        </span>-->
+<!--      </div>-->
+
     </div>
     <!-- END! home-steps-child -->
   </div>
