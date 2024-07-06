@@ -291,9 +291,33 @@
 
 /* --- home-steps-right --- */
 .home-steps-right {
+  position: relative;
     img {
         border-radius: 8px;
     }
+
+  span {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 80px;
+    max-width: 80px;
+    height: 80px;
+    box-shadow: 0px 5px 10px 0px #3131311A;
+    background-color: #0554F2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      color: #fff;
+      font-size: 32px;
+      padding-left: 5px;
+    }
+  }
 }
 
 @media (max-width:996px) {
@@ -303,4 +327,89 @@
             object-fit: cover;
         }
     }
+}
+
+
+.youtube-container {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  max-height: 397px;
+  height: 100%!important;
+  iframe {
+    width: 350%;
+    height: 100%;
+    margin-left: -125%;
+    border: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+}
+
+/* --- home-banner-right --- */
+.home-banner-right {
+  max-height: 397px;
+  height: 100%!important;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  span {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 80px;
+    max-width: 80px;
+    height: 80px;
+    box-shadow: 0px 5px 10px 0px #3131311A;
+    background-color: #0554F2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      color: #fff;
+      font-size: 32px;
+      padding-left: 5px;
+    }
+  }
+}
+
+@media (max-width:1138px) {
+  .home-banner-right {
+    span {
+      min-width: 60px;
+      max-width: 60px;
+      height: 60px;
+
+      i {
+        font-size: 24px;
+        padding-left: 4px;
+      }
+    }
+  }
+}
+
+@media (max-width:500px) {
+  .home-banner-right {
+    span {
+      min-width: 46px;
+      max-width: 46px;
+      height: 46px;
+
+      i {
+        font-size: 17px;
+        padding-left: 2px;
+      }
+    }
+  }
 }

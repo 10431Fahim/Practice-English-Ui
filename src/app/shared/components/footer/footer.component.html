@@ -12,6 +12,56 @@
             <p>
              {{shopInformation?.shortDescription}}
             </p>
+
+            <p *ngIf="shopInformation?.tradLicense">
+             Trad-License: {{shopInformation?.tradLicense}}
+            </p>
+
+            <p *ngIf="shopInformation?.tinId">
+             TIN ID: {{shopInformation?.tinId}}
+            </p>
+            <div class="footer-social">
+              <h3>Follow Us</h3>
+              <ul>
+                <li>
+                  <a href="{{ shopInformation?.socialLinks[0]?.value }}" target="_blank"
+                  ><i class="fab fa-facebook-f"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="{{ shopInformation?.socialLinks[1]?.value }}" target="_blank"
+                  ><i class="fa-brands fa-youtube"></i></a>
+                </li>
+                <li>
+                  <a href="{{ shopInformation?.socialLinks[2]?.value }}" target="_blank"
+                  ><i class="fab fa-instagram"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="{{ shopInformation?.socialLinks[3]?.value }}" target="_blank"
+                  ><i class="fa-brands fa-tiktok"></i></a>
+                </li>
+                <li>
+                  <a href="{{ shopInformation?.socialLinks[4]?.value }}" target="_blank"
+                  ><i class="fa-brands fa-linkedin"></i></a>
+                </li>
+                <li>
+                  <a href="{{ shopInformation?.socialLinks[5]?.value }}" target="_blank"
+                  ><i class="fab fa-twitter"></i
+                  ></a>
+                </li>
+<!--                <li>-->
+<!--                  <a href="{{ shopInformation?.socialLinks[3]?.value }}" target="_blank"-->
+<!--                  ><i class="fab fa-telegram"></i-->
+<!--                  ></a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                  <a href="{{ shopInformation?.socialLinks[4]?.value }}" target="_blank"-->
+<!--                  ><i class="fab fa-whatsapp"></i-->
+<!--                  ></a>-->
+<!--                </li>-->
+              </ul>
+            </div>
           </div>
         </div>
         <div class="footer-link wow animate__fadeInUp animate__delay-2s">

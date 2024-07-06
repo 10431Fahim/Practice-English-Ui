@@ -1,6 +1,10 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ReloadService} from "../../../../services/core/reload.service";
+import {
+  YoutubeVideoShowComponent
+} from "../../../../shared/dialog-view/youtube-video-show/youtube-video-show.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-home-step-one',
@@ -10,15 +14,19 @@ import {ReloadService} from "../../../../services/core/reload.service";
 export class HomeStepOneComponent implements OnInit, OnChanges {
 
   selectedMenu = 0;
+  selectedVideo:any;
   // moduleBenefitArray: any;
   @Input() data: any;
-
+  // Store Data
+  videoStart: boolean = false;
   transformedData: any[] = [];
   courseModules: any[] = [];
 
   constructor(
     private reloadService: ReloadService,
     private router: Router,
+    private dialog: MatDialog,
+
   ) {
 
   }
@@ -42,6 +50,7 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
         const fIndex = finalModules.findIndex(f => f.step._id === item.step._id);
         const videoTitleArr = item.videoTitle.trim().split(',');
         const videoUrlArr = item.videoUrl.trim().split(',');
+        const isFreeVideo = item.isFreeVideo.trim().split(',');
         const videoDurationArr = item.videoDuration.trim().split(',');
         if (fIndex === -1) {
           const g = {
@@ -54,6 +63,7 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
                   return {
                     videoTitle: m,
                     videoUrl: videoUrlArr[i],
+                    isFreeVideo: isFreeVideo[i],
                     videoDuration: videoDurationArr[i],
                   }
                 })
@@ -70,6 +80,7 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
               return {
                 videoTitle: m,
                 videoUrl: videoUrlArr[i],
+                isFreeVideo: isFreeVideo[i],
                 videoDuration: videoDurationArr[i],
               }
             })
@@ -79,6 +90,8 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
       })
 
       this.courseModules = finalModules;
+
+      console.log('this.courseModules',this.courseModules)
     }
     // this.transformedData = this.data?.courseModules.map(item => ({
     //   ...item,
@@ -108,4 +121,38 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
       return [];
     }
   }
+
+
+  /**
+   * onVideoStart()
+   */
+  onVideoStart(data) {
+    this.selectedVideo = data;
+    this.videoStart = true;
+  }
+
+
+  /**
+   * DIALOG VIEW COMPONENT
+   * openYoutubeVideoDialog()
+   * getDiscountCourses()
+   */
+  public openYoutubeVideoDialog(event: MouseEvent, url: string) {
+    event.stopPropagation();
+      const dialogRef = this.dialog.open(YoutubeVideoShowComponent, {
+        data: {url: url},
+        panelClass: ['theme-dialog', 'no-padding-dialog'],
+        width: '98%',
+        maxWidth: '700px',
+        height: 'auto',
+        maxHeight: '100vh',
+        autoFocus: false,
+        disableClose: false
+      });
+      dialogRef.afterClosed().subscribe(dialogResult => {
+        if (dialogResult && dialogResult.data) {
+        }
+      });
+  }
+
 }

@@ -27,6 +27,7 @@ import {
 import {
   CourseDetailLoaderRightModule
 } from "../../shared/loader/course-detail-loader-right/course-detail-loader-right.module";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -39,24 +40,25 @@ import {
     HomeZeroToSuccessComponent,
     HomeRightDecisionComponent,
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    SwiperModule,
-    NgParticlesModule,
-    PipesModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CarouselLoaderModule,
-    BatchCardLoaderModule,
-    UpcomingDialogModule,
-    NgOptimizedImage,
-    ImgCtrlPipe,
-    FontAwesomeModule,
-    MatMenuModule,
-    SuccessVideoModule,
-    CourseDetailLoaderLeftModule,
-    CourseDetailLoaderRightModule,
-  ],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        SwiperModule,
+        NgParticlesModule,
+        PipesModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CarouselLoaderModule,
+        BatchCardLoaderModule,
+        UpcomingDialogModule,
+        NgOptimizedImage,
+        ImgCtrlPipe,
+        FontAwesomeModule,
+        MatMenuModule,
+        SuccessVideoModule,
+        CourseDetailLoaderLeftModule,
+        CourseDetailLoaderRightModule,
+        MatCheckboxModule
+    ],
 })
 export class HomeModule {}

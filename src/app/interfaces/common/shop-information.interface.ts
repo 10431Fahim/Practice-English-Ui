@@ -3,6 +3,8 @@ export interface ShopInformation {
   siteName: string;
   shortDescription?: string;
   siteLogo: string;
+  tradLicense: string;
+  tinId: string;
   news: string;
   addresses: ShopObject[];
   emails: ShopObject[];
