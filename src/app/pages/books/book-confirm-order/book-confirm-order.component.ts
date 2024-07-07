@@ -12,6 +12,7 @@ import {environment} from '../../../../environments/environment';
 import {PaymentService} from '../../../services/common/payment.service';
 import {DOCUMENT} from '@angular/common';
 import {OtpService} from "../../../services/common/otp.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-book-confirm-order',
@@ -41,6 +42,7 @@ export class BookConfirmOrderComponent {
 
   private readonly otpService = inject(OtpService);
   private readonly paymentService = inject(PaymentService);
+  private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
 
   private subOtpGenerate: Subscription;
@@ -63,7 +65,20 @@ export class BookConfirmOrderComponent {
     });
     //Base Data
     this.initForm()
+
+    this.checkUrlForPaymentOpt();
   }
+
+  private checkUrlForPaymentOpt() {
+    if (this.router.url === '/bookpay') {
+      this.selectedPaymentMethod = 'online_payment';
+      this.paymentMethods = PaymentMethod.filter(f => f.id === '2');
+    } else if (this.router.url === '/bookcash') {
+      this.selectedPaymentMethod = 'cash_on_delivery';
+      this.paymentMethods = PaymentMethod.filter(f => f.id === '1');
+    }
+  }
+
 
   /**
    * FORM CONTROLL METHODS

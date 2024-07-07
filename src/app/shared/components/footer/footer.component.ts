@@ -22,6 +22,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   faLinkedinIn = faLinkedinIn;
   faInstagram = faInstagram;
   faFacebookF = faFacebookF;
+  socialLists: any[] = [];
 
   // Store Data
   shopInformation: ShopInformation;
@@ -53,6 +54,45 @@ export class FooterComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+
+  private getSocialLists() {
+    this.shopInformation.socialLinks.forEach(m => {
+      if (m.type === 0) {
+        const obj = {
+          urL: m.value,
+          icon: 'fab fa-facebook-f',
+        }
+        this.socialLists.push(obj);
+      }
+    })
+  }
+
+  getSocialLink(type: string): string {
+    switch (type) {
+      case 'facebook':
+        return this.shopInformation?.socialLinks.find(f => f.type === 0)?.value ?? null;
+
+      case 'youtube':
+        return this.shopInformation?.socialLinks.find(f => f.type === 1)?.value ?? null;
+
+      case 'twitter':
+        return this.shopInformation?.socialLinks.find(f => f.type === 2)?.value ?? null;
+
+      case 'instagram':
+        return this.shopInformation?.socialLinks.find(f => f.type === 3)?.value ?? null;
+
+      case 'linkedin':
+        return this.shopInformation?.socialLinks.find(f => f.type === 4)?.value ?? null;
+
+
+      case 'tiktok':
+        return this.shopInformation?.socialLinks.find(f => f.type === 5)?.value ?? null;
+
+
+      default:
+        return null;
+    }
   }
 
 

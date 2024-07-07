@@ -14,7 +14,7 @@
             </p>
 
             <p *ngIf="shopInformation?.tradLicense">
-             Trad-License: {{shopInformation?.tradLicense}}
+             Trade-License: {{shopInformation?.tradLicense}}
             </p>
 
             <p *ngIf="shopInformation?.tinId">
@@ -23,30 +23,34 @@
             <div class="footer-social">
               <h3>Follow Us</h3>
               <ul>
-                <li>
-                  <a href="{{ shopInformation?.socialLinks[0]?.value }}" target="_blank"
+                <li *ngIf="getSocialLink('facebook')">
+                  <a [href]="getSocialLink('facebook')" target="_blank"
                   ><i class="fab fa-facebook-f"></i
                   ></a>
                 </li>
-                <li>
-                  <a href="{{ shopInformation?.socialLinks[1]?.value }}" target="_blank"
-                  ><i class="fa-brands fa-youtube"></i></a>
+                <li *ngIf="getSocialLink('youtube')">
+                  <a [href]="getSocialLink('youtube')" target="_blank"
+                  ><i class="fa-brands fa-youtube"></i
+                  ></a>
                 </li>
-                <li>
-                  <a href="{{ shopInformation?.socialLinks[2]?.value }}" target="_blank"
+
+                <li *ngIf="getSocialLink('instagram')">
+                  <a [href]="getSocialLink('instagram')" target="_blank"
                   ><i class="fab fa-instagram"></i
                   ></a>
                 </li>
-                <li>
-                  <a href="{{ shopInformation?.socialLinks[3]?.value }}" target="_blank"
+
+                <li *ngIf="getSocialLink('tiktok')">
+                  <a [href]="getSocialLink('tiktok')" target="_blank"
                   ><i class="fa-brands fa-tiktok"></i></a>
                 </li>
-                <li>
-                  <a href="{{ shopInformation?.socialLinks[4]?.value }}" target="_blank"
+
+                <li *ngIf="getSocialLink('linkedin')">
+                  <a [href]="getSocialLink('linkedin')" target="_blank"
                   ><i class="fa-brands fa-linkedin"></i></a>
                 </li>
-                <li>
-                  <a href="{{ shopInformation?.socialLinks[5]?.value }}" target="_blank"
+                <li  *ngIf="getSocialLink('twitter')">
+                  <a [href]="getSocialLink('twitter')" target="_blank"
                   ><i class="fab fa-twitter"></i
                   ></a>
                 </li>
@@ -69,7 +73,7 @@
             <h3>Useful Links</h3>
           </div>
           <ul>
-            <li><a routerLink="/books">Book</a></li>
+            <li><a routerLink="/bookpay">Book</a></li>
             <li><a routerLink="/">Course</a></li>
             <li><a routerLink="/blogs">Blog</a></li>
           </ul>
@@ -90,7 +94,7 @@
           </div>
           <ul>
             <li><a routerLink="/pages/terms-and-conditions">Terms & Conditions</a></li>
-            <li><a routerLink="/pages/return-&-refund-policy">Refund Policy</a></li>
+            <li><a routerLink="/pages/return-&-refund-policy">Refund & Cancelation Policy</a></li>
             <li><a routerLink="/pages/privacy-policy">Privacy Policy</a></li>
           </ul>
         </div>

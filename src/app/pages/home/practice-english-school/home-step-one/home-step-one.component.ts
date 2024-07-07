@@ -50,7 +50,7 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
         const fIndex = finalModules.findIndex(f => f.step._id === item.step._id);
         const videoTitleArr = item.videoTitle.trim().split(',');
         const videoUrlArr = item.videoUrl.trim().split(',');
-        const isFreeVideo = item.isFreeVideo.trim().split(',');
+        const isFreeVideo = item.isFreeVideo ? item.isFreeVideo.trim().split(',') : [];
         const videoDurationArr = item.videoDuration.trim().split(',');
         if (fIndex === -1) {
           const g = {
@@ -91,7 +91,6 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
 
       this.courseModules = finalModules;
 
-      console.log('this.courseModules',this.courseModules)
     }
     // this.transformedData = this.data?.courseModules.map(item => ({
     //   ...item,

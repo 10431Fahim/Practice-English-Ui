@@ -4,13 +4,13 @@ export const environment = {
   name: 'practiceenglishschool.softlabit.com',
   domain: 'practiceenglishschool.softlabit.com',
 
-  // apiBaseLink: 'https://api.practiceenglishschool.softlabit.com',
-  // ftpBaseLink: 'https://api.practiceenglishschool.softlabit.com',
+  apiBaseLink: 'https://api.practiceenglishschool.softlabit.com',
+  ftpBaseLink: 'https://api.practiceenglishschool.softlabit.com',
   // ftpPrefixPath: 'https://api.practiceenglishschool.softlabit.com/api/upload/images',
   ftpPrefix: 'api',
 
-  apiBaseLink: 'http://localhost:3000',
-  ftpBaseLink: 'http://localhost:3000',
+  // apiBaseLink: 'http://localhost:3000',
+  // ftpBaseLink: 'http://localhost:3000',
   ftpPrefixPath: 'http://localhost:3000/upload/images',
 
   aamarpayCourseCallbackUrl: 'http://localhost:3000/api/payment/aamarpay-callback',

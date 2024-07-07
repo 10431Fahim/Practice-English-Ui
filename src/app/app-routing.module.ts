@@ -15,7 +15,12 @@ const routes: Routes = [
           import('./pages/home/home.module').then((m) => m.HomeModule),
       },
       {
-        path: 'books',
+        path: 'bookpay',
+        loadChildren: () =>
+          import('./pages/books/books.module').then((m) => m.BooksModule),
+      },
+      {
+        path: 'bookcash',
         loadChildren: () =>
           import('./pages/books/books.module').then((m) => m.BooksModule),
       },

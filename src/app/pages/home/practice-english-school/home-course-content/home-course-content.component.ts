@@ -25,7 +25,7 @@ export class HomeCourseContentComponent implements OnChanges {
 
   // dropdown toggle method
   onToggleActive(num: number) {
-    if(this.isToggleActive === num) {
+    if (this.isToggleActive === num) {
       this.isToggleActive = null;
     } else {
       this.isToggleActive = num;
@@ -58,9 +58,9 @@ export class HomeCourseContentComponent implements OnChanges {
    * openYoutubeVideoDialog()
    * getDiscountCourses()
    */
-  public openYoutubeVideoDialog(event: MouseEvent, url: string,data:any) {
+  public openYoutubeVideoDialog(event: MouseEvent, url: string, data: any) {
     event.stopPropagation();
-    if(data == 'isFree'){
+    if (this.checkIsFree(data)) {
       const dialogRef = this.dialog.open(YoutubeVideoShowComponent, {
         data: {url: url},
         panelClass: ['theme-dialog', 'no-padding-dialog'],
@@ -75,9 +75,13 @@ export class HomeCourseContentComponent implements OnChanges {
         if (dialogResult && dialogResult.data) {
         }
       });
-    }else{
+    } else {
       this.uiService.warn('Please enroll first');
     }
-    }
+  }
+
+  checkIsFree(data: string) {
+    return data && data.trim().toLowerCase() === 'free';
+  }
 
 }
