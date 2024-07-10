@@ -5,6 +5,8 @@ export interface ShopInformation {
   siteLogo: string;
   tradLicense: string;
   tinId: string;
+  offerText: string;
+  countdown: boolean;
   news: string;
   addresses: ShopObject[];
   emails: ShopObject[];
