@@ -8,7 +8,7 @@
       </div>
 
       <div class="offer-text">
-        <p>{{shopInformation?.offerText}}</p>
+        <p *ngIf="shopInformation?.offerText">{{shopInformation?.offerText}}</p>
         <div class="header-second-middle" *ngIf="shopInformation?.countdown">
           <h4>
             <span>{{ formatDays(days) }}</span>
