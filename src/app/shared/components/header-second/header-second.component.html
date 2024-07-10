@@ -7,22 +7,32 @@
         </a>
       </div>
 
-      <div class="header-second-middle">
-        <h4>
-          <span>{{ formatDays(days) }}</span>
-          <small>DAYS</small>
-        </h4>
-        <p>:</p>
-        <h4>
-          <span>{{ formatHours(hours) }}</span>
-          <small>HRS</small>
-        </h4>
-        <p>:</p>
-        <h4>
-          <span>{{ seconds | numMinDigit}}</span>
-          <small>SECS</small>
-        </h4>
+      <div class="offer-text">
+        <p>{{shopInformation?.offerText}}</p>
+        <div class="header-second-middle" *ngIf="shopInformation?.countdown">
+          <h4>
+            <span>{{ formatDays(days) }}</span>
+            <small>Days</small>
+          </h4>
+          <p>:</p>
+          <h4>
+            <span>{{ formatHours(hours) }}</span>
+            <small>Hours</small>
+          </h4>
+          <p>:</p>
+          <h4>
+            <span>{{ minutes | numMinDigit}}</span>
+            <small>Minutes</small>
+          </h4>
+          <p>:</p>
+          <h4>
+            <span>{{ seconds | numMinDigit}}</span>
+            <small>Seconds</small>
+          </h4>
+        </div>
       </div>
+
+
 
 <!--      <div class="timer">-->
 <!--        <h1>Countdown Timer</h1>-->

@@ -38,6 +38,18 @@ header.header-second {
 }
 
 /* --- header-second-middle --- */
+.offer-text{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  p{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    color: $color-white;
+    margin: 0;
+  }
+}
 .header-second-middle {
     display: flex;
     align-items: flex-start;
@@ -50,9 +62,9 @@ header.header-second {
         align-items: center;
         justify-content: center;
         color: $color-white;
-        font-size: 25px;
-        font-weight: 400;
-        line-height: 30px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
         margin: 0;
 
         small {
@@ -63,9 +75,9 @@ header.header-second {
     }
 
     p {
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 400;
-        line-height: 30px;
+        line-height: 24px;
         color: $color-white;
         margin: 0;
     }
@@ -128,4 +140,27 @@ header.header-second {
             line-height: 21px;
         }
     }
+}
+
+@media (max-width:630px) {
+  .offer-text{
+    flex-direction: column;
+    gap: 0;
+  }
+  .offer-text p {
+    font-size: 15px;
+    line-height: 22px;
+  }
+  header-second-middle h4 {
+    font-size: 18px;
+    line-height: 23px;
+  }
+  .header-second-middle p {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .header-second-middle {
+    gap: 3px;
+  }
 }
