@@ -61,6 +61,7 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
                 name: item.name,
                 modules: videoTitleArr.map((m, i) => {
                   return {
+                    type: 'video',
                     videoTitle: m,
                     videoUrl: videoUrlArr[i],
                     isFreeVideo: isFreeVideo[i],
@@ -70,14 +71,25 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
               }
             ]
           }
+          if (item.isFreePdf) {
+            g.contents[0].modules.push({
+              type: 'attachment',
+              videoTitle: null,
+              videoUrl: null,
+              isFreeVideo: null,
+              videoDuration: null,
+              attachment: item.attachment,
+              attachmentTitle: item.attachmentTitle,
+            })
+          }
           finalModules.push(g);
         } else {
-          // const h = finalModules[fIndex];
           const mContent =  {
             _id: item._id,
             name: item.name,
             modules: videoTitleArr.map((m, i) => {
               return {
+                type: 'video',
                 videoTitle: m,
                 videoUrl: videoUrlArr[i],
                 isFreeVideo: isFreeVideo[i],
@@ -85,6 +97,19 @@ export class HomeStepOneComponent implements OnInit, OnChanges {
               }
             })
           }
+
+          if (item.isFreePdf) {
+            mContent.modules.push({
+              type: 'attachment',
+              videoTitle: null,
+              videoUrl: null,
+              isFreeVideo: null,
+              videoDuration: null,
+              attachment: item.attachment,
+              attachmentTitle: item.attachmentTitle,
+            })
+          }
+
           finalModules[fIndex].contents.push(mContent);
         }
       })

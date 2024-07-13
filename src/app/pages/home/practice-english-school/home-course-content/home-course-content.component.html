@@ -28,43 +28,54 @@
         <div class="home-course-content-dorp-down-bottom">
           <div class="home-course-content-dorp-down-bottom-child">
             <div class="course-content-dorp-down-lists">
-              <div
-                class="course-content-dorp-down-list-item"
-                *ngFor="let item of d.modules; let j = index"
-              >
-                <h3>
-                  <small>
-                    <i class="fa-brands fa-youtube"></i>
-                  </small>
 
-                  <span class="bangla-font"> {{item.videoTitle}} </span>
-                </h3>
-                <p>
-                  <span>{{item.videoDuration}}</span>
+              <ng-container *ngFor="let item of d.modules; let j = index">
+                <div
+                  *ngIf="item.type === 'video'"
+                  class="course-content-dorp-down-list-item"
 
-                  <small style="cursor: pointer" (click)="openYoutubeVideoDialog($event, item?.videoUrl,item?.isFreeVideo)">
-                    <span style="color: #0f8f3e;cursor: pointer;padding-right: 5px" *ngIf=" checkIsFree(item?.isFreeVideo)">Free</span>
-                    <i  class="fa-regular fa-eye"></i>
-                  </small>
-                </p>
-              </div>
-              <div
-                class="course-content-dorp-down-list-item"
-              >
-              <h3>
-                <small>
-                  <i class="fa-regular fa-file"></i>
-                </small>
+                >
+                  <h3>
+                    <small>
+                      <i class="fa-brands fa-youtube"></i>
+                    </small>
 
-                <span> Attachment Title </span>
-              </h3>
-              <p>
-                <a style="cursor: pointer" href="https://drive.google.com/file/d/1ufGPkZxozQEszdtnbUaAQeY__UCKWxdo/view?usp=sharing" target="_blank">
-                  <span style="color: #0f8f3e;cursor: pointer;padding-right: 5px">Free</span>
-                </a>
-              </p>
-              <!-- END! course-content-dorp-down-list-item -->
-            </div>
+                    <span class="bangla-font"> {{item.videoTitle}} </span>
+                  </h3>
+                  <p>
+                    <span>{{item.videoDuration}}</span>
+
+                    <small style="cursor: pointer" (click)="openYoutubeVideoDialog($event, item?.videoUrl,item?.isFreeVideo)">
+                      <span style="color: #0f8f3e;cursor: pointer;padding-right: 5px" *ngIf=" checkIsFree(item?.isFreeVideo)">Free</span>
+                      <i  class="fa-regular fa-eye"></i>
+                    </small>
+                  </p>
+                </div>
+
+                <div
+                  *ngIf="item.type === 'attachment'"
+                  class="course-content-dorp-down-list-item"
+                >
+                  <h3>
+                    <small>
+                      <i class="fa-regular fa-file"></i>
+                    </small>
+
+                    <span>{{item.attachmentTitle ?? '-'}}</span>
+                  </h3>
+                  <p>
+                    <a style="cursor: pointer" [href]="item.attachment" target="_blank">
+                      <span style="color: #0f8f3e;cursor: pointer;padding-right: 5px">Free</span>
+                    </a>
+                  </p>
+                  <!-- END! course-content-dorp-down-list-item -->
+                </div>
+              </ng-container>
+
+
+
+
+
             </div>
           </div>
           <!-- END! home-course-content-dorp-down-bottom-child -->

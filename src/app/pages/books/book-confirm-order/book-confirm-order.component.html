@@ -201,6 +201,12 @@
               <button style="background: none; color: #0c3e9d;border: none;" *ngIf="countDown == 0 && isCountDownEnd" type="button" (click)="onConfirm()">আবার পাঠান</button>
             </div>
 
+            <div class="terms">
+              <mat-checkbox class="custom-checkbox"  [(ngModel)]="isCheckedTerms" required>
+                <p> I agree with the <a style="text-decoration: underline" routerLink="/pages/terms-and-conditions" target="_blank">terms and conditions</a> , <a style="text-decoration: underline" routerLink="/pages/return-&-refund-policy" target="_blank">Return, Refund & Cancelation Policy</a> and <a style="text-decoration: underline" routerLink="/pages/privacy-policy" target="_blank">privacy policy</a></p>
+              </mat-checkbox>
+            </div>
+
 
             <div class="order-now" *ngIf="!sentOtp">
               <button type="button" (click)="onConfirm()">

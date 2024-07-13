@@ -40,6 +40,8 @@ export class BookConfirmOrderComponent {
   private subDataFour: Subscription;
   @ViewChild('order') mainEl!: ElementRef;
 
+  isCheckedTerms: boolean = false;
+
   private readonly otpService = inject(OtpService);
   private readonly paymentService = inject(PaymentService);
   private readonly router = inject(Router);
@@ -139,6 +141,11 @@ export class BookConfirmOrderComponent {
     if (this.formData.invalid) {
       this.uiService.warn('Please complete all the required field');
       this.formData.markAllAsTouched();
+      return;
+    }
+
+    if (!this.isCheckedTerms) {
+      this.uiService.warn('Please accept the terms.');
       return;
     }
 

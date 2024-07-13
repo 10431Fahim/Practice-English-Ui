@@ -494,3 +494,22 @@ section.book-confirm-order {
         }
     }
 }
+
+.terms {
+  margin-top: 8px;
+  p {
+    font-family: $font-en-roboto;
+    font-size: 12px;
+    font-weight: 400;
+    //line-height: 18px;
+    text-align: left;
+    color: #777777;
+    //margin-bottom: 20px;
+    margin: 0;
+
+    a {
+      display: inline !important;
+      color: #F16334;
+    }
+  }
+}
