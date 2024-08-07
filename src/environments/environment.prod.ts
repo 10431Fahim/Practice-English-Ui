@@ -1,15 +1,15 @@
 export const environment = {
   production: true,
-  name: 'practiceenglishschool.softlabit.com',
-  domain: 'practiceenglishschool.softlabit.com',
+  name: 'practiceenglishschool.com',
+  domain: 'practiceenglishschool.com',
+  apiBaseLink: 'https://api.practiceenglishschool.com',
+  ftpBaseLink: 'https://api.practiceenglishschool.com',
 
-  apiBaseLink: 'https://api.practiceenglishschool.softlabit.com',
-  ftpBaseLink: 'https://api.practiceenglishschool.softlabit.com',
-  ftpPrefixPath: 'https://api.practiceenglishschool.softlabit.com/api/upload/images',
+  ftpPrefixPath: 'https://api.practiceenglishschool.com/api/upload/images',
   ftpPrefix: 'api',
 
-  aamarpayCourseCallbackUrl: 'https://api.practiceenglishschool.softlabit.com/api/payment/aamarpay-callback',
-  aamarpayProductCallbackUrl: 'https://api.practiceenglishschool.softlabit.com/api/payment/aamarpay-callback-product',
+  aamarpayCourseCallbackUrl: 'https://api.practiceenglishschool.com/api/payment/aamarpay-callback',
+  aamarpayProductCallbackUrl: 'https://api.practiceenglishschool.com/api/payment/aamarpay-callback-product',
 
   appBaseUrl: '/',
   userBaseUrl: '/',
