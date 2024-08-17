@@ -27,7 +27,52 @@
         </ng-container>
 
         <ng-container *ngIf="!loader">
-          <div class="courses-card" *ngFor="let item of orders">
+<!--          <div class="courses-card" *ngFor="let item of orders">-->
+<!--            <div class="tag">-->
+<!--              <span *ngIf="item?.orderType === 'live-course'">-->
+<!--                <fa-icon [icon]="faVideoCamera"></fa-icon> Live-->
+<!--              </span>-->
+<!--              <span *ngIf="item?.orderType === 'lecture-sheet'">-->
+<!--                <fa-icon [icon]="faFilePdf"></fa-icon> PDF-->
+<!--                </span>-->
+<!--              <span *ngIf="item?.orderType === 'video-course'">-->
+<!--                <fa-icon [icon]="faPlay"></fa-icon> Video-->
+<!--              </span>-->
+<!--            </div>-->
+<!--            <div class="courses-img">-->
+<!--              <img [src]="item?.orderItem?.image" alt="" />-->
+<!--            </div>-->
+<!--            <div class="courses-details">-->
+<!--              <div class="course-body">-->
+<!--                <h3 class="courses-name">{{ item?.orderItem?.name }}</h3>-->
+<!--&lt;!&ndash;                <div class="progress-bar">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <span></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div-->
+<!--                  class="live-course-action"-->
+<!--                  *ngIf="(item?.orderType === 'live-course' && item?.orderItem?.specifications?.length) || (item?.orderType === 'video-course' && item?.orderItem?.specifications?.length) "-->
+<!--                >-->
+<!--                  <h6 class="otp-code"><span class="text">কোর্স রেজিস্ট্রেশন কোড</span> <span class="otp">{{ item?.liveCourseCode }}</span></h6>-->
+<!--                  <button-->
+<!--                    mat-icon-button-->
+<!--                    [cdkCopyToClipboard]="item?.liveCourseCode"-->
+<!--                    (click)="onCopyCode($event)"-->
+<!--                  >-->
+<!--                    <mat-icon>content_copy</mat-icon>-->
+<!--                  </button>-->
+<!--                </div>-->
+<!--                <p *ngIf="checkExpireDay(item.expiredIn)">মেয়াদ {{ checkExpireDay(item.expiredIn) }} দিন বাকি</p>-->
+<!--              </div>-->
+<!--              <div class="buy-courses">-->
+<!--                <a-->
+<!--                  *ngIf="item?.orderType === 'video-course'"-->
+<!--                  [routerLink]="['/course-play-list', item?.orderItem?._id]">Continue-->
+<!--                </a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+          <div class="courses-card" *ngFor="let item of courseModules">
             <div class="tag">
               <span *ngIf="item?.orderType === 'live-course'">
                 <fa-icon [icon]="faVideoCamera"></fa-icon> Live
@@ -40,33 +85,32 @@
               </span>
             </div>
             <div class="courses-img">
-              <img [src]="item?.orderItem?.image" alt="" />
+              <img [src]="item?.step?.bannerImage" alt="" />
             </div>
             <div class="courses-details">
               <div class="course-body">
-                <h3 class="courses-name">{{ item?.orderItem?.name }}</h3>
-<!--                <div class="progress-bar">-->
-<!--                  <span></span>-->
+                <h3 class="courses-name">{{ item?.step?.name }}</h3>
+                <!--                <div class="progress-bar">-->
+                <!--                  <span></span>-->
+                <!--                </div>-->
+<!--                <div-->
+<!--                  class="live-course-action"-->
+<!--                  *ngIf="(item?.orderType === 'live-course' && item?.orderItem?.specifications?.length) || (item?.orderType === 'video-course' && item?.orderItem?.specifications?.length) "-->
+<!--                >-->
+<!--                  <h6 class="otp-code"><span class="text">কোর্স রেজিস্ট্রেশন কোড</span> <span class="otp">{{ item?.liveCourseCode }}</span></h6>-->
+<!--                  <button-->
+<!--                    mat-icon-button-->
+<!--                    [cdkCopyToClipboard]="item?.liveCourseCode"-->
+<!--                    (click)="onCopyCode($event)"-->
+<!--                  >-->
+<!--                    <mat-icon>content_copy</mat-icon>-->
+<!--                  </button>-->
 <!--                </div>-->
-                <div
-                  class="live-course-action"
-                  *ngIf="(item?.orderType === 'live-course' && item?.orderItem?.specifications?.length) || (item?.orderType === 'video-course' && item?.orderItem?.specifications?.length) "
-                >
-                  <h6 class="otp-code"><span class="text">কোর্স রেজিস্ট্রেশন কোড</span> <span class="otp">{{ item?.liveCourseCode }}</span></h6>
-                  <button
-                    mat-icon-button
-                    [cdkCopyToClipboard]="item?.liveCourseCode"
-                    (click)="onCopyCode($event)"
-                  >
-                    <mat-icon>content_copy</mat-icon>
-                  </button>
-                </div>
-                <p *ngIf="checkExpireDay(item.expiredIn)">মেয়াদ {{ checkExpireDay(item.expiredIn) }} দিন বাকি</p>
+<!--                <p *ngIf="checkExpireDay(item.expiredIn)">মেয়াদ {{ checkExpireDay(item.expiredIn) }} দিন বাকি</p>-->
               </div>
               <div class="buy-courses">
                 <a
-                  *ngIf="item?.orderType === 'video-course'"
-                  [routerLink]="['/course-play-list', item?.orderItem?._id]">Continue
+                  [routerLink]="['/course-play-list', orders[0]?.orderItem?._id]"  [queryParams]="{ step: item?.step?._id}">Continue
                 </a>
               </div>
             </div>
