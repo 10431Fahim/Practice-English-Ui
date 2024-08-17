@@ -63,7 +63,7 @@
       <div class="main">
         <mat-accordion
           [multi]="true"
-          *ngFor="let c of transformedData; let i = index"
+          *ngFor="let c of courseModules?.contents; let i = index"
         >
           <mat-expansion-panel
             [expanded]="i === expendedIndex"
@@ -75,36 +75,38 @@
               </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <div class="content-view">
-              <a
-                *ngFor="let d of c?.videoUrl;let j = index"
-                class="icon-link"
-                (click)="onChangeVideo(d)"
-                [class.active]="selectedVideo === d"
-              >
-                <mat-icon>play_circle_filled</mat-icon>
-                {{ c.videoTitle[j] }}
-              </a>
-              <a
-                *ngIf="c?.attachment"
-                class="icon-link"
-                (click)="onChangeAttachment(c?.attachment)"
-              >
-                <mat-icon>attach_file</mat-icon>
-                Click to preview attachment
-              </a>
-              <a
-                class="icon-link"
-                *ngIf="c?.quiz"
-                [routerLink]="['/', 'quiz', c?.quiz?._id]" [queryParams]="{ course: course?._id }"
-              >
-                <mat-icon>quiz</mat-icon>
-                Quiz: {{ c?.quiz?.name }}
-              </a>
-              <a class="icon-link">
-                <mat-icon>sticky_note_2</mat-icon>
-                Note: {{ c.description }}
-              </a>
+            <div class="content-view" >
+             <div *ngFor="let d of c?.modules;let j = index">
+               <a
+                 *ngIf="d?.type === 'video'"
+                 class="icon-link"
+                 (click)="onChangeVideo(d?.videoUrl)"
+                 [class.active]="selectedVideo === d"
+               >
+                 <mat-icon>play_circle_filled</mat-icon>
+                 {{ d.videoTitle }}
+               </a>
+               <a
+                 *ngIf="d?.type === 'attachment'"
+                 class="icon-link"
+                 (click)="onChangeAttachment(d?.attachment)"
+               >
+                 <mat-icon>attach_file</mat-icon>
+                 Click to preview attachment
+               </a>
+               <a
+                 class="icon-link"
+                 *ngIf="c?.quiz"
+                 [routerLink]="['/', 'quiz', c?.quiz?._id]" [queryParams]="{ course: course?._id }"
+               >
+                 <mat-icon>quiz</mat-icon>
+                 Quiz: {{ c?.quiz?.name }}
+               </a>
+             </div>
+<!--              <a class="icon-link">-->
+<!--                <mat-icon>sticky_note_2</mat-icon>-->
+<!--                Note: {{ c.description }}-->
+<!--              </a>-->
             </div>
           </mat-expansion-panel>
         </mat-accordion>
