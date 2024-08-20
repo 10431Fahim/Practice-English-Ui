@@ -16,6 +16,7 @@ export class CoursePlaylistViewComponent implements OnInit {
 
   // Store Data
   course: any;
+  moduleTracker: any;
   transformedData: any[] = [];
   selectedType: string;
   selectedVideo: string;
@@ -61,6 +62,7 @@ export class CoursePlaylistViewComponent implements OnInit {
         next: (res) => {
           if (res.success) {
             this.course = res.data;
+            this.moduleTracker = res.tracker;
             this.transformBenefitToArray();
             this.transformedData = this.course?.courseModules.map(item => ({
               ...item,
