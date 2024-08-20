@@ -113,6 +113,10 @@
                   [routerLink]="['/course-play-list', orders[0]?.orderItem?._id]"  [queryParams]="{ step: item?.step?._id}">Continue
                 </a>
               </div>
+
+              <div class="buy-courses">
+                <a (click)="sendRequest(item?.step?._id)">Request send</a>
+              </div>
             </div>
           </div>
         </ng-container>

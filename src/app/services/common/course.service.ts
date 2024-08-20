@@ -44,7 +44,7 @@ export class CourseService {
     if (select) {
       params = params.append('select', select);
     }
-    return this.httpClient.get<{ data: Course, message: string, success: boolean }>(API_URL + 'get-by-user-for-preview/' + id, { params });
+    return this.httpClient.get<{ data: Course, message: string, success: boolean, tracker: any }>(API_URL + 'get-by-user-for-preview/' + id, { params });
   }
 
   getCourseEnrollStatusByUser(id: string) {

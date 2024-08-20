@@ -8,6 +8,7 @@ import {faAngleRight, faFilePdf, faPlay, faVideoCamera} from '@fortawesome/free-
 import {Course} from "../../../interfaces/common/course.interface";
 import {CourseService} from "../../../services/common/course.service";
 import {Subscription} from "rxjs";
+import {RequestService} from "../../../services/common/request.service";
 
 @Component({
   selector: 'app-my-enroll',
@@ -34,6 +35,7 @@ export class MyEnrollComponent implements OnInit {
   // Store Data
   private filter: any;
   orders: any[] = [];
+  requests: any[] = [];
 
   // Loader
   loader: boolean = false;
@@ -45,15 +47,18 @@ export class MyEnrollComponent implements OnInit {
   // Subscriptions
   private subGetData1: Subscription;
   private subGetData2: Subscription;
+  private subDataTwo: Subscription;
 
   // Inject
   private readonly orderService = inject(OrderService);
   private readonly utilsService = inject(UtilsService);
   private readonly uiService = inject(UiService);
   private readonly courseService = inject(CourseService);
+  private readonly requestService = inject(RequestService);
   ngOnInit() {
     // Base Data
     this.getAllOrdersByUser();
+    this.getAllRequestByUser();
 
     // this.transformBenefitToArray();
   }
@@ -98,6 +103,31 @@ export class MyEnrollComponent implements OnInit {
       error: (err) => {
         console.log(err);
         this.loader = false;
+      },
+    });
+  }
+
+
+  private getAllRequestByUser() {
+
+    const mSelect = {
+      user: 1,
+      course: 1,
+      stepId: 1,
+    };
+    const filterData: FilterData = {
+      filter: null,
+      select: mSelect,
+      pagination: null,
+      sort: {createdAt: -1},
+    };
+    this.requestService.getAllRequestByUser(filterData).subscribe({
+      next: (res) => {
+        this.requests = res.data;
+        console.log('this.requests',this.requests);
+      },
+      error: (err) => {
+        console.log(err);
       },
     });
   }
@@ -237,6 +267,33 @@ export class MyEnrollComponent implements OnInit {
   onCopyCode(event: any) {
     event.stopPropagation();
     this.uiService.success('Code copied.');
+  }
+
+
+  sendRequest(data:any) {
+   const cData={
+      course: this.course?._id,
+      stepId:data,
+      status:'pending',
+    }
+    this.addRequest(cData);
+  }
+
+
+  private addRequest(data:any) {
+    this.subDataTwo = this.requestService.addRequest(data)
+      .subscribe({
+        next: (res => {
+          if (res.success) {
+            this.uiService.success(res.message);
+          } else {
+            this.uiService.warn(res.message);
+          }
+        }),
+        error: (error => {
+          console.log(error);
+        })
+      });
   }
 
 
