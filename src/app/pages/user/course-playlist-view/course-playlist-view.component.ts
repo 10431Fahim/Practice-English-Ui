@@ -64,24 +64,24 @@ export class CoursePlaylistViewComponent implements OnInit {
             this.course = res.data;
             this.moduleTracker = res.tracker;
             this.transformBenefitToArray();
-            this.transformedData = this.course?.courseModules.map(item => ({
-              ...item,
-              // benefit: item.benefit.split(',').map(benefit => benefit.trim()),
-              videoDuration: item.videoDuration.split(','),
-              videoTitle: item.videoTitle.split(','),
-              videoUrl: item.videoUrl.split(',')
-            }));
-            console.log('transformedData', this.transformedData)
-            if (this.course?.orderType === 'video-course') {
-              this.selectedType = 'video-course';
-              this.selectedVideo = this.transformedData[0].videoUrl[0];
-
-            } else if (this.course?.orderType === 'lecture-sheet') {
-              this.selectedType = 'lecture-sheet';
-              this.selectedAttachment = this.course.courseModules[0].attachment;
-            }
-          } else {
-            this.uiService.wrong(res.message);
+          //   this.transformedData = this.course?.courseModules.map(item => ({
+          //     ...item,
+          //     // benefit: item.benefit.split(',').map(benefit => benefit.trim()),
+          //     videoDuration: item.videoDuration.split(','),
+          //     videoTitle: item.videoTitle.split(','),
+          //     videoUrl: item.videoUrl.split(',')
+          //   }));
+          //   console.log('transformedData', this.transformedData)
+          //   if (this.course?.orderType === 'video-course') {
+          //     this.selectedType = 'video-course';
+          //     this.selectedVideo = this.transformedData[0].videoUrl[0];
+          //
+          //   } else if (this.course?.orderType === 'lecture-sheet') {
+          //     this.selectedType = 'lecture-sheet';
+          //     this.selectedAttachment = this.course.courseModules[0].attachment;
+          //   }
+          // } else {
+          //   this.uiService.wrong(res.message);
           }
         },
         error: (err) => {

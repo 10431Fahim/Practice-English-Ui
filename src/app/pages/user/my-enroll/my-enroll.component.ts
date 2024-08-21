@@ -1,14 +1,13 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {Order} from '../../../interfaces/common/order.interface';
 import {FilterData} from '../../../interfaces/core/filter-data.interface';
 import {OrderService} from '../../../services/common/order.service';
 import {UiService} from '../../../services/core/ui.service';
 import {UtilsService} from '../../../services/core/utils.service';
 import {faAngleRight, faFilePdf, faPlay, faVideoCamera} from '@fortawesome/free-solid-svg-icons';
-import {Course} from "../../../interfaces/common/course.interface";
 import {CourseService} from "../../../services/common/course.service";
 import {Subscription} from "rxjs";
 import {RequestService} from "../../../services/common/request.service";
+import {ReloadService} from "../../../services/core/reload.service";
 
 @Component({
   selector: 'app-my-enroll',
@@ -55,7 +54,15 @@ export class MyEnrollComponent implements OnInit {
   private readonly uiService = inject(UiService);
   private readonly courseService = inject(CourseService);
   private readonly requestService = inject(RequestService);
+  private readonly reloadService = inject(ReloadService);
   ngOnInit() {
+    this.reloadService.refreshRequest$.subscribe((res) => {
+      if (res) {
+        this.getAllOrdersByUser();
+        this.getAllRequestByUser();
+      }
+    });
+
     // Base Data
     this.getAllOrdersByUser();
     this.getAllRequestByUser();
@@ -113,6 +120,7 @@ export class MyEnrollComponent implements OnInit {
     const mSelect = {
       user: 1,
       course: 1,
+      status: 1,
       stepId: 1,
     };
     const filterData: FilterData = {
@@ -273,8 +281,9 @@ export class MyEnrollComponent implements OnInit {
   sendRequest(data:any) {
    const cData={
       course: this.course?._id,
-      stepId:data,
-      status:'pending',
+      stepId:data?._id,
+      step:data,
+      status:'Pending',
     }
     this.addRequest(cData);
   }
@@ -286,6 +295,7 @@ export class MyEnrollComponent implements OnInit {
         next: (res => {
           if (res.success) {
             this.uiService.success(res.message);
+            this.reloadService.needRefreshRequest$(true);
           } else {
             this.uiService.warn(res.message);
           }
@@ -297,4 +307,7 @@ export class MyEnrollComponent implements OnInit {
   }
 
 
+  getStepRequest(id: any) {
+    return this.requests.find(f => f.stepId === id);
+  }
 }
