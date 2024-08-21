@@ -28,6 +28,8 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
   iterable: any;
   result: any = null;
   courseId: string;
+  stepId: string;
+  module: string;
   course: Course;
   user: User;
   private subRouteTwo: Subscription;
@@ -65,6 +67,8 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
 
     this.subRouteTwo = this.activatedRoute.queryParamMap.subscribe(qParam => {
       this.courseId = qParam.get('course');
+      this.module = qParam.get('module');
+      this.stepId = qParam.get('step');
       if(this.courseId) {
         this.getCourseById()
       }
@@ -230,55 +234,22 @@ export class QuizDetailsComponent implements OnInit, OnDestroy {
 
     this.isFinish = true;
 
-    this.onEligibleForEnroll()
-  }
-
-
-  onEligibleForEnroll() {
-
-    const data: any = {
-      quiz: {
-        _id: this.quiz._id,
-        name: this.quiz.name,
-        questionCount: this.quiz.questionCount,
-        passMark: this.quiz.passMark,
-        timeInSec: this.quiz.timeInSec,
-        isNegativeMark: this.quiz.isNegativeMark,
-        negativeMark: this.quiz.negativeMark,
-      },
-      user: {
-        _id: this.user?._id,
-        name: this.user?.name,
-        username: this.user?.username,
-        phoneNo: this.user?.phone,
-        email: this.user?.email,
-      },
-      result:this.result,
-
-      mark: this.result.mark,
-      isPass: this.result.isPass,
-      completeTimeInSec: this.result.totalFinishTime,
-      joinDate: new Date(),
-      createDateString: this.utilsService.getDateString(new Date()),
-      createTime: this.utilsService.getCurrentTime(),
-      course: this.course?._id,
+    const mData: any = {
+      course: this.course._id,
+      moduleId: this.module,
+      isCompleteQuiz: true,
+      isModuleComplete: true,
     }
-
-    this.addQuizResult(data);
-
+    this.updateModuleTracker(mData);
   }
 
-
-  private addQuizResult(data: any) {
-    this.subAddData1 = this.quizService.addQuizResult(data).subscribe({
+  private updateModuleTracker(data: any) {
+    this.subAddData1 = this.courseService.updateModuleTracker(data).subscribe({
       next: (res) => {
-        if (res.success) {
-          // this.router.navigate(['/course-details', this.course?._id], {queryParams: {redirectFrom: 'question'}, queryParamsHandling: 'merge'})
-        }
+        console.log(res)
       },
       error: (err) => {
         console.log(err);
-        // this.isLoading = false;
       },
     });
   }

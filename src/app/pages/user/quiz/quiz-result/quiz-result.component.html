@@ -108,7 +108,7 @@
       <button (click)="onClickReQuiz()">কুইজটি আবার দিন</button>
     </div>
     <div >
-      <button [routerLink]="['/course-play-list/', courseId]">ফিরে যান</button>
+      <button [routerLink]="['/course-play-list/', courseId]" [queryParams]="{step: step}">ফিরে যান</button>
     </div>
 <!--    <div  *ngIf="course">-->
 <!--      <button *ngIf="!result?.isPass" [routerLink]="['/course-details', course?._id]">ফিরে যান</button>-->

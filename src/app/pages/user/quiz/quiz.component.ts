@@ -17,6 +17,8 @@ export class QuizComponent implements OnInit, OnDestroy {
   // Store Data
   id: string;
   courseId: string;
+  stepId: string;
+  module: string;
   quiz: Quiz;
 
   // Subscriptions
@@ -39,6 +41,8 @@ export class QuizComponent implements OnInit, OnDestroy {
 
     this.subRouteTwo = this.activatedRoute.queryParamMap.subscribe(qParam => {
       this.courseId = qParam.get('course');
+      this.stepId = qParam.get('step');
+      this.module = qParam.get('module');
     })
   }
 

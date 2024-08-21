@@ -76,11 +76,11 @@
             </mat-expansion-panel-header>
 
             <div class="content-view" >
-             <div *ngFor="let d of c?.modules;let j = index">
+             <div *ngFor="let d of c?.modules;let j = index;">
                <a
                  *ngIf="d?.type === 'video'"
                  class="icon-link"
-                 (click)="onChangeVideo(d?.videoUrl)"
+                 (click)="onChangeVideo(d?.videoUrl, c._id, j, d?.length)"
                  [class.active]="selectedVideo === d"
                >
                  <mat-icon>play_circle_filled</mat-icon>
@@ -89,18 +89,17 @@
                <a
                  *ngIf="d?.type === 'attachment'"
                  class="icon-link"
-                 (click)="onChangeAttachment(d?.attachment)"
+                 (click)="onChangeAttachment(d?.attachment, c._id)"
                >
                  <mat-icon>attach_file</mat-icon>
                  Click to preview attachment
                </a>
                <a
                  class="icon-link"
-                 *ngIf="c?.quiz"
-                 [routerLink]="['/', 'quiz', c?.quiz?._id]" [queryParams]="{ course: course?._id }"
-               >
+                 *ngIf="d?.type === 'quiz'"
+                 (click)="onClickQuiz(d?.quiz?._id, c._id)">
                  <mat-icon>quiz</mat-icon>
-                 Quiz: {{ c?.quiz?.name }}
+                 Quiz: {{ d?.quiz?.name }}
                </a>
              </div>
 <!--              <a class="icon-link">-->

@@ -51,4 +51,9 @@ export class CourseService {
     return this.httpClient.get<{ data: { orderType: string }, message: string, success: boolean }>(API_URL + 'get-enroll-status-by-user/' + id);
   }
 
+
+  updateModuleTracker(data: any) {
+    return this.httpClient.post<{ data: Course[], count: number, success: boolean }>(API_URL + 'update-module-tracker', data);
+  }
+
 }

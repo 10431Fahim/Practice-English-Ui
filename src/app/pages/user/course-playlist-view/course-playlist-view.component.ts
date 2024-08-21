@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {CourseService} from '../../../services/common/course.service';
 import {UiService} from '../../../services/core/ui.service';
@@ -24,6 +24,7 @@ export class CoursePlaylistViewComponent implements OnInit {
   id: string | any;
   stepId: string | any;
   expendedIndex: number = 0;
+  currentIndex: number = 0;
 
   // Subscriptions
   private subGetData1: Subscription;
@@ -34,6 +35,7 @@ export class CoursePlaylistViewComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly courseService = inject(CourseService);
   private readonly uiService = inject(UiService);
+  private readonly router = inject(Router);
 
   ngOnInit() {
     this.subQparamOne = this.activatedRoute.queryParams.subscribe(qParam => {
@@ -63,31 +65,60 @@ export class CoursePlaylistViewComponent implements OnInit {
           if (res.success) {
             this.course = res.data;
             this.moduleTracker = res.tracker;
+            this.currentIndex = res.tracker.currentModuleIndex ?? 0;
+            this.expendedIndex = res.tracker.currentModuleIndex ?? 0;
             this.transformBenefitToArray();
-          //   this.transformedData = this.course?.courseModules.map(item => ({
-          //     ...item,
-          //     // benefit: item.benefit.split(',').map(benefit => benefit.trim()),
-          //     videoDuration: item.videoDuration.split(','),
-          //     videoTitle: item.videoTitle.split(','),
-          //     videoUrl: item.videoUrl.split(',')
-          //   }));
-          //   console.log('transformedData', this.transformedData)
-          //   if (this.course?.orderType === 'video-course') {
-          //     this.selectedType = 'video-course';
-          //     this.selectedVideo = this.transformedData[0].videoUrl[0];
-          //
-          //   } else if (this.course?.orderType === 'lecture-sheet') {
-          //     this.selectedType = 'lecture-sheet';
-          //     this.selectedAttachment = this.course.courseModules[0].attachment;
-          //   }
-          // } else {
-          //   this.uiService.wrong(res.message);
+            //   this.transformedData = this.course?.courseModules.map(item => ({
+            //     ...item,
+            //     // benefit: item.benefit.split(',').map(benefit => benefit.trim()),
+            //     videoDuration: item.videoDuration.split(','),
+            //     videoTitle: item.videoTitle.split(','),
+            //     videoUrl: item.videoUrl.split(',')
+            //   }));
+            //   console.log('transformedData', this.transformedData)
+            //   if (this.course?.orderType === 'video-course') {
+            //     this.selectedType = 'video-course';
+            //     this.selectedVideo = this.transformedData[0].videoUrl[0];
+            //
+            //   } else if (this.course?.orderType === 'lecture-sheet') {
+            //     this.selectedType = 'lecture-sheet';
+            //     this.selectedAttachment = this.course.courseModules[0].attachment;
+            //   }
+            // } else {
+            //   this.uiService.wrong(res.message);
           }
         },
         error: (err) => {
           console.log(err);
         },
       });
+  }
+
+  private updateModuleTracker(data: any) {
+    this.courseService.updateModuleTracker(data)
+      .subscribe({
+        next: (res) => {
+          if (res.success) {
+            function pushUniqueValue(arr, value) {
+              if (!arr.includes(value)) {
+                arr.push(value);
+              }
+            }
+
+            const fIndex = this.moduleTracker.module.findIndex(f => f.moduleId === data.moduleId)
+            if (data.video) {
+              pushUniqueValue( this.moduleTracker.module[fIndex].video, data.video);
+            }
+            if (data.isCompleteAttachment) {
+              this.moduleTracker.module[fIndex].isCompleteAttachment = true;
+            }
+
+          }
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
   }
 
   // transformBenefitToArray() {
@@ -105,7 +136,6 @@ export class CoursePlaylistViewComponent implements OnInit {
   transformBenefitToArray() {
     const finalModules = [];
     if (this.course) {
-      console.log('this.course',this.course)
       this.course.courseModules.forEach(item => {
         const fIndex = finalModules.findIndex(f => f.step._id === item.step._id);
         const videoTitleArr = item.videoTitle.trim().split(',');
@@ -126,25 +156,35 @@ export class CoursePlaylistViewComponent implements OnInit {
                     videoUrl: videoUrlArr[i],
                     isFreeVideo: isFreeVideo[i],
                     videoDuration: videoDurationArr[i],
+                    length: videoTitleArr.length
                   }
                 })
               }
             ]
           }
-          if (item.isFreePdf) {
-            g.contents[0].modules.push({
-              type: 'attachment',
-              videoTitle: null,
-              videoUrl: null,
-              isFreeVideo: null,
-              videoDuration: null,
-              attachment: item.attachment,
-              attachmentTitle: item.attachmentTitle,
-            })
-          }
+
+          g.contents[0].modules.push({
+            type: 'attachment',
+            videoTitle: null,
+            videoUrl: null,
+            isFreeVideo: null,
+            videoDuration: null,
+            attachment: item.attachment,
+            attachmentTitle: item.attachmentTitle,
+          })
+          g.contents[0].modules.push({
+            type: 'quiz',
+            videoTitle: null,
+            videoUrl: null,
+            isFreeVideo: null,
+            videoDuration: null,
+            attachment: null,
+            attachmentTitle: null,
+            quiz: item.quiz,
+          })
           finalModules.push(g);
         } else {
-          const mContent =  {
+          const mContent = {
             _id: item._id,
             name: item.name,
             modules: videoTitleArr.map((m, i) => {
@@ -154,36 +194,39 @@ export class CoursePlaylistViewComponent implements OnInit {
                 videoUrl: videoUrlArr[i],
                 isFreeVideo: isFreeVideo[i],
                 videoDuration: videoDurationArr[i],
+                length: videoTitleArr.length
               }
             })
           }
 
-          if (item.isFreePdf) {
-            mContent.modules.push({
-              type: 'attachment',
-              videoTitle: null,
-              videoUrl: null,
-              isFreeVideo: null,
-              videoDuration: null,
-              attachment: item.attachment,
-              attachmentTitle: item.attachmentTitle,
-            })
-          }
+          mContent.modules.push({
+            type: 'attachment',
+            videoTitle: null,
+            videoUrl: null,
+            isFreeVideo: null,
+            videoDuration: null,
+            attachment: item.attachment,
+            attachmentTitle: item.attachmentTitle,
+          })
+
+          mContent.modules.push({
+            type: 'quiz',
+            videoTitle: null,
+            videoUrl: null,
+            isFreeVideo: null,
+            videoDuration: null,
+            attachment: null,
+            attachmentTitle: null,
+            quiz: item.quiz,
+          })
 
           finalModules[fIndex].contents.push(mContent);
         }
       })
-      this.courseModules = finalModules.find(f=> f.step?._id === this.stepId);
+      this.courseModules = finalModules.find(f => f.step?._id === this.stepId);
 
       console.log(' this.courseModules44', this.courseModules)
     }
-    // this.transformedData = this.data?.courseModules.map(item => ({
-    //   ...item,
-    //   benefit: item.benefit.split(',').map(benefit => benefit.trim()),
-    //   videoDuration: item.videoDuration.split(','),
-    //   videoTitle: item.videoTitle.split(','),
-    //   videoUrl: item.videoUrl.split(',')
-    // }));
   }
 
   /**
@@ -192,14 +235,82 @@ export class CoursePlaylistViewComponent implements OnInit {
    * onChangeAttachment()
    * onOpenPanel()
    */
-  onChangeVideo(url: string) {
+  onChangeVideo(url: string, moduleId: string, index: number, videoLength: number) {
+    if (!this.isVideoComplete(moduleId, index)) {
+      this.uiService.warn('Please complete previous item');
+      return;
+    }
     this.selectedType = 'video-course';
     this.selectedVideo = url;
+
+    const fModule = this.courseModules?.contents.find(f => f._id === moduleId);
+    const fAttachment = fModule.modules.find(f => f.type === 'attachment');
+
+    let mData: any;
+    if (fAttachment) {
+      mData = {
+        course: this.course._id,
+        moduleId: moduleId,
+        video: index,
+      }
+    } else {
+      if (videoLength === (index + 1)) {
+        mData = {
+          course: this.course._id,
+          moduleId: moduleId,
+          video: index,
+          isModuleComplete: true,
+        }
+      } else {
+        mData = {
+          course: this.course._id,
+          moduleId: moduleId,
+          video: index,
+        }
+      }
+
+    }
+    this.updateModuleTracker(mData);
   }
 
-  onChangeAttachment(url: string) {
+  onChangeAttachment(url: string, moduleId: string,) {
+
+    if (!this.isAllVideoDone(moduleId)) {
+      this.uiService.warn('Please complete previous item');
+      return;
+    }
+
     this.selectedType = 'lecture-sheet';
     this.selectedAttachment = url;
+
+    const fModule = this.courseModules?.contents.find(f => f._id === moduleId);
+    const fQuiz = fModule.modules.find(f => f.type === 'quiz');
+
+    let mData: any;
+    if (fQuiz) {
+      mData = {
+        course: this.course._id,
+        moduleId: moduleId,
+        isCompleteAttachment: true,
+      }
+    } else {
+      mData = {
+        course: this.course._id,
+        moduleId: moduleId,
+        isCompleteAttachment: true,
+        isModuleComplete: true,
+      }
+    }
+    this.updateModuleTracker(mData);
+  }
+
+  onClickQuiz(quizId: any, moduleId: string) {
+    if (!this.isAttachmentDone(moduleId)) {
+      this.uiService.warn('Please complete previous item');
+      return;
+    }
+
+    this.router.navigate(['/', 'quiz', quizId], {queryParams: { course: this.course?._id, module:  moduleId, step: this.stepId}})
   }
 
   onOpenPanel(event: any, index: number) {
@@ -212,7 +323,7 @@ export class CoursePlaylistViewComponent implements OnInit {
    */
   async onDownloadPdf(url: string) {
     // const data = await fetch(url);
-    const data = await fetch(url,{
+    const data = await fetch(url, {
       method: 'GET',
       headers: {
         'accept': 'application/blob'
@@ -229,6 +340,55 @@ export class CoursePlaylistViewComponent implements OnInit {
     link.click();
     document.body.removeChild(link)
   }
+
+
+  /**
+   * LOGIC
+   * isVideoComplete()
+   */
+
+  private isVideoComplete(moduleId: string, videoIndex: number) {
+
+    if (this.currentIndex === this.expendedIndex && videoIndex === 0) {
+      return true;
+    }
+
+    const fModule = this.moduleTracker.module.find(f => f.moduleId === moduleId);
+    if (fModule?.video && fModule?.video.length) {
+      const fIndex = fModule.video.findIndex(f => f === videoIndex - 1);
+      if (fIndex === -1) {
+        return false;
+      } else {
+        return true
+      }
+    } else {
+      return false;
+    }
+  }
+
+  isAllVideoDone(moduleId: string) {
+    const fModule = this.courseModules?.contents.find(f => f._id === moduleId);
+    const fVideo = fModule.modules.filter(f => f.type === 'video');
+    const fModuleTrack = this.moduleTracker.module.find(f => f.moduleId === moduleId);
+
+    if (fVideo.length === fModuleTrack?.video.length) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  isAttachmentDone(moduleId: string) {
+    const fModule = this.courseModules?.contents.find(f => f._id === moduleId);
+    const fModuleTrack = this.moduleTracker.module.find(f => f.moduleId === moduleId);
+    if( fModuleTrack && fModuleTrack.isCompleteAttachment) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   /**
    * On Destroy
    */
@@ -240,4 +400,6 @@ export class CoursePlaylistViewComponent implements OnInit {
       this.subGetData2.unsubscribe();
     }
   }
+
+
 }

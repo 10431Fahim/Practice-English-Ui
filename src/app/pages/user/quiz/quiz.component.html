@@ -54,7 +54,7 @@
     <!-- Card Container End-->
 
     <div class="btn-container">
-      <a [routerLink]="['/quiz','quiz-details', quiz?._id]" [queryParams]="{ course: courseId}">
+      <a [routerLink]="['/quiz','quiz-details', quiz?._id]" [queryParams]="{ course: courseId, module: module, step: stepId}">
         <button class="quiz-btn">
           <fa-icon [icon]="faPlay"></fa-icon>
           <span>কুইজ শুরু করুন</span>

@@ -20,6 +20,7 @@ export class QuizResultComponent implements OnInit {
   @Input() quiz: Quiz;
   @Input() result: any = false;
   @Input() course: Course;
+  @Input() step: string;
 
   @Output() onReQuiz = new EventEmitter();
 
@@ -27,6 +28,7 @@ export class QuizResultComponent implements OnInit {
   quizRes: boolean = false;
   @Input() user: User;
   courseId: string;
+  stepId: string;
   // Loader
   isLoading: boolean = false;
 
@@ -41,6 +43,7 @@ export class QuizResultComponent implements OnInit {
   ngOnInit() {
     this.subRouteTwo = this.activatedRoute.queryParamMap.subscribe(qParam => {
       this.courseId = qParam.get('course');
+      this.stepId = qParam.get('step');
     })
   }
 
