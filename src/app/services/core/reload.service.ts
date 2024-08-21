@@ -11,6 +11,7 @@ export class ReloadService {
   private refresPlay = new Subject<boolean>();
   private refreshCompareList = new Subject<void>();
   private refreshWishList = new BehaviorSubject<boolean>(false);
+  private refreshRequest = new BehaviorSubject<boolean>(false);
   private refreshProductReview = new BehaviorSubject<boolean>(false);
   private refreshSearch = new BehaviorSubject<boolean>(false);
   private refreshCart = new BehaviorSubject<boolean>(false);
@@ -58,6 +59,13 @@ export class ReloadService {
     this.refreshFeature.next(data);
   }
 
+  get refreshRequest$() {
+    return this.refreshRequest;
+  }
+
+  needRefreshRequest$(data: boolean) {
+    this.refreshRequest.next(data);
+  }
   /**
    * REFRESH GLOBAL DATA
    */

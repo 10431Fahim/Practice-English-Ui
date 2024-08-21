@@ -72,7 +72,7 @@
 <!--            </div>-->
 <!--          </div>-->
 
-          <div class="courses-card" *ngFor="let item of courseModules">
+          <div class="courses-card" *ngFor="let item of courseModules;let i=index">
             <div class="tag">
               <span *ngIf="item?.orderType === 'live-course'">
                 <fa-icon [icon]="faVideoCamera"></fa-icon> Live
@@ -108,15 +108,20 @@
 <!--                </div>-->
 <!--                <p *ngIf="checkExpireDay(item.expiredIn)">মেয়াদ {{ checkExpireDay(item.expiredIn) }} দিন বাকি</p>-->
               </div>
-              <div class="buy-courses">
+              <div class="buy-courses" *ngIf="getStepRequest(item?.step?._id)?.status === 'Accept' ||  i ==0">
                 <a
                   [routerLink]="['/course-play-list', orders[0]?.orderItem?._id]"  [queryParams]="{ step: item?.step?._id}">Continue
                 </a>
               </div>
 
-              <div class="buy-courses">
-                <a (click)="sendRequest(item?.step?._id)">Request send</a>
+              <div class="buy-courses" *ngIf="!getStepRequest(item?.step?._id) && i >0">
+                <a (click)="sendRequest(item?.step)">Request send</a>
               </div>
+
+              <div class="buy-courses" *ngIf="getStepRequest(item?.step?._id)?.status === 'Pending'">
+                <a >Pending</a>
+              </div>
+
             </div>
           </div>
         </ng-container>
