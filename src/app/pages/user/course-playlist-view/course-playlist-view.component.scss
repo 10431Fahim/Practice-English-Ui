@@ -145,6 +145,7 @@
 
   .content-view {
     .icon-link {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -156,9 +157,30 @@
       &:hover {
         color: $color-primary;
       }
+
+      mat-icon{
+        position: relative;
+      }
+
+      img{
+        position: absolute;
+        z-index: 10;
+        width: 12px;
+        top: 16px;
+        left: 13px;
+        opacity: .9;
+      }
     }
   }
 }
+
+.mat-icon {
+  overflow: visible;
+}
+
+// .active {
+//   color: #018e55 !important;
+// }
 
 .course-content::-webkit-scrollbar {
   width: 10px;

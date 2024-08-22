@@ -83,14 +83,20 @@
                  (click)="onChangeVideo(d?.videoUrl, c._id, j, d?.length)"
                  [class.active]="selectedVideo === d"
                >
+               <!-- <img *ngIf="isVideoComplete(c?.modules?._id, j)"
+               src="/assets/images/brand/icon/check-symbol.svg" alt=""> -->
+               <img 
+               src="/assets/images/brand/icon/check-symbol.svg" alt="">
                  <mat-icon>play_circle_filled</mat-icon>
-                 {{ d.videoTitle }}
+                <span class="active"> {{ d.videoTitle }}</span>
                </a>
                <a
                  *ngIf="d?.type === 'attachment'"
                  class="icon-link"
                  (click)="onChangeAttachment(d?.attachment, c._id)"
                >
+               <img 
+               src="/assets/images/brand/icon/check-symbol.svg" alt="">
                  <mat-icon>attach_file</mat-icon>
                  Click to preview attachment
                </a>
@@ -98,6 +104,8 @@
                  class="icon-link"
                  *ngIf="d?.type === 'quiz'"
                  (click)="onClickQuiz(d?.quiz?._id, c._id)">
+                 <img 
+                 src="/assets/images/brand/icon/check-symbol.svg" alt="">
                  <mat-icon>quiz</mat-icon>
                  Quiz: {{ d?.quiz?.name }}
                </a>
